@@ -1,0 +1,70 @@
+name: PUMP Data Collection
+
+on:
+  schedule:
+    # Hourly tracker + alerts
+    - cron: '17 * * * *'
+    # Price monitor every 15 min (GitHub Actions unreliable below this)
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  tracker:
+    if: github.event.schedule != '*/15 * * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm ci
+
+      - name: Run tracker
+        env:
+          HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
+        run: node pump-tracker.js
+
+      - name: Run alerts
+        env:
+          HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node pump-alerts.js
+
+      - name: Commit updated data
+        run: |
+          git config user.name "pump-bot"
+          git config user.email "pump-bot@users.noreply.github.com"
+          git add pump-tracker-history.json pump-alert-state.json
+          git diff --staged --quiet || git commit -m "data: hourly snapshot $(date -u +%Y-%m-%dT%H:%M)"
+          git push
+
+  price-monitor:
+    if: github.event.schedule == '*/15 * * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run price monitor
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node pump-price-monitor.js
+
+      - name: Commit price data
+        run: |
+          git config user.name "pump-bot"
+          git config user.email "pump-bot@users.noreply.github.com"
+          git add pump-price-history.json
+          git diff --staged --quiet || git commit -m "price: $(date -u +%Y-%m-%dT%H:%M)"
+          git push
