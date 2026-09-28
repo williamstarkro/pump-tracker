@@ -8,6 +8,9 @@ on:
     - cron: '*/15 * * * *'
   workflow_dispatch: # Manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   tracker:
     if: github.event.schedule != '*/15 * * * *'
