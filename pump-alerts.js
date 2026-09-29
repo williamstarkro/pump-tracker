@@ -208,6 +208,11 @@ function computeEntrySignals(snapshots) {
     signals.holderGrowth7dAgo = holderGrowth7dAgo;
   }
 
+  // 3-day price return (for momentum confirmation filter)
+  if (snap3d && snap3d.price) {
+    signals.priceReturn3d = (price - snap3d.price) / snap3d.price * 100;
+  }
+
   return signals;
 }
 
@@ -290,6 +295,13 @@ function computeEntryScore(signals) {
   if (signals.organicExchFlow7d > 500_000_000) {
     dangers.push({ name: "Exchange organic inflow > 500M (7d)", pts: -20, value: `+${(signals.organicExchFlow7d / 1e9).toFixed(1)}B` });
     score -= 20;
+  }
+
+  // 3d momentum confirmation — avoid dead cat bounces
+  // Winners had 3d return > +5% (momentum) or < -5% (true dip). The -12% loser entered at +2.6%.
+  if (signals.priceReturn3d !== undefined && signals.priceReturn3d > -5 && signals.priceReturn3d < 5) {
+    dangers.push({ name: "Weak 3d momentum (dead cat zone: -5% to +5%)", pts: -15, value: `${signals.priceReturn3d > 0 ? '+' : ''}${signals.priceReturn3d.toFixed(1)}%` });
+    score -= 15;
   }
 
   // Holder growth overheating (contrarian: fast growth = worse entries)
@@ -472,6 +484,11 @@ async function main() {
   }
   if (signals.lpIncreasing !== undefined) {
     console.log(`    LP depth: ${signals.lpIncreasing ? GREEN + "increasing" : RED + "decreasing"}${RESET} (${(signals.lpDelta7d / 1e6).toFixed(0)}M)`);
+  }
+  if (signals.priceReturn3d !== undefined) {
+    const r3 = signals.priceReturn3d;
+    const label = r3 > 5 ? GREEN + "strong momentum" : r3 < -5 ? YELLOW + "dip (contrarian buy)" : RED + "dead cat zone";
+    console.log(`    3d momentum: ${label}${RESET} (${r3 > 0 ? "+" : ""}${r3.toFixed(1)}%)`);
   }
 
   // Backtested expectations for current regime
