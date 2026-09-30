@@ -213,6 +213,38 @@ function computeEntrySignals(snapshots) {
     signals.priceReturn3d = (price - snap3d.price) / snap3d.price * 100;
   }
 
+  // ── Dip & confluence signals ──
+  // Mean reversion: 3d dips < -5% have 100% WR, +12.3% avg fwd 24h when combined with outflow
+  const isDip = signals.priceReturn3d !== undefined && signals.priceReturn3d < -5;
+  const isDeepDip = signals.priceReturn3d !== undefined && signals.priceReturn3d < -8;
+  const isApproachingDip = signals.priceReturn3d !== undefined && signals.priceReturn3d >= -5 && signals.priceReturn3d < -3;
+  const hasOutflow = signals.organicExchFlow7d !== undefined && signals.organicExchFlow7d < -500_000_000;
+  const isDanger = !!signals.momentumDivergence;
+
+  signals.isDip = isDip;
+  signals.isDeepDip = isDeepDip;
+  signals.isApproachingDip = isApproachingDip;
+  signals.dipConfluence = isDip && hasOutflow && !isDanger;
+  signals.dipOnly = isDip && !hasOutflow && !isDanger;
+  signals.dipBlocked = isDip && isDanger;
+
+  // Confluence readiness: track how many conditions are met/approaching
+  const confluenceConditions = [];
+  if (isDip) confluenceConditions.push({ name: "3d dip < -5%", status: "MET", value: `${signals.priceReturn3d.toFixed(1)}%` });
+  else if (isApproachingDip) confluenceConditions.push({ name: "3d dip < -5%", status: "APPROACHING", value: `${signals.priceReturn3d.toFixed(1)}% (need < -5%)` });
+  else confluenceConditions.push({ name: "3d dip < -5%", status: "NOT MET", value: signals.priceReturn3d !== undefined ? `${signals.priceReturn3d > 0 ? '+' : ''}${signals.priceReturn3d.toFixed(1)}%` : "n/a" });
+
+  if (hasOutflow) confluenceConditions.push({ name: "Exchange outflow", status: "MET", value: `${(signals.organicExchFlow7d / 1e9).toFixed(1)}B` });
+  else if (signals.organicExchFlow7d !== undefined && signals.organicExchFlow7d < 0) confluenceConditions.push({ name: "Exchange outflow", status: "APPROACHING", value: `${(signals.organicExchFlow7d / 1e9).toFixed(2)}B (need < -0.5B)` });
+  else confluenceConditions.push({ name: "Exchange outflow", status: "NOT MET", value: signals.organicExchFlow7d !== undefined ? `${(signals.organicExchFlow7d / 1e9).toFixed(2)}B (inflow)` : "n/a" });
+
+  if (!isDanger) confluenceConditions.push({ name: "No divergence", status: "MET", value: "safe" });
+  else confluenceConditions.push({ name: "No divergence", status: "BLOCKED", value: `price +${signals.priceReturn7d?.toFixed(1)}% + exch inflow` });
+
+  signals.confluenceConditions = confluenceConditions;
+  signals.confluenceMet = confluenceConditions.filter(c => c.status === "MET").length;
+  signals.confluenceTotal = confluenceConditions.length;
+
   return signals;
 }
 
@@ -302,6 +334,23 @@ function computeEntryScore(signals) {
   if (signals.priceReturn3d !== undefined && signals.priceReturn3d > -5 && signals.priceReturn3d < 5) {
     dangers.push({ name: "Weak 3d momentum (dead cat zone: -5% to +5%)", pts: -15, value: `${signals.priceReturn3d > 0 ? '+' : ''}${signals.priceReturn3d.toFixed(1)}%` });
     score -= 15;
+  }
+
+  // Mean reversion dip: 3d return < -5% = buyback floor creates snapback
+  // DIP + OUTFLOW: +12.3% avg fwd24h, 100% WR (n=6)
+  // DIP alone: +11.8% avg, 100% WR (n=3)
+  // DIP + DANGER: -3.4% avg, 25% WR — divergence kills it
+  if (signals.isDip && !signals.momentumDivergence) {
+    components.push({ name: "Mean reversion dip (3d < -5%) [dip]", pts: 20, value: `${signals.priceReturn3d.toFixed(1)}%` });
+    score += 20;
+  }
+  if (signals.isDeepDip && !signals.momentumDivergence) {
+    components.push({ name: "Deep dip bonus (3d < -8%) [dip]", pts: 10, value: `${signals.priceReturn3d.toFixed(1)}%` });
+    score += 10;
+  }
+  if (signals.dipConfluence) {
+    components.push({ name: "DIP + OUTFLOW confluence [dip+flow]", pts: 15, value: `dip ${signals.priceReturn3d.toFixed(1)}% + outflow ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B` });
+    score += 15;
   }
 
   // Holder growth overheating (contrarian: fast growth = worse entries)
@@ -493,7 +542,20 @@ async function main() {
 
   // Backtested expectations for current regime
   console.log(`\n  ${BOLD}Backtested expectations for current conditions:${RESET}`);
-  if (signals.momentumDivergence) {
+  if (signals.dipConfluence) {
+    console.log(`    ${GREEN}DIP + OUTFLOW CONFLUENCE (strongest setup)${RESET}`);
+    console.log(`    ${GREEN}Historical fwd 24h: +12.3% avg, 100% win rate (n=6)${RESET}`);
+    console.log(`    ${GREEN}Historical fwd 72h: +17.6% avg${RESET}`);
+    console.log(`    ${GREEN}Sizing: full position $150K at 3x${RESET}`);
+  } else if (signals.dipOnly) {
+    console.log(`    ${GREEN}DIP ENTRY (mean reversion, no outflow yet)${RESET}`);
+    console.log(`    ${GREEN}Historical fwd 24h: +11.8% avg, 100% win rate (n=3)${RESET}`);
+    console.log(`    ${YELLOW}Sizing: half position $100K at 2x (single signal)${RESET}`);
+  } else if (signals.dipBlocked) {
+    console.log(`    ${RED}DIP BLOCKED BY DIVERGENCE${RESET}`);
+    console.log(`    ${RED}Historical dip + danger: -3.4% avg, 25% win rate (n=4)${RESET}`);
+    console.log(`    ${RED}Mean reversion FAILS during distribution. DO NOT buy this dip.${RESET}`);
+  } else if (signals.momentumDivergence) {
     console.log(`    ${RED}MOMENTUM DIVERGENCE REGIME${RESET}`);
     console.log(`    ${RED}Historical 3d return: -6.0% avg, 11% win rate${RESET}`);
     console.log(`    ${RED}DO NOT open leveraged positions${RESET}`);
@@ -510,57 +572,156 @@ async function main() {
     console.log(`    ${YELLOW}Mixed conditions — no strong regime match${RESET}`);
   }
 
-  // Alert logic
-  const state = loadState();
-  const now = new Date().toISOString();
-  let shouldAlert = false;
-  let alertTitle = "";
-  let alertMessage = "";
-  let alertPriority = 3;
+  // ── Confluence tracker — shows how conditions are gearing up ──
+  console.log(`\n  ${BOLD}Confluence Tracker:${RESET} ${signals.confluenceMet}/${signals.confluenceTotal} conditions met`);
+  for (const c of signals.confluenceConditions) {
+    const icon = c.status === "MET" ? GREEN + "[MET]" :
+                 c.status === "APPROACHING" ? YELLOW + "[~]  " :
+                 c.status === "BLOCKED" ? RED + "[X]  " :
+                 RED + "[--] ";
+    console.log(`    ${icon}${RESET} ${c.name}: ${c.value}`);
+  }
+  if (signals.confluenceMet === signals.confluenceTotal) {
+    console.log(`    ${GREEN}>>> ALL CONDITIONS MET — CONFLUENCE ACTIVE <<<${RESET}`);
+  } else if (signals.confluenceMet >= signals.confluenceTotal - 1 && !signals.momentumDivergence) {
+    const missing = signals.confluenceConditions.find(c => c.status !== "MET");
+    console.log(`    ${YELLOW}>>> 1 away from confluence — watching: ${missing?.name} <<<${RESET}`);
+  }
 
-  // Minimum 30 minutes between alerts to avoid spam
-  const minAlertGap = 30 * 60 * 1000;
-  const timeSinceLastAlert = state.lastAlertTime ? Date.now() - new Date(state.lastAlertTime).getTime() : Infinity;
-
-  if (timeSinceLastAlert < minAlertGap) {
-    console.log(`\n  ${DIM}Last alert ${Math.round(timeSinceLastAlert / 60000)}m ago — cooldown active${RESET}`);
-  } else {
-    // DANGER alert — always send immediately
-    if (tier === "DANGER" && state.lastAlertTier !== "DANGER") {
-      shouldAlert = true;
-      alertTitle = "DANGER — Momentum Divergence";
-      alertMessage = `Price rising (+${signals.priceReturn7d?.toFixed(1)}%) while exchanges receiving inflow (+${(signals.organicExchFlow7d / 1e9).toFixed(1)}B). Historical 3d return: -6.0%, 11% win rate. CLOSE any leveraged positions.`;
-      alertPriority = 5;
-    }
-    // STRONG ENTRY — alert when crossing up
-    else if (tier === "STRONG ENTRY" && state.lastTier !== "STRONG ENTRY") {
-      shouldAlert = true;
-      alertTitle = "STRONG ENTRY Signal";
-      alertMessage = `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. All major signals aligned. Best historical 3d return: +14.6%, 76% win rate.`;
-      alertPriority = 4;
-    }
-    // GOOD ENTRY — alert when crossing up from below
-    else if (tier === "GOOD ENTRY" && (state.lastTier === "NEUTRAL" || state.lastTier === "AVOID" || !state.lastTier)) {
-      shouldAlert = true;
-      alertTitle = "GOOD ENTRY Signal";
-      alertMessage = `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. Most signals positive. Exchange flow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%.`;
-      alertPriority = 3;
-    }
-    // SIGNALS FADED — alert when dropping from entry to avoid
-    else if ((tier === "AVOID" || tier === "NEUTRAL") && (state.lastAlertTier === "STRONG ENTRY" || state.lastAlertTier === "GOOD ENTRY")) {
-      shouldAlert = true;
-      alertTitle = "Entry Signals Faded";
-      alertMessage = `Score dropped to ${score}/100 (${tier}). ${dangers.length > 0 ? "Danger: " + dangers.map(d => d.name).join(", ") : "Positive signals weakened."}`;
-      alertPriority = 3;
+  // Position sizing guidance
+  if (signals.dipConfluence || signals.dipOnly || (tier === "GOOD ENTRY" || tier === "STRONG ENTRY")) {
+    console.log(`\n  ${BOLD}Position Guidance:${RESET}`);
+    if (signals.dipConfluence) {
+      console.log(`    ${GREEN}DIP + OUTFLOW: $150K at 3x leverage${RESET}`);
+      console.log(`    ${DIM}Take profit: 3d return crosses back above +5%${RESET}`);
+      console.log(`    ${DIM}Hard stop: 3d return drops below -20%${RESET}`);
+      console.log(`    ${DIM}Time stop: 7 days max hold${RESET}`);
+    } else if (signals.dipOnly) {
+      console.log(`    ${YELLOW}DIP only: $100K at 2x leverage (no outflow confirmation)${RESET}`);
+      console.log(`    ${DIM}Take profit: 3d return crosses back above +5%${RESET}`);
+      console.log(`    ${DIM}Hard stop: 3d return drops below -20%${RESET}`);
+      console.log(`    ${DIM}Time stop: 7 days max hold${RESET}`);
+      console.log(`    ${DIM}Upgrade to full size if outflow develops${RESET}`);
+    } else if (tier === "STRONG ENTRY") {
+      console.log(`    ${GREEN}Structural STRONG: $150K at 3x leverage${RESET}`);
+    } else {
+      console.log(`    ${YELLOW}Structural GOOD: $100K at 2x leverage${RESET}`);
     }
   }
 
-  if (shouldAlert) {
-    await sendAlert(alertTitle, alertMessage, alertPriority);
-    state.lastAlertTime = now;
-    state.lastAlertTier = tier;
+  // Alert logic
+  const state = loadState();
+  const now = new Date().toISOString();
+  const alerts = []; // collect all alerts, send highest priority
+
+  // Minimum 30 minutes between tier alerts
+  const minAlertGap = 30 * 60 * 1000;
+  const timeSinceLastAlert = state.lastAlertTime ? Date.now() - new Date(state.lastAlertTime).getTime() : Infinity;
+  // Dip alerts use separate cooldown
+  const dipCooldown = 4 * 3600000; // 4 hours between dip alerts
+  const timeSinceLastDip = state.lastDipAlertTime ? Date.now() - new Date(state.lastDipAlertTime).getTime() : Infinity;
+
+  // ── Dip alerts (independent track, highest priority) ──
+  if (timeSinceLastDip > dipCooldown) {
+    if (signals.dipConfluence && state.lastDipAlertType !== "confluence") {
+      alerts.push({
+        title: "DIP + OUTFLOW CONFLUENCE",
+        message: `3d return: ${signals.priceReturn3d.toFixed(1)}%. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B. Price: $${signals.price.toFixed(6)}. Historical: +12.3% avg fwd 24h, 100% WR (n=6). Full position: $150K at 3x. Stop: 3d < -20%. Take profit: 3d > +5%.`,
+        priority: 5,
+        type: "dip",
+        dipType: "confluence",
+      });
+    } else if (signals.dipOnly && state.lastDipAlertType !== "diponly" && state.lastDipAlertType !== "confluence") {
+      alerts.push({
+        title: "DIP ENTRY -- 3d return " + signals.priceReturn3d.toFixed(1) + "%",
+        message: `Buyback-floor mean reversion active. Price: $${signals.price.toFixed(6)}. No exchange outflow yet -- half size: $100K at 2x. Upgrade if outflow develops. Stop: 3d < -20%. Historical dip-only: +11.8% avg, 100% WR (n=3).`,
+        priority: 4,
+        type: "dip",
+        dipType: "diponly",
+      });
+    } else if (signals.isApproachingDip && !signals.momentumDivergence && !state.lastDipApproachAlert) {
+      const outflowStatus = signals.organicExchFlow7d < -500_000_000 ? "OUTFLOW active" :
+                            signals.organicExchFlow7d < 0 ? "outflow building" : "no outflow yet";
+      alerts.push({
+        title: "DIP APPROACHING -- 3d at " + signals.priceReturn3d.toFixed(1) + "%",
+        message: `3d return nearing -5% dip threshold. Price: $${signals.price.toFixed(6)}. Exchange flow: ${outflowStatus} (${(signals.organicExchFlow7d / 1e9).toFixed(2)}B). Confluence ${signals.confluenceMet}/${signals.confluenceTotal} met. Watch for entry.`,
+        priority: 3,
+        type: "dip",
+        dipType: "approaching",
+      });
+    } else if (signals.dipBlocked && state.lastDipAlertType !== "blocked") {
+      alerts.push({
+        title: "DIP BLOCKED -- Divergence active",
+        message: `3d dip at ${signals.priceReturn3d.toFixed(1)}% BUT momentum divergence active (price +${signals.priceReturn7d?.toFixed(1)}% + exchange inflow). DO NOT buy this dip. Historical dip+danger: -3.4% avg, 25% WR. Wait for divergence to clear.`,
+        priority: 4,
+        type: "dip",
+        dipType: "blocked",
+      });
+    }
+  }
+
+  // Clear dip alert state when dip conditions end
+  if (!signals.isDip && !signals.isApproachingDip && state.lastDipAlertType) {
+    state.lastDipAlertType = null;
+    state.lastDipApproachAlert = false;
+  }
+
+  // ── Tier alerts (existing, on cooldown) ──
+  if (timeSinceLastAlert >= minAlertGap) {
+    if (tier === "DANGER" && state.lastAlertTier !== "DANGER") {
+      alerts.push({
+        title: "DANGER -- Momentum Divergence",
+        message: `Price rising (+${signals.priceReturn7d?.toFixed(1)}%) while exchanges receiving inflow (+${(signals.organicExchFlow7d / 1e9).toFixed(1)}B). Historical 3d return: -6.0%, 11% win rate. CLOSE any leveraged positions.`,
+        priority: 5,
+        type: "tier",
+      });
+    } else if (tier === "STRONG ENTRY" && state.lastTier !== "STRONG ENTRY") {
+      alerts.push({
+        title: "STRONG ENTRY Signal",
+        message: `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. ${signals.isDip ? "DIP CONFLUENCE ACTIVE." : ""} Best historical 3d return: +14.6%, 76% win rate.`,
+        priority: 4,
+        type: "tier",
+      });
+    } else if (tier === "GOOD ENTRY" && (state.lastTier === "NEUTRAL" || state.lastTier === "AVOID" || !state.lastTier)) {
+      alerts.push({
+        title: "GOOD ENTRY Signal",
+        message: `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. Exchange flow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. ${signals.isDip ? "DIP active -- mean reversion in play." : ""}`,
+        priority: 3,
+        type: "tier",
+      });
+    } else if ((tier === "AVOID" || tier === "NEUTRAL") && (state.lastAlertTier === "STRONG ENTRY" || state.lastAlertTier === "GOOD ENTRY")) {
+      alerts.push({
+        title: "Entry Signals Faded",
+        message: `Score dropped to ${score}/100 (${tier}). ${dangers.length > 0 ? "Danger: " + dangers.map(d => d.name).join(", ") : "Positive signals weakened."}`,
+        priority: 3,
+        type: "tier",
+      });
+    }
   } else {
-    console.log(`\n  ${DIM}No alert triggered (tier unchanged: ${tier})${RESET}`);
+    console.log(`\n  ${DIM}Tier alert cooldown: ${Math.round(timeSinceLastAlert / 60000)}m ago${RESET}`);
+  }
+
+  // Send the highest-priority alert (or all if different types)
+  const sentTypes = new Set();
+  for (const alert of alerts.sort((a, b) => b.priority - a.priority)) {
+    if (sentTypes.has(alert.type)) continue;
+    sentTypes.add(alert.type);
+
+    await sendAlert(alert.title, alert.message, alert.priority);
+
+    if (alert.type === "tier") {
+      state.lastAlertTime = now;
+      state.lastAlertTier = tier;
+    }
+    if (alert.type === "dip") {
+      state.lastDipAlertTime = now;
+      state.lastDipAlertType = alert.dipType;
+      if (alert.dipType === "approaching") state.lastDipApproachAlert = true;
+    }
+  }
+
+  if (alerts.length === 0) {
+    console.log(`\n  ${DIM}No alert triggered (tier: ${tier}, dip: ${signals.isDip ? "active" : signals.isApproachingDip ? "approaching" : "no"})${RESET}`);
   }
 
   // ── Holder velocity alert (fast-twitch, independent of tier) ──
