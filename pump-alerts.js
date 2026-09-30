@@ -563,6 +563,47 @@ async function main() {
     console.log(`\n  ${DIM}No alert triggered (tier unchanged: ${tier})${RESET}`);
   }
 
+  // ── Holder velocity alert (fast-twitch, independent of tier) ──
+  // Detects demand surges that precede price moves by 1-2 hours.
+  // Sep 29 case study: +1111 holders/hr (19x baseline) preceded a +15.7% rip.
+  if (snapshots.length >= 25) {
+    const latest2 = snapshots.slice(-2);
+    const dtHrs = (new Date(latest2[1].timestamp) - new Date(latest2[0].timestamp)) / 3600000;
+    const holderVelocity = dtHrs > 0.1 ? (latest2[1].uniqueOwners - latest2[0].uniqueOwners) / dtHrs : 0;
+
+    // Trailing 24h baseline
+    const trailing24h = snapshots.filter(s => {
+      const t = new Date(s.timestamp).getTime();
+      const latest = new Date(latest2[1].timestamp).getTime();
+      return t >= latest - 24 * 3600000 && t < latest - 3600000;
+    });
+    let baselineVelocity = 50; // fallback
+    if (trailing24h.length >= 3) {
+      const totalGrowth = trailing24h[trailing24h.length - 1].uniqueOwners - trailing24h[0].uniqueOwners;
+      const totalHrs = (new Date(trailing24h[trailing24h.length - 1].timestamp) - new Date(trailing24h[0].timestamp)) / 3600000;
+      if (totalHrs > 1) baselineVelocity = totalGrowth / totalHrs;
+    }
+
+    const velocityRatio = baselineVelocity > 0 ? holderVelocity / baselineVelocity : 0;
+
+    console.log(`\n  ${BOLD}Holder Velocity:${RESET}`);
+    const velColor = velocityRatio >= 5 ? RED : velocityRatio >= 3 ? YELLOW : DIM;
+    console.log(`    Current: ${velColor}${holderVelocity.toFixed(0)}/hr${RESET} (baseline: ${baselineVelocity.toFixed(0)}/hr, ratio: ${velocityRatio.toFixed(1)}x)`);
+
+    const velCooldown = 2 * 3600000; // 2 hour cooldown for velocity alerts
+    const lastVelAlert = state.lastVelocityAlertTime ? Date.now() - new Date(state.lastVelocityAlertTime).getTime() : Infinity;
+
+    if (velocityRatio >= 5 && holderVelocity > 200 && lastVelAlert > velCooldown) {
+      const velTitle = "DEMAND SURGE -- " + holderVelocity.toFixed(0) + " new holders/hr (" + velocityRatio.toFixed(0) + "x baseline)";
+      const velMsg = "Holder velocity spike detected. Price: $" + signals.price.toFixed(6) + ". Historical pattern: holder surges precede price moves by 1-2 hours. Current entry tier: " + tier + " (score " + score + "/100).";
+      console.log(`    ${RED}DEMAND SURGE DETECTED${RESET} — ${velocityRatio.toFixed(0)}x baseline`);
+      await sendAlert(velTitle, velMsg, 4);
+      state.lastVelocityAlertTime = new Date().toISOString();
+    } else if (velocityRatio >= 3) {
+      console.log(`    ${YELLOW}Elevated — watching${RESET}`);
+    }
+  }
+
   state.lastTier = tier;
   state.lastScore = score;
   state.lastCheck = now;
