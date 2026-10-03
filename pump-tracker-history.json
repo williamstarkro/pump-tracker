@@ -1097918,5 +1097918,3013 @@
         "pct": 0.004171536852693574
       }
     ]
+  },
+  {
+    "timestamp": "2026-10-03T22:18:12.085Z",
+    "price": 0.0063649965,
+    "totalSupply": 830162673986.3855,
+    "uniqueOwners": 292918,
+    "holders": [
+      {
+        "rank": 1,
+        "addr": "Cfq1ts1iFr1eUWWBm8eFxUzm5R3YA3UvMZznwiShbgZt",
+        "balance": 229261858182.10397,
+        "pct": 27.616497990834
+      },
+      {
+        "rank": 2,
+        "addr": "8UhbNoBXmGoxJr2TeWW8wmSMoWmjS2rTT2tVJxzuTogC",
+        "balance": 80000000010.00024,
+        "pct": 9.636665501454745
+      },
+      {
+        "rank": 3,
+        "addr": "9pkFKCR1mdS31JxjKdtmWg2awZUg6vJUYVY722DAcXzv",
+        "balance": 35000000010.00026,
+        "pct": 4.216041157564048
+      },
+      {
+        "rank": 4,
+        "addr": "BBvQteuawKB2UtExfevL8HYLjWWsgmWXsp922vFbvCfT",
+        "balance": 25000000010.02305,
+        "pct": 3.011457970035526
+      },
+      {
+        "rank": 5,
+        "addr": "GTeSSwovPiVirpvWJpThUWiLDSLsuApmJw621Yom3MhB",
+        "balance": 25000000010.000233,
+        "pct": 3.0114579700327777
+      },
+      {
+        "rank": 6,
+        "addr": "AvqFxKNrYZNvxsj2oWhLW8det68HzCXBqswshoD2TdT6",
+        "balance": 24000000010.000267,
+        "pct": 2.8909996512796554
+      },
+      {
+        "rank": 7,
+        "addr": "85WTujfJ9meJq5hfjAeb5gftj7n8Q7QTsZJbRqMD5ERS",
+        "balance": 21249962532.950977,
+        "pct": 2.559734760286208
+      },
+      {
+        "rank": 8,
+        "addr": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+        "balance": 20822382704.308353,
+        "pct": 2.5082292129951673
+      },
+      {
+        "rank": 9,
+        "addr": "8UHpWBnhYNeAQURWjAABp8vSrzfYa69o7sfi65vYLC42",
+        "balance": 19131083343.250256,
+        "pct": 2.3044981354538714
+      },
+      {
+        "rank": 10,
+        "addr": "ESRc4ce6jpyRyvGJ9Gjgtmwc7wEtR1ZPaQPnh9kWZM67",
+        "balance": 17114828594.106647,
+        "pct": 2.0616234781940252
+      },
+      {
+        "rank": 11,
+        "addr": "96HiV4cGWTJNCjGVff3RTHgPXmpYz7MSrGTAmxNKVWM9",
+        "balance": 16291638051.823204,
+        "pct": 1.962463329457087
+      },
+      {
+        "rank": 12,
+        "addr": "GhFaBi8sy3M5mgG97YguQ6J3f7XH4JwV5CoW8MbzRgAU",
+        "balance": 15625000010.000263,
+        "pct": 1.8821612317222192
+      },
+      {
+        "rank": 13,
+        "addr": "ERRGqu3dh6zYBg7MNAHKL33TyVb7efMmaKxnmdukdNYa",
+        "balance": 12041645546.366344,
+        "pct": 1.4505163775363654
+      },
+      {
+        "rank": 14,
+        "addr": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+        "balance": 10898761671.60934,
+        "pct": 1.3128465074530777
+      },
+      {
+        "rank": 15,
+        "addr": "9SLPTL41SPsYkgdsMzdfJsxymEANKr5bYoBsQzJyKpKS",
+        "balance": 9560198613.341059,
+        "pct": 1.1516054519090368
+      },
+      {
+        "rank": 16,
+        "addr": "9UcygiamY92yGntGkUkBKi4SdApxkBMZd9QSo6wMC2dN",
+        "balance": 8800000010.000237,
+        "pct": 1.0600332062321263
+      },
+      {
+        "rank": 17,
+        "addr": "4GZwzZgqSwwTTRVgBoxTDeH3EwDye84dCPb9fALAZFjF",
+        "balance": 7234122493.8285,
+        "pct": 0.871410233260757
+      },
+      {
+        "rank": 18,
+        "addr": "GsM3emTijQshDHrWRRhSQhqG1zYC9BNnAuah7ZPEu6ya",
+        "balance": 5480748240.277456,
+        "pct": 0.6602017185329799
+      },
+      {
+        "rank": 19,
+        "addr": "2APnhZKqfBUmCAqnZnfGomQLz1stWDq9UotjFPD6ZXsP",
+        "balance": 5121825764.317186,
+        "pct": 0.6169665205160962
+      },
+      {
+        "rank": 20,
+        "addr": "5d3jKREJ2wBRzTeMYnn4PxC5TwitdQxTat1XUFkHXPwV",
+        "balance": 5058863322.605846,
+        "pct": 0.6093821706429565
+      },
+      {
+        "rank": 21,
+        "addr": "FCgSWpNqaTvYydABHVCBxs7MRpgPBemhVDEYUcudj3Zv",
+        "balance": 5000000124.890625,
+        "pct": 0.6022916088097481
+      },
+      {
+        "rank": 22,
+        "addr": "AC5RDfQFmDS1deWZos921JfqscXdByf8BKHs5ACWjtW2",
+        "balance": 4675855626.731655,
+        "pct": 0.5632457075284426
+      },
+      {
+        "rank": 23,
+        "addr": "4sYGAxDy11dCiS3cBdWBH7ztY8H7D951mVMV5poyZTMc",
+        "balance": 4374875010,
+        "pct": 0.5269900884596682
+      },
+      {
+        "rank": 24,
+        "addr": "DSo8tY2KdbmZC6Q9YNWgQ9745ugL1Q9K6FeyqovkGqRS",
+        "balance": 4203566058.356275,
+        "pct": 0.5063545001573044
+      },
+      {
+        "rank": 25,
+        "addr": "6SWFRWrckxvT4hxYUiz43wPxfMpg4NP7Y27WQzY9cT2i",
+        "balance": 4142409293.734874,
+        "pct": 0.49898765911062976
+      },
+      {
+        "rank": 26,
+        "addr": "C68a6RCGLiPskbPYtAcsCjhG8tfTWYcoB4JjCrXFdqyo",
+        "balance": 3699416493.016448,
+        "pct": 0.44562549111634925
+      },
+      {
+        "rank": 27,
+        "addr": "EFE3j1pcSP1paUzA86zW7989ZjsFP2J7ginyUqo4ewqR",
+        "balance": 3595181381.552452,
+        "pct": 0.4330695048343516
+      },
+      {
+        "rank": 28,
+        "addr": "6LY1JzAFVZsP2a2xKrtU6znQMQ5h4i7tocWdgrkZzkzF",
+        "balance": 3513319787.313578,
+        "pct": 0.4232085948218862
+      },
+      {
+        "rank": 29,
+        "addr": "7ZiWD25BG8B6bcKZdyE8gUBrzeUR3JzSfuj39yMTi1PJ",
+        "balance": 3444156487.5,
+        "pct": 0.41487730000692413
+      },
+      {
+        "rank": 30,
+        "addr": "C6FVB6jCdkPEdWRyzsV7RuUCmMeGgH9KAwirkKkERm3M",
+        "balance": 2916583343.333333,
+        "pct": 0.3513267260413065
+      },
+      {
+        "rank": 31,
+        "addr": "A98NXgzCzKXoLSps5ga2pgsPdEj7AtDQnmAQjVeE8WEm",
+        "balance": 2916583343.333333,
+        "pct": 0.3513267260413065
+      },
+      {
+        "rank": 32,
+        "addr": "8eucCT1KqGV6ucERAtsjKm4U4YLUwNHvEeWXJ8MydfSa",
+        "balance": 2916583343.333333,
+        "pct": 0.3513267260413065
+      },
+      {
+        "rank": 33,
+        "addr": "BRpXhshfaHtESkmBuZmrFrkJuRRhgmgmY1qtGkPdhwcj",
+        "balance": 2916583343.333333,
+        "pct": 0.3513267260413065
+      },
+      {
+        "rank": 34,
+        "addr": "E2RvJg2myWpKcbkhBuF81gfhYr6KvmNcDbSmr5qnatYy",
+        "balance": 2563903832.88314,
+        "pct": 0.30884354515380047
+      },
+      {
+        "rank": 35,
+        "addr": "7366Bx1A7ab7dS1B2VqxuuL3jE1Ww2RaV5bFodr6LWVn",
+        "balance": 2410909541.25,
+        "pct": 0.2904141100048469
+      },
+      {
+        "rank": 36,
+        "addr": "51QHc3p1anNXmGBWCfefyzKh4pjXUs8nDi4UyW4ue1Ht",
+        "balance": 2296104325,
+        "pct": 0.27658486667128274
+      },
+      {
+        "rank": 37,
+        "addr": "C8rpw34jJ14m5kjjGcPV91Bivxtx5M5uRax67Sgvxe6j",
+        "balance": 2296104325,
+        "pct": 0.27658486667128274
+      },
+      {
+        "rank": 38,
+        "addr": "Dt4RkTaBvhSnEuzQoQaB4ijbf7w9jVy7Vpnp5EVjHQvM",
+        "balance": 2296104325,
+        "pct": 0.27658486667128274
+      },
+      {
+        "rank": 39,
+        "addr": "HZvypdhaQ8usyp2yWbB2VwFhmHuoYyQMUgc7dcK38Rbx",
+        "balance": 2296104325,
+        "pct": 0.27658486667128274
+      },
+      {
+        "rank": 40,
+        "addr": "2uF4Xh61rDwxnG9woyxsVQP7zuA6kLFpb3NvnRQeoiSd",
+        "balance": 2272274400.800711,
+        "pct": 0.27371435406622197
+      },
+      {
+        "rank": 41,
+        "addr": "EY1cDXoKAwkJwPoyUCvdHxtLSnCMccFpzEXzdGpvvWvT",
+        "balance": 2187437510,
+        "pct": 0.2634950448321257
+      },
+      {
+        "rank": 42,
+        "addr": "Hv3s9sBvXLih4tVqHC2dVoMkUCW92tZ6DPyumzCfbe4K",
+        "balance": 2187437510,
+        "pct": 0.2634950448321257
+      },
+      {
+        "rank": 43,
+        "addr": "6wrL9xKGPJz1sKTNFZx4QLZRJHny3hgEQvstXpVjJ8m5",
+        "balance": 2187437510,
+        "pct": 0.2634950448321257
+      },
+      {
+        "rank": 44,
+        "addr": "E4BPLokBhiKqNr3kC48T7ePPkvPHU3VxvbiL8HySi3xL",
+        "balance": 1997776618.927238,
+        "pct": 0.2406488127602809
+      },
+      {
+        "rank": 45,
+        "addr": "BcjvxQfCZ1CgHResAdbyfFiKyYpykS3oJ1ZAyqDUEDcZ",
+        "balance": 1907680009.714687,
+        "pct": 0.22979592668917956
+      },
+      {
+        "rank": 46,
+        "addr": "ESEZgJRoBFfFmmgThPDQHiGgCiJNZqU7fqB6rBygrwWj",
+        "balance": 1864595110.165695,
+        "pct": 0.22460599212586063
+      },
+      {
+        "rank": 47,
+        "addr": "CLoPSvbauaaSWs1teGgLnrHHf7FuJC3xtUsZP3KwuJsw",
+        "balance": 1844358600.017771,
+        "pct": 0.2221683361360111
+      },
+      {
+        "rank": 48,
+        "addr": "EnaatNfHKJHifA6VsiZBm1dKKwY8z2aaqW8BhDYwvYJm",
+        "balance": 1800000040.640625,
+        "pct": 0.21682497865112937
+      },
+      {
+        "rank": 49,
+        "addr": "u6PJ8DtQuPFnfmwHbGFULQ4u4EgjDiyYKjVEsynXq2w",
+        "balance": 1796959081.948088,
+        "pct": 0.21645866987962864
+      },
+      {
+        "rank": 50,
+        "addr": "4Votc2LuueerHo1mocqTxhnArYpAbMtBAHsRyS5NpZJT",
+        "balance": 1749950010,
+        "pct": 0.2107960361066172
+      },
+      {
+        "rank": 51,
+        "addr": "4GXYZwvCYxCA6yN54QFWH3E68Pvu3DNG7SAqVomYd3dy",
+        "balance": 1722078243.75,
+        "pct": 0.20743865000346207
+      },
+      {
+        "rank": 52,
+        "addr": "9bqn86ov5Qmp7yMGE631Kuz2RFoeQ4ZGefaBA9Y3Wzrv",
+        "balance": 1722078243.75,
+        "pct": 0.20743865000346207
+      },
+      {
+        "rank": 53,
+        "addr": "A1mvtpfs9Y6qxxJoctx3M8avrw7tib8ZPhig3aKz7zCM",
+        "balance": 1722078243.75,
+        "pct": 0.20743865000346207
+      },
+      {
+        "rank": 54,
+        "addr": "3L23bbdCk5WknsahZKJZw7ngwYC2gLgDez9KeaihCU5q",
+        "balance": 1640614661.112904,
+        "pct": 0.19762568379939108
+      },
+      {
+        "rank": 55,
+        "addr": "BNLT1LSrdQtnz2e7xofzpL9Rjxzu4aXMpw9i2tSzksWU",
+        "balance": 1601532766.6875,
+        "pct": 0.19291794450321972
+      },
+      {
+        "rank": 56,
+        "addr": "4YrSuGhe4okHhab27nMn8yTBEMtPAPanv8koaCjzGDKw",
+        "balance": 1458323962.939179,
+        "pct": 0.1756672527730505
+      },
+      {
+        "rank": 57,
+        "addr": "GGDbtt9ArMC7R9kpmC7r1nQZbBy7Htumf1LSmchxs6zc",
+        "balance": 1458311604.316776,
+        "pct": 0.17566576407417375
+      },
+      {
+        "rank": 58,
+        "addr": "rCTo9VHWqH5LLWCPoqPRvnDy7JTwCiECrvpWhqS38V6",
+        "balance": 1458311604.316776,
+        "pct": 0.17566576407417375
+      },
+      {
+        "rank": 59,
+        "addr": "GJZgb2tYbxkJ1q9u5Xr8nDZtBypvwXQpNstrQ2P6UKh9",
+        "balance": 1458291676.666667,
+        "pct": 0.1756633636229449
+      },
+      {
+        "rank": 60,
+        "addr": "1TQV75DZyj19JAuUq9RjvF4ceDuHzN1McQcggQ8u1ev",
+        "balance": 1458291676.666667,
+        "pct": 0.1756633636229449
+      },
+      {
+        "rank": 61,
+        "addr": "DiAvwdBbGESA51bxH6UKv1c4AVrQNYkPuVaW46dy3LWg",
+        "balance": 1458291671.666667,
+        "pct": 0.1756633630206533
+      },
+      {
+        "rank": 62,
+        "addr": "DZ8M6QjqS6reDLFCFyoErJzSgGFthd57FMmBqaFNXaNB",
+        "balance": 1433657042.693557,
+        "pct": 0.17269591703144543
+      },
+      {
+        "rank": 63,
+        "addr": "7TWnq4WeYcwQWBCwKeEX2Q9xqVtthPGkB7adNvueuVuh",
+        "balance": 1421463379.412772,
+        "pct": 0.17122708885320032
+      },
+      {
+        "rank": 64,
+        "addr": "GejsMGPp9UtaXgdyVatCR6huDW6PAiaHmX3Ssx2mGbrE",
+        "balance": 1377662595,
+        "pct": 0.16595092000276965
+      },
+      {
+        "rank": 65,
+        "addr": "55wnwPLi8Hg4ShLqPiwnuXZo7nkKDcEsTpnm1vVkBKDw",
+        "balance": 1367090042.313696,
+        "pct": 0.1646773680812486
+      },
+      {
+        "rank": 66,
+        "addr": "2Lwgk5qsbTPVcza28cNFzRHZXAhYBFagvFQTi19W4Lju",
+        "balance": 1356216871.682759,
+        "pct": 0.16336760422753008
+      },
+      {
+        "rank": 67,
+        "addr": "DLkDZH2McPeHi4G8DJryEk63WH83RePGL8uKf1yJ1vhH",
+        "balance": 1311189644.311578,
+        "pct": 0.15794370012028283
+      },
+      {
+        "rank": 68,
+        "addr": "9k1q6QYNVoW23co7aR62Xt21crCEtmoPsNEcZiL5pgZJ",
+        "balance": 1291558682.8125,
+        "pct": 0.15557898750259655
+      },
+      {
+        "rank": 69,
+        "addr": "CJYHrBpwFY1rMk7XCrgduhzKv3YDmb7keHcdVdYWHSoJ",
+        "balance": 1264297676.175428,
+        "pct": 0.15229517247557703
+      },
+      {
+        "rank": 70,
+        "addr": "8wM44Ryv9DFCSfkgUnPEPgnsc53arT4cnmXL6LnnC4UW",
+        "balance": 1231974779.452054,
+        "pct": 0.14840161067904845
+      },
+      {
+        "rank": 71,
+        "addr": "GMqwf2ct8runQarHgHxkbXgcMBJzwjVoL525ZLCAFLB2",
+        "balance": 1211539442.785427,
+        "pct": 0.14594000438103244
+      },
+      {
+        "rank": 72,
+        "addr": "86zviZwMGfYHwFzgV3p8MREMnvKmb69ZkxDBxeXmXDHj",
+        "balance": 1166656102.7939,
+        "pct": 0.14053343270562813
+      },
+      {
+        "rank": 73,
+        "addr": "GgQX3bDNCaXu8pp4WYRamuKZzYezcVhf3PJh419Z4gSX",
+        "balance": 1166633443.333333,
+        "pct": 0.14053070318510436
+      },
+      {
+        "rank": 74,
+        "addr": "3konnZpFmqw9k6CCGc6DEehgcBix8xXAaDadzg2CZPSH",
+        "balance": 1148052162.5,
+        "pct": 0.13829243333564137
+      },
+      {
+        "rank": 75,
+        "addr": "6SJHsG4ZXVaM5mZvd2ZUtZ5gkGN1DPAD5894M7K7VGHD",
+        "balance": 1148052162.5,
+        "pct": 0.13829243333564137
+      },
+      {
+        "rank": 76,
+        "addr": "6ZDjMUuQotCtngNyNSzeFTSCb6HnCS5b9kSmYfi6BMJT",
+        "balance": 1148052162.5,
+        "pct": 0.13829243333564137
+      },
+      {
+        "rank": 77,
+        "addr": "9TpwFSuAU8cCAr2XqZyQxCrpC6QbvKQrZxBK25mazWup",
+        "balance": 1148052162.5,
+        "pct": 0.13829243333564137
+      },
+      {
+        "rank": 78,
+        "addr": "BRiuFkrJpohj9NhWhsA6ZR5So91SRgdELYYCfJLUuRDr",
+        "balance": 1148052162.5,
+        "pct": 0.13829243333564137
+      },
+      {
+        "rank": 79,
+        "addr": "EYMXNEVP1AT5z1YtchXgiZfQvU2VKkyffj2H26YsBJRC",
+        "balance": 1148052162.5,
+        "pct": 0.13829243333564137
+      },
+      {
+        "rank": 80,
+        "addr": "5PAhQiYdLBd6SVdjzBQDxUAEFyDdF5ExNPQfcscnPRj5",
+        "balance": 1095645339.494323,
+        "pct": 0.13197959554518485
+      },
+      {
+        "rank": 81,
+        "addr": "4DPxYoJ5DgjvXPUtZdT3CYUZ3EEbSPj4zMNEVFJTd1Ts",
+        "balance": 1079575931.374799,
+        "pct": 0.13004390165974913
+      },
+      {
+        "rank": 82,
+        "addr": "Dn7bqCMGQt6xXM9ePUmQ12k9kh5u1JtriVPkpeg6Ey7L",
+        "balance": 1067688511.125,
+        "pct": 0.12861196300214647
+      },
+      {
+        "rank": 83,
+        "addr": "6FEVkH17P9y8Q9aCkDdPcMDjvj7SVxrTETaYEm8f51Jy",
+        "balance": 1057287169.102211,
+        "pct": 0.12735903482930508
+      },
+      {
+        "rank": 84,
+        "addr": "4zg4mV2QNUsGN5qVbuKA3sqvkaPRkyb5gByjfRUH3uHn",
+        "balance": 1054657744.974982,
+        "pct": 0.12704229881965015
+      },
+      {
+        "rank": 85,
+        "addr": "8dQH1VxZnD6N8iigY5EsjXbFyoETppzFEmVUfS7XKhMp",
+        "balance": 1041518949.496022,
+        "pct": 0.12545962160581345
+      },
+      {
+        "rank": 86,
+        "addr": "zt27jpb8jfLg5e6fvnEgkfnNyxpqhJV4mcd1JneeQMW",
+        "balance": 1027032976.544374,
+        "pct": 0.12371466565855467
+      },
+      {
+        "rank": 87,
+        "addr": "4UpsBxdSEqFafi5V8vNwEnWvzZmrxj8w8C36oQjtX2qK",
+        "balance": 1017529813.960073,
+        "pct": 0.12256993067081216
+      },
+      {
+        "rank": 88,
+        "addr": "3r8yisznwhwTc3zvRpwCNozv9UE1zHcpma2VpGL1cjEk",
+        "balance": 975855081.522484,
+        "pct": 0.11754986246689378
+      },
+      {
+        "rank": 89,
+        "addr": "3B7XAQrLoEMDEGvX8569F9GRb9PcXXocJmj5wvhhei9z",
+        "balance": 969381854.500667,
+        "pct": 0.1167701084229384
+      },
+      {
+        "rank": 90,
+        "addr": "AVPKzX2QZ8E23SWR728yhMTnnqr9UjAZdgemfaE3qHg5",
+        "balance": 944155338.115895,
+        "pct": 0.11373136467123057
+      },
+      {
+        "rank": 91,
+        "addr": "Dyo7tqec9dTED6kddpqj4e3L68HLC2VZAiboNsMzKUP4",
+        "balance": 925019408.576982,
+        "pct": 0.11142628277119482
+      },
+      {
+        "rank": 92,
+        "addr": "A6dzisAAZLYefzEJ1JKfTgtbopgd1JgC9KMp8q5s4Zu2",
+        "balance": 918741466.896339,
+        "pct": 0.11067005247111439
+      },
+      {
+        "rank": 93,
+        "addr": "2X8QfZGCSFW6ywzqk848YwG6ZJjXpVSjGJroteZMu53C",
+        "balance": 918441730,
+        "pct": 0.11063394666851312
+      },
+      {
+        "rank": 94,
+        "addr": "77b1pdR9ocMeSWHUnUtRszVHgkJ78Xrypy7VamB4NqPd",
+        "balance": 918441730,
+        "pct": 0.11063394666851312
+      },
+      {
+        "rank": 95,
+        "addr": "Gaw3fcEJZkZjhmNp4zix5MHj82asVWv162nhDUo8bGvp",
+        "balance": 883724008.167157,
+        "pct": 0.10645190826559012
+      },
+      {
+        "rank": 96,
+        "addr": "DphzLLtXz2B133xMZkAgVy42gTCxpztJzZtJ9Haq2eEv",
+        "balance": 874994704.240146,
+        "pct": 0.1054003909906573
+      },
+      {
+        "rank": 97,
+        "addr": "DPg3vkLhVG4DStXizsZfiMPNEgSMHVPW48uBYyuBc6iy",
+        "balance": 874991599.36629,
+        "pct": 0.10540001698277265
+      },
+      {
+        "rank": 98,
+        "addr": "6dwaj585LCV6R6gm5fKQ9XBbJz1Si7LKmgaDA6xgvUzt",
+        "balance": 800017302.35776,
+        "pct": 0.09636873921542756
+      },
+      {
+        "rank": 99,
+        "addr": "ED86KHerMiNnekX995NMvx9F3TaLEiAAoiAtrnKQcdh6",
+        "balance": 800016765.962715,
+        "pct": 0.09636867460218226
+      },
+      {
+        "rank": 100,
+        "addr": "75swTMMhfxwe8LfhpQBiwf39ECy9cyiV5w1Qs1BFy4P5",
+        "balance": 799144415.406136,
+        "pct": 0.09626359272077341
+      },
+      {
+        "rank": 101,
+        "addr": "4ERWabcgDyqjPAENHCXPPUE41zsGqPfUdNYbJ4XvxpB1",
+        "balance": 797900205.375877,
+        "pct": 0.09611371727235263
+      },
+      {
+        "rank": 102,
+        "addr": "2s5CfZ3adDd52K3CEDr8CbtiZE56nYcx4XiBNiqZNCBe",
+        "balance": 772911356.203843,
+        "pct": 0.09310360251351395
+      },
+      {
+        "rank": 103,
+        "addr": "38xCLm9kSExfGU1GdyVuX4vop7SZns9kU2mQyTmmMdUP",
+        "balance": 737715473.973403,
+        "pct": 0.08886396571300209
+      },
+      {
+        "rank": 104,
+        "addr": "4jrCPvfSaqpuTrPwUp7XY1gX8gjE4zEPz9AwToCdHRsF",
+        "balance": 723272862.375,
+        "pct": 0.08712423300145407
+      },
+      {
+        "rank": 105,
+        "addr": "FbmX51eefDd2AeKjPFdAXhLdwUbnVGuYzEuNajC2Rg7e",
+        "balance": 717232904.637564,
+        "pct": 0.08639666984706258
+      },
+      {
+        "rank": 106,
+        "addr": "6EpVvvEkjgfGHLcg2bMJofmDHmybuLhfDW4YXfP6QZwP",
+        "balance": 713075841.678972,
+        "pct": 0.0858959170321197
+      },
+      {
+        "rank": 107,
+        "addr": "XauBD64C9ZRjGuU6p7ewDeZywk8bboj6bYJTD9Lhcf2",
+        "balance": 688831297.5,
+        "pct": 0.08297546000138482
+      },
+      {
+        "rank": 108,
+        "addr": "9UoSmdPaPUNQsg75pWVsFRV27n9nDo9uFn7SgmUDgdkK",
+        "balance": 688831297.5,
+        "pct": 0.08297546000138482
+      },
+      {
+        "rank": 109,
+        "addr": "CN4bR5t3eV5Q81iJm4pmUtGqLArH4uBtPswLAWvWTAU6",
+        "balance": 688831297.5,
+        "pct": 0.08297546000138482
+      },
+      {
+        "rank": 110,
+        "addr": "FfSUkp5KjByAUCLAndDCu3GbcPUCeLLmuPXzSGwrfCdQ",
+        "balance": 688831297.5,
+        "pct": 0.08297546000138482
+      },
+      {
+        "rank": 111,
+        "addr": "EPv4d221Dk5bY2rzB8a2BsHQ7sv9tHwKZeSoc1VLwNwT",
+        "balance": 650016926.769424,
+        "pct": 0.07829994615971907
+      },
+      {
+        "rank": 112,
+        "addr": "3ixYKp5PsdqykioextzwKjZBEpwnEDkiHTqgc5Z2piKS",
+        "balance": 625022114.74626,
+        "pct": 0.0752891131258583
+      },
+      {
+        "rank": 113,
+        "addr": "44YLvsHWqLctxjVBZeL77inGqn7sV64AFbp7bqhPPCN3",
+        "balance": 625014321.849254,
+        "pct": 0.07528817440658675
+      },
+      {
+        "rank": 114,
+        "addr": "BcmaXnztGU5ZS1TV5b9sebm1cYBNmr6YqXshcnR1G4dW",
+        "balance": 625012501.084301,
+        "pct": 0.07528795508030166
+      },
+      {
+        "rank": 115,
+        "addr": "5SDrsMNTYdhmApjfqYHDvjoW92f2S42vcc7zNDVcQ9Ej",
+        "balance": 622667255.058658,
+        "pct": 0.07500545068699024
+      },
+      {
+        "rank": 116,
+        "addr": "FX8yzhzUUM7VRo8syDBT523pbTj1TjEzY5vLLWSf91eD",
+        "balance": 609823425.498456,
+        "pct": 0.07345830457181661
+      },
+      {
+        "rank": 117,
+        "addr": "J3wSkQQRR4xDya7uY9S3UM1Y84oKbFZh8eUHM8qu6vk5",
+        "balance": 609791444.031486,
+        "pct": 0.07345445213807415
+      },
+      {
+        "rank": 118,
+        "addr": "ADfNsbrAfnUy8rUm83DWyDBW8cVM4Qgk6XZ4eqLnrqX9",
+        "balance": 608467646.125,
+        "pct": 0.07329498966788993
+      },
+      {
+        "rank": 119,
+        "addr": "FixDET3jRBMjT9M69Wim8iRpMQiJHkSSfD7wivStuuph",
+        "balance": 605445949.634834,
+        "pct": 0.0729310011889023
+      },
+      {
+        "rank": 120,
+        "addr": "3Z2AqcKCmdcCZ3iCUiFKtwUbrmuPcefwN3xRLTdY7XyN",
+        "balance": 600937679.541165,
+        "pct": 0.07238794255293393
+      },
+      {
+        "rank": 121,
+        "addr": "GFbzkxKE6wWgFmhdvmp13vfF6kVCvQ4k6dCZahLqL8Lg",
+        "balance": 593314220.888081,
+        "pct": 0.07146963354049946
+      },
+      {
+        "rank": 122,
+        "addr": "31RVsZpcmXxxiqrC5CqhpUijkezAQET8hkR7TYpqzj7q",
+        "balance": 583328124.003656,
+        "pct": 0.0702667250988958
+      },
+      {
+        "rank": 123,
+        "addr": "ATfCpmes7oPGJpqe8Quv5TCHdiURTBWjg1tHvonbKxWD",
+        "balance": 583326546.058909,
+        "pct": 0.0702665350223245
+      },
+      {
+        "rank": 124,
+        "addr": "8ehAfyVHFNfrhWU53KUJSm5VLAfY4DMP2ij7UckoBEwa",
+        "balance": 583326546.009936,
+        "pct": 0.07026653501642527
+      },
+      {
+        "rank": 125,
+        "addr": "8UhkGHGLpc8QBdSFapt6pwGUD7msFGoo4Ef8xEH2pmn5",
+        "balance": 583326546.009936,
+        "pct": 0.07026653501642527
+      },
+      {
+        "rank": 126,
+        "addr": "bZt4BMafPUdqEDQTBwntKWxnm9i4jmGczgGoWEBhtBQ",
+        "balance": 583323029.038419,
+        "pct": 0.07026611136794925
+      },
+      {
+        "rank": 127,
+        "addr": "7exkjRpjaW5R3SbAQ9W5C5qqRiDyk1nZqJ4TuwWHQE2",
+        "balance": 582461737.978702,
+        "pct": 0.07016236169493863
+      },
+      {
+        "rank": 128,
+        "addr": "EZ41WcMH3FmyWGV9WQaDLo5uo4ysVNdeAm1ZoTybxjsJ",
+        "balance": 577511696.999065,
+        "pct": 0.06956608808077248
+      },
+      {
+        "rank": 129,
+        "addr": "2Q8BaXUsf6T7egfwMFDy8U6oegDrCkUn3dbEfvCvNBxj",
+        "balance": 574026081.25,
+        "pct": 0.06914621666782068
+      },
+      {
+        "rank": 130,
+        "addr": "3zLSSU4VZSGjVJXxqiTx3L3twoLBic96FcLHPMm5iNqD",
+        "balance": 574026081.25,
+        "pct": 0.06914621666782068
+      },
+      {
+        "rank": 131,
+        "addr": "FSWbuXaq3SaGEBW4rLULjs3bwQYQb8Q2rqTZWy1371dd",
+        "balance": 574026081.25,
+        "pct": 0.06914621666782068
+      },
+      {
+        "rank": 132,
+        "addr": "5X7QspyRDJUjCdBXB2u1vpuTj2seLCNZDAJZ8EWvBD5e",
+        "balance": 545402264.739979,
+        "pct": 0.06569823985472557
+      },
+      {
+        "rank": 133,
+        "addr": "2Ejnns2Fd5gsZdFJbnkZmQEwbrgoiMc2ikKcS2z2Ps3e",
+        "balance": 524979504.911005,
+        "pct": 0.06323814854142848
+      },
+      {
+        "rank": 134,
+        "addr": "GcGJ1V1TNFScT4XzrTQKdZTqVmcheYmmieeK1rufr2yK",
+        "balance": 521976018.954514,
+        "pct": 0.06287635367271094
+      },
+      {
+        "rank": 135,
+        "addr": "Ciod5LdcQu6bLatVvSs18WE7sA1F4LJaEW12PxGbKQC3",
+        "balance": 508735230.480256,
+        "pct": 0.06128139055413605
+      },
+      {
+        "rank": 136,
+        "addr": "7oYppe9TU3yodYWvqADc6frfe36fS9357yJ4D7MMX8x1",
+        "balance": 508735217.841758,
+        "pct": 0.06128138903172382
+      },
+      {
+        "rank": 137,
+        "addr": "DLUzWHBuZ4THC5gmeY3ohSNLKeNYnorspojGSyfKvxhr",
+        "balance": 508735203.748213,
+        "pct": 0.06128138733403908
+      },
+      {
+        "rank": 138,
+        "addr": "EvKx6Q8ESPBuGE8QPDLf8hCy6uvqgB3UfgDo3MLYAFuc",
+        "balance": 508735120.491683,
+        "pct": 0.06128137730509745
+      },
+      {
+        "rank": 139,
+        "addr": "6BhBoBB47wSGjK5uzcGWNcTf2oNRPQNuv6GVdkNyj9PB",
+        "balance": 505681715.086301,
+        "pct": 0.06091356922349343
+      },
+      {
+        "rank": 140,
+        "addr": "9ksqdjfmkpy2iDjzngG8Aqez5reYDgezDDSSAF6ey3T2",
+        "balance": 500679451.209099,
+        "pct": 0.06031100492688618
+      },
+      {
+        "rank": 141,
+        "addr": "44P5Ct5JkPz76Rs2K6juC65zXMpFRDrHatxcASJ4Dyra",
+        "balance": 499836441.917622,
+        "pct": 0.06020945744494159
+      },
+      {
+        "rank": 142,
+        "addr": "4UP7t9p3HEd9gfF9gFKkGa1ZvLXFS2naHgnxB4fwpLfS",
+        "balance": 492139418.80873,
+        "pct": 0.0592822869818405
+      },
+      {
+        "rank": 143,
+        "addr": "Ba64vywjQwvmennBzn8Yvaz3h2v8bwVBzao5cKNmc3c5",
+        "balance": 489839928.083803,
+        "pct": 0.05900529419512738
+      },
+      {
+        "rank": 144,
+        "addr": "Gm98QzCfGfJaWWSvGNdPKza21kEs4VnYAs1EKzGy9dsC",
+        "balance": 480007366.79495,
+        "pct": 0.05782088039323508
+      },
+      {
+        "rank": 145,
+        "addr": "DSNfdY4u1VD7XLRVDBQqMyVtpp1T7rjjxPNPkWuoR1Hb",
+        "balance": 477066831.496413,
+        "pct": 0.057466668454939085
+      },
+      {
+        "rank": 146,
+        "addr": "7XQzhwiuvCFyXrxus5dbJd5vp55i6hCZTTqY2Ndx2jZY",
+        "balance": 469520374.829688,
+        "pct": 0.056557634972322066
+      },
+      {
+        "rank": 147,
+        "addr": "aJ19ewwp8v5XE3yUBawm6tXbbNwaNGQocsXBhtCSAE3",
+        "balance": 459220865,
+        "pct": 0.05531697333425656
+      },
+      {
+        "rank": 148,
+        "addr": "3SP3nJJc6LYWXDi2uTv5ywwredJotjgXXAXvW9Q16NPj",
+        "balance": 459220865,
+        "pct": 0.05531697333425656
+      },
+      {
+        "rank": 149,
+        "addr": "7d42ECm3HLxYBrj8fmu6CLbtDUF14pLN3Luivz4TBSAQ",
+        "balance": 459220865,
+        "pct": 0.05531697333425656
+      },
+      {
+        "rank": 150,
+        "addr": "8ESDfd8s8r7u9HgLmMAXPEW5G68uYVZhVsCCqUS9xUwK",
+        "balance": 459220865,
+        "pct": 0.05531697333425656
+      },
+      {
+        "rank": 151,
+        "addr": "9Xs3XeGJBybDku7SrK5fNmVc56qEEXb6LyUq3eEdwq3S",
+        "balance": 459220865,
+        "pct": 0.05531697333425656
+      },
+      {
+        "rank": 152,
+        "addr": "JBTrw3LWWg5fPeYw2GLezEduvgE4bSY8eEq7efasTejH",
+        "balance": 459220865,
+        "pct": 0.05531697333425656
+      },
+      {
+        "rank": 153,
+        "addr": "FdZHwBLQ1ppx7YBgGEpFcAsqd1W2dvqXLNd6D3ZqZJt5",
+        "balance": 456757395.498555,
+        "pct": 0.055020227939812885
+      },
+      {
+        "rank": 154,
+        "addr": "22Wnk8PwyWZV7BfkZGJEKT9jGGdtvu7xY6EXeRh7zkBa",
+        "balance": 444155369.842787,
+        "pct": 0.0535022091164353
+      },
+      {
+        "rank": 155,
+        "addr": "ALynvqVUy4s4iKCkFis53GVHs5e8mnchfUJaGK1pM5Ki",
+        "balance": 437494354.138999,
+        "pct": 0.05269983436356882
+      },
+      {
+        "rank": 156,
+        "addr": "49mvMufixEbUMzZEUVAnbQ8hLLuEWy789XfKUNTz7wCv",
+        "balance": 435814251.608628,
+        "pct": 0.05249745203742746
+      },
+      {
+        "rank": 157,
+        "addr": "AVr8LrXzt3iFD9vKYkr6N2a7nopuKtdkdqwN3XrPmT3E",
+        "balance": 430573783.835139,
+        "pct": 0.05186619409995303
+      },
+      {
+        "rank": 158,
+        "addr": "9CKnC2kmqG9ZBtQXDfxR5H7Av7X878geV367DdYtybT4",
+        "balance": 420229064.961184,
+        "pct": 0.05062008665642268
+      },
+      {
+        "rank": 159,
+        "addr": "8UjiSXFU45bZtovQjw6NCiNPBYFFLwzKcPCesFae1zGz",
+        "balance": 411914977.497695,
+        "pct": 0.049618585658604344
+      },
+      {
+        "rank": 160,
+        "addr": "5af4v4d8ZZobpdr8YRGakgydgRhPqw6Z19t8j5o7fabD",
+        "balance": 404966959.926891,
+        "pct": 0.04878163914335812
+      },
+      {
+        "rank": 161,
+        "addr": "6gVV6PiRfAmCWBocCAASyvhFjihBakxjybFEjRbSoKvr",
+        "balance": 401303194.320754,
+        "pct": 0.048340308098137316
+      },
+      {
+        "rank": 162,
+        "addr": "5vzRQzbR6i2796erutrboNs2rDVN7JA9mwpw45sBYp2g",
+        "balance": 389634691.022462,
+        "pct": 0.046934739808459754
+      },
+      {
+        "rank": 163,
+        "addr": "AGiAVqZiQrz32m1zKC5T4UfQKcDoGNG34sqSHSVNgwtv",
+        "balance": 385325734.950909,
+        "pct": 0.0464156902044994
+      },
+      {
+        "rank": 164,
+        "addr": "BKJ45do3q1VhmfccH51oEQkWbqCfWrtwFxTmYnC8vzz5",
+        "balance": 383341231.515133,
+        "pct": 0.04617664025706602
+      },
+      {
+        "rank": 165,
+        "addr": "7ZJ5ye8JvfPM71qY7heVi9ocyYaohLx1M1fFTFPsjHrk",
+        "balance": 382684054.289126,
+        "pct": 0.04609747779329837
+      },
+      {
+        "rank": 166,
+        "addr": "2pnU7DZxmPehXTURgsUG35dsGSpLtfTCJY6Zo1dBKyt7",
+        "balance": 380485592.517312,
+        "pct": 0.04583265478442264
+      },
+      {
+        "rank": 167,
+        "addr": "4GC3a1RkRXx5shwGP8pTY6cxXgSWkbfc66vM53a6qSKj",
+        "balance": 377124545.382418,
+        "pct": 0.04542778869730329
+      },
+      {
+        "rank": 168,
+        "addr": "7vxtQ7sDP28xiS2nUJbz8pRYMCWCUDtabeMEuBXSUZnr",
+        "balance": 373739292.835922,
+        "pct": 0.04502000686699764
+      },
+      {
+        "rank": 169,
+        "addr": "8Mm46CsqxiyAputDUp2cXHg41HE3BfynTeMBDwzrMZQH",
+        "balance": 365863562.323839,
+        "pct": 0.044071309610559425
+      },
+      {
+        "rank": 170,
+        "addr": "fxcuXATiH64ZBLDwGnW8yY32Gs74yAgPs7ifpgQ9VnU",
+        "balance": 365117631.624822,
+        "pct": 0.04398145605264949
+      },
+      {
+        "rank": 171,
+        "addr": "54Gizr4Z4kQ4eqLsGYkVeqCYP7V5M5Xm3CXXX2QYoubE",
+        "balance": 359260566.759721,
+        "pct": 0.04327592386617141
+      },
+      {
+        "rank": 172,
+        "addr": "33uksuTgCF7s9TpwByA2yfHHKJee5sndLP3GHruF7aaW",
+        "balance": 348760482.423089,
+        "pct": 0.04201110136021469
+      },
+      {
+        "rank": 173,
+        "addr": "GVDDLfU4L1mHbv4uzQLXUsQUY7JpYw3JxtKEb3FCnE8p",
+        "balance": 344415648.75,
+        "pct": 0.04148773000069241
+      },
+      {
+        "rank": 174,
+        "addr": "BEq8PXw6kQrqWP1x7wwsGGimvo3TnFi37d1ZqTiZecC",
+        "balance": 333333350.226041,
+        "pct": 0.040152774952576055
+      },
+      {
+        "rank": 175,
+        "addr": "2UL8hbNaoErAYNePqgQYPP9yDCDRZGWbzKW4krLqkhNL",
+        "balance": 315881580.180502,
+        "pct": 0.03805056407362425
+      },
+      {
+        "rank": 176,
+        "addr": "6cmq4Gi9tczKBd4SgQdVPxGhGhRzSyYWXmQEqQh4b6pN",
+        "balance": 311817954.455822,
+        "pct": 0.037561066550787336
+      },
+      {
+        "rank": 177,
+        "addr": "APNrkBFsTYjdK47TaZP64nvgUfmD77c7PyTBKYfA4ARC",
+        "balance": 307151369.679626,
+        "pct": 0.03699893759432783
+      },
+      {
+        "rank": 178,
+        "addr": "FjxgGwchRnwxaEcTTNJ8MHkoUqZDHwuEVHawMGASx441",
+        "balance": 306265773.169153,
+        "pct": 0.036892260127582614
+      },
+      {
+        "rank": 179,
+        "addr": "9c1yqERdC7p2amXrJBrEhoSxyZUdZo5NFfnHkQvpAghC",
+        "balance": 306147243.302719,
+        "pct": 0.036877982219149945
+      },
+      {
+        "rank": 180,
+        "addr": "6rHo8LUSzyd3fX84nshmtPeFYAmzkE87wKzx2rmPKHQ2",
+        "balance": 303766627.365296,
+        "pct": 0.036591217225731075
+      },
+      {
+        "rank": 181,
+        "addr": "EuH2wD3rkVp5uosoL8v5kRTMLT5L6jvbwXAXRSEwzdwG",
+        "balance": 302050077.103077,
+        "pct": 0.03638444446708893
+      },
+      {
+        "rank": 182,
+        "addr": "9trzhTbWL1oriXVJ1e9yCv5pYqx6YzsdVxESxH6Gjgi9",
+        "balance": 295031838.344243,
+        "pct": 0.03553903922559176
+      },
+      {
+        "rank": 183,
+        "addr": "3HKnsZtQXrT42W8PVSLs6cTUQBC2BmuSRekMY2zYY87V",
+        "balance": 291663174.135781,
+        "pct": 0.0351332555985966
+      },
+      {
+        "rank": 184,
+        "addr": "GPdHif6uJQ4827bkDyE3BUDtWs3R57SyFKNFF2tcfW4U",
+        "balance": 291660805.840159,
+        "pct": 0.03513297031768766
+      },
+      {
+        "rank": 185,
+        "addr": "HagFJ5t7W1kRnbqkJxgvtuw1779ReeJ3gxCGGiEosWz",
+        "balance": 291660774.148916,
+        "pct": 0.03513296650021381
+      },
+      {
+        "rank": 186,
+        "addr": "Hg5pSAbGQdFdEfmdo5Wv4Y73A7GubNxoJnpRJGNTQia9",
+        "balance": 287013040.625,
+        "pct": 0.03457310833391034
+      },
+      {
+        "rank": 187,
+        "addr": "6dga98GbWQhtMdAmEaERyxVzzNdWCGjQaLgEecJRWUwD",
+        "balance": 286972858.799313,
+        "pct": 0.03456826809874366
+      },
+      {
+        "rank": 188,
+        "addr": "8QUvHb1tzFczzXVEzgBBgm4HDZYHqNjUBFqnJartSK8A",
+        "balance": 286242258.17085,
+        "pct": 0.034480261175359024
+      },
+      {
+        "rank": 189,
+        "addr": "6GEuSWwhikV9HuczCDtAWqtDExsSnPtR4HFvgCqb3gRB",
+        "balance": 281658525.3391,
+        "pct": 0.03392811242483291
+      },
+      {
+        "rank": 190,
+        "addr": "7pMPc1bUdAmNvuQxTRXSMRivGEGZQVCV71unyxnmshmr",
+        "balance": 281658525.3391,
+        "pct": 0.03392811242483291
+      },
+      {
+        "rank": 191,
+        "addr": "9SMp4yLKGtW9TnLimfVPkDARsyNSfJw43WMke4r7KoZj",
+        "balance": 276625898.861149,
+        "pct": 0.03332189070038647
+      },
+      {
+        "rank": 192,
+        "addr": "4VA9PTxnBBEwVHam1KZDk9b4tpfz6pm2bYourdJQbVco",
+        "balance": 273870254.332584,
+        "pct": 0.03298995039339428
+      },
+      {
+        "rank": 193,
+        "addr": "HPE79PxszBPNtJZYEJ6jvDkvPHzJUPYfQsG3VZcthwwL",
+        "balance": 270339977.732077,
+        "pct": 0.032564699209363696
+      },
+      {
+        "rank": 194,
+        "addr": "HiXhw6DyaFsGVntujTDrRcmutEWMfgD3edAhXZidv2PV",
+        "balance": 260594842.422549,
+        "pct": 0.03139081659395622
+      },
+      {
+        "rank": 195,
+        "addr": "AGVhmrhDi3RKLu9nxnRqp3CUpaG3SVeYXWkWcygHAk8N",
+        "balance": 260184179.853453,
+        "pct": 0.03134134887130808
+      },
+      {
+        "rank": 196,
+        "addr": "GNLPhHS33k2pvgF9UZ6HjGTsGfgz7hxAMKiHQDsjFEAn",
+        "balance": 257968639.360217,
+        "pct": 0.031074468588363397
+      },
+      {
+        "rank": 197,
+        "addr": "FNQouGxDDAAaLVKKfXUZFp3uM925FYkpWhvkeykUViD9",
+        "balance": 255265201.251347,
+        "pct": 0.030748816978915787
+      },
+      {
+        "rank": 198,
+        "addr": "64CuV85HHCydAwxQMoXwZ9HXoyw5qE65NkiJxCtuFErF",
+        "balance": 250888788.379167,
+        "pct": 0.030221641642163437
+      },
+      {
+        "rank": 199,
+        "addr": "Hm4x3ZguFCXQgdbfhVv8ik6gyqBNwTWnhuEWTpY1jMeE",
+        "balance": 250002118.367269,
+        "pct": 0.030114834863241395
+      },
+      {
+        "rank": 200,
+        "addr": "8ec1wGmd87WUVmrgiiCKDqmeU7o7JVg2FwQVZUjY3KP",
+        "balance": 250000010,
+        "pct": 0.030114580892864853
+      },
+      {
+        "rank": 201,
+        "addr": "5YRenKkxNMDREEs7JDAR1DBUxhnuXquYUd9XvH25RK8F",
+        "balance": 244438949.568968,
+        "pct": 0.0294447049028582
+      },
+      {
+        "rank": 202,
+        "addr": "ECUa5EfrNgNPAp4SsjZyf6qhS1rvQE14wvLBurYBctfw",
+        "balance": 239771993.32963,
+        "pct": 0.02888253120057313
+      },
+      {
+        "rank": 203,
+        "addr": "2gBgBht9ocHTfHRMmLLBC23xpQgHJDXU4rhBRZsUi2Zu",
+        "balance": 239139265.44875,
+        "pct": 0.028806313863814097
+      },
+      {
+        "rank": 204,
+        "addr": "DMe3ddj7awSR3LFC64rjmCPexsrSv33QAxFoJux4vGH3",
+        "balance": 236692630.640324,
+        "pct": 0.02851159634818822
+      },
+      {
+        "rank": 205,
+        "addr": "HHkT5w5EB87EU2RLiymzVxJ79CC89Y56NLiTjc8NxNNU",
+        "balance": 235705745.250159,
+        "pct": 0.028392717793286924
+      },
+      {
+        "rank": 206,
+        "addr": "8Qnp5yyLq6xPpegsEPcjYNQvqpzASx2Ar9EJhPNf5u38",
+        "balance": 232999889.9907,
+        "pct": 0.028066775017943187
+      },
+      {
+        "rank": 207,
+        "addr": "pwq6tXE5rRk6eZDGPim6jru3tH4QgRxgkTxzv53jAcv",
+        "balance": 229610432.5,
+        "pct": 0.02765848666712828
+      },
+      {
+        "rank": 208,
+        "addr": "3RRWhQSF9VG9M94FWvNJGricSGHWAARM59nS6ZTRaiin",
+        "balance": 229610432.5,
+        "pct": 0.02765848666712828
+      },
+      {
+        "rank": 209,
+        "addr": "71LL5R9FtjhpeSYJSZnzW58foXGCbSsiAFekW86v41tS",
+        "balance": 229610432.5,
+        "pct": 0.02765848666712828
+      },
+      {
+        "rank": 210,
+        "addr": "9WB3MQwr8CYpNAq4hFBybK1ZkiaZAWkqdQQEF47iHQUS",
+        "balance": 229610432.5,
+        "pct": 0.02765848666712828
+      },
+      {
+        "rank": 211,
+        "addr": "BxGe4kcWy5rgADGcCE9uufpmGvXbH1teob36z5SiLN6X",
+        "balance": 229610432.5,
+        "pct": 0.02765848666712828
+      },
+      {
+        "rank": 212,
+        "addr": "3Fy5oFavnWzTZ8YRBhZkyT3ioKtBSDVVxFkbSPefJHyF",
+        "balance": 226462169.028044,
+        "pct": 0.027279252142304575
+      },
+      {
+        "rank": 213,
+        "addr": "GBrURzmtWujJRTA3Bkvo7ZgWuZYLMMwPCwre7BejJXnK",
+        "balance": 220000004.967187,
+        "pct": 0.026500830724026862
+      },
+      {
+        "rank": 214,
+        "addr": "4raqd4tCEnm2yGeUocVqPgN2MPB1W6A3EZfC8LoMChvf",
+        "balance": 219504339.35308,
+        "pct": 0.026441123677487795
+      },
+      {
+        "rank": 215,
+        "addr": "FWMrpLyjDnpaMcRrD83baoHrny9fhitEBa5HJeRzJR8P",
+        "balance": 217170729.470234,
+        "pct": 0.02616002095437449
+      },
+      {
+        "rank": 216,
+        "addr": "Ev1AaPu4c6L1QEXZiLv9DkNBa3ZigddiXYFTk9tN2DoK",
+        "balance": 215888585.166897,
+        "pct": 0.026005576007195615
+      },
+      {
+        "rank": 217,
+        "addr": "FFDAamfSQpoKsUKMjzt6rvzLAUQKfnSPFnBZQyZk8HWM",
+        "balance": 210099835.991025,
+        "pct": 0.025308273013786523
+      },
+      {
+        "rank": 218,
+        "addr": "65VinFQGGAdGr1VDYbBu1joNSYgYTNZdbEgTGBxnQ4iX",
+        "balance": 205226287.343776,
+        "pct": 0.024721213537377336
+      },
+      {
+        "rank": 219,
+        "addr": "GNRgBxkRFnyLYUTX8DSs3SM3Wm4jYSHQn6JQQVXapoRc",
+        "balance": 205000000.88537,
+        "pct": 0.02469395545104115
+      },
+      {
+        "rank": 220,
+        "addr": "AuqBCsK9p6JonDmf3SANmQLcuzVwC5vHGR7ztjTBQF3s",
+        "balance": 200000059.365815,
+        "pct": 0.0240916709017316
+      },
+      {
+        "rank": 221,
+        "addr": "4RwinJ2Rc1KPGYnifqoouQePA7hohgMD12hjBjjV77fG",
+        "balance": 196981309.572713,
+        "pct": 0.02372803737691818
+      },
+      {
+        "rank": 222,
+        "addr": "4yqgcP2EvCyyE14Zd9H2jPFMK59q67YUz7bBnUcKcfVE",
+        "balance": 194007456.101569,
+        "pct": 0.023369811987566026
+      },
+      {
+        "rank": 223,
+        "addr": "4UH5cfqyaYZ7w9NS6iZC4F5wCEAD2fM1AyvZWAxBKoCr",
+        "balance": 191340113.663063,
+        "pct": 0.02304850840188473
+      },
+      {
+        "rank": 224,
+        "addr": "6YcoR7bSxV1CiPJhWqaB87bfP8bFLZQrVVWFHMjE9MeC",
+        "balance": 191340113.663063,
+        "pct": 0.02304850840188473
+      },
+      {
+        "rank": 225,
+        "addr": "D2P1uCuPCaV1cE19LD52YPfbCRKbWLa6UACUpLyWPN5Y",
+        "balance": 191340113.663063,
+        "pct": 0.02304850840188473
+      },
+      {
+        "rank": 226,
+        "addr": "AtmaqWKU2Uu8UmxyryBW6yGr75juByia6Q8GgjDaMYdJ",
+        "balance": 190576658.975,
+        "pct": 0.022956543933716468
+      },
+      {
+        "rank": 227,
+        "addr": "77mCuhNEgFvvX3jw7afUmHnwVJLxw4H2Gzd5SX9TmEF6",
+        "balance": 190275612.380575,
+        "pct": 0.022920280367085676
+      },
+      {
+        "rank": 228,
+        "addr": "AHzDwT6cLxQAi3f14JHPAQF2texExGgd9BT9Vj6Fes7o",
+        "balance": 189580544.834126,
+        "pct": 0.02283655369902057
+      },
+      {
+        "rank": 229,
+        "addr": "GnZqfYpPzMFT1NzNbWFTkTizw6j796rEDBsypAnX9qJz",
+        "balance": 189216740.99,
+        "pct": 0.02279273049960123
+      },
+      {
+        "rank": 230,
+        "addr": "CxS5Jppbm6nUuxrkse9fRqPQ61P9XpHemviTpeUSBTVN",
+        "balance": 188845795.742642,
+        "pct": 0.02274804705875502
+      },
+      {
+        "rank": 231,
+        "addr": "8d9FNC7AgKLTCPKNd3MMkLLXZYLmiYFYR3vfXMBNJVNx",
+        "balance": 187172376.188284,
+        "pct": 0.02254646975266845
+      },
+      {
+        "rank": 232,
+        "addr": "BFW2cjXqhk91B8cj9kPZvEPc8KFKgkN1eYux7QC2jqZB",
+        "balance": 182291790.076336,
+        "pct": 0.021958562555093337
+      },
+      {
+        "rank": 233,
+        "addr": "B2t62E6EebmN9mH3dZ31x9SgnoTv1JwsBZdhcAKMsQgL",
+        "balance": 182288985.802047,
+        "pct": 0.02195822475692716
+      },
+      {
+        "rank": 234,
+        "addr": "DXSUBCAqeggmfdUfwaDi6iL4sRpVgHFUsDV91ZYzuLve",
+        "balance": 182288985.802047,
+        "pct": 0.02195822475692716
+      },
+      {
+        "rank": 235,
+        "addr": "FZagRtCxFVCm3wydUMDQaAkohLZzZPrrmTa95Njn3LAe",
+        "balance": 182287951.513983,
+        "pct": 0.021958100168325865
+      },
+      {
+        "rank": 236,
+        "addr": "ZnCRSoMKXuTdrcVFbobUr6d9weCPegBtgdXPDzRRcjC",
+        "balance": 182287951.513983,
+        "pct": 0.021958100168325865
+      },
+      {
+        "rank": 237,
+        "addr": "6jz6evaLNRDJkXUypB6coiTZoFHtVTck4cJBpQ78kXnq",
+        "balance": 180000000.776469,
+        "pct": 0.02168249746909495
+      },
+      {
+        "rank": 238,
+        "addr": "zaScPesBAkywbPbhH9VbH6srm8398X1UJXpokLdVHVk",
+        "balance": 176001927.678374,
+        "pct": 0.02120089630544632
+      },
+      {
+        "rank": 239,
+        "addr": "FZ1t8TZtx7VSCQdBsxvFJiezj9paUBF6Ub7RKA2eTGyE",
+        "balance": 175879589.48,
+        "pct": 0.021186159651750903
+      },
+      {
+        "rank": 240,
+        "addr": "71S9JBgFBMntHdfdAoj4hafg8276kqHKcUrQZBkUX56m",
+        "balance": 170569495.945644,
+        "pct": 0.020546514712180528
+      },
+      {
+        "rank": 241,
+        "addr": "CSEncqtqbmNRjve42sNnbs5cCSmrjUNsAEwc17XY2RCs",
+        "balance": 170021057,
+        "pct": 0.02048045067884952
+      },
+      {
+        "rank": 242,
+        "addr": "91NSuHkXdzvpWeuiAiEWGYDoC7AxbCyuu1XUueGuA5ZU",
+        "balance": 166831223.355312,
+        "pct": 0.02009620868090824
+      },
+      {
+        "rank": 243,
+        "addr": "8gQjn3qPAcKXpDpcGSLKXetTSG4zFgeWcAVnNAy9ru2f",
+        "balance": 165075825.403516,
+        "pct": 0.019884756394892213
+      },
+      {
+        "rank": 244,
+        "addr": "6FfMD6kqraWzixZnEzyR6LHLw6oXgPpqSCK6UcXUv2sw",
+        "balance": 162208821.601073,
+        "pct": 0.01953940193699111
+      },
+      {
+        "rank": 245,
+        "addr": "FEgfCaSjRke5NDKrzq8mmgRZbNX1gNvSMpwDc9XEMEC3",
+        "balance": 162116462.703018,
+        "pct": 0.019528276539409514
+      },
+      {
+        "rank": 246,
+        "addr": "gjsbSsJFUU3nKq3UVhLEXM5uDpoqhh1Qjj4aMqqEn4J",
+        "balance": 161876775.6037,
+        "pct": 0.019499404234398852
+      },
+      {
+        "rank": 247,
+        "addr": "D8iishPEtB9XUF3rEtZVDR2cENKrWAvWtnEPTU8UWv56",
+        "balance": 157906379.404997,
+        "pct": 0.01902113698351928
+      },
+      {
+        "rank": 248,
+        "addr": "6bfRGGxk2H4c5phHUnskfLq77zCtC3MjjE67okyqpCVu",
+        "balance": 156252379.444903,
+        "pct": 0.01882189892910862
+      },
+      {
+        "rank": 249,
+        "addr": "6HPXAWfk6rGq6JiTW3RRGwVbNjQQ79SNk3A2ACvBVdqs",
+        "balance": 150002284.667114,
+        "pct": 0.01806902302012846
+      },
+      {
+        "rank": 250,
+        "addr": "2YxQCXt9spMwoQZiwFLwdjHtscVvXi4nmxCkQCD6Rvgg",
+        "balance": 149497782.060155,
+        "pct": 0.018008251484287613
+      },
+      {
+        "rank": 251,
+        "addr": "H4o6m9b1rVffxvFsJPxJnd5vpGMxKnc2PprL7oUnU1s2",
+        "balance": 149246781.125,
+        "pct": 0.017978016333633377
+      },
+      {
+        "rank": 252,
+        "addr": "4o4gGeLZJQukQmrJ911wXqfwAsdoNf19t8D3VK6mivCA",
+        "balance": 145831506.191517,
+        "pct": 0.01756661805706632
+      },
+      {
+        "rank": 253,
+        "addr": "2TwGxSEkH6piC52tHSV1QksyySeY9NyuxSJP9vnD4WwZ",
+        "balance": 145831506.191517,
+        "pct": 0.01756661805706632
+      },
+      {
+        "rank": 254,
+        "addr": "EDGVXQPitgC7BcnD4zH4vKh1NttCfyC68T36Rw7Psw4N",
+        "balance": 145831149.474371,
+        "pct": 0.017566575087518643
+      },
+      {
+        "rank": 255,
+        "addr": "9vLTUDttJEGnP1d3qmMqDxiv7Z4X76EGfnQD2WuFRjCz",
+        "balance": 145831139.474227,
+        "pct": 0.017566573882918112
+      },
+      {
+        "rank": 256,
+        "addr": "6JGvsM8dMXXLheM6td1vGtQwarCZoPCwBqVNX1W6cEGE",
+        "balance": 144003193.103,
+        "pct": 0.017346382536269224
+      },
+      {
+        "rank": 257,
+        "addr": "oQH2m6r1FSmvRFUhLWRSr3FQssDVB3UXbCqMzj7gDmf",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 258,
+        "addr": "8xZ952sKCE1b3hMqqtKVcWjMyaWzD7TFig9eTpRSKeeH",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 259,
+        "addr": "Bovj49F1QHBkk6Bf5P3RXuT5tkkoLuhuEMzA2bHdwWSJ",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 260,
+        "addr": "CVE3NHCs5jTuVJRLJXA29RjFiagUaGKE6piCJRHhhnSv",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 261,
+        "addr": "E9Q75W5FXrzjvycpv1991PWUp2BaTN2kw9SLrWoP8CAV",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 262,
+        "addr": "EfF1WTGTREhcPLRBeZaE2aabfHya7FRSpESxnb8os7R6",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 263,
+        "addr": "Fm5yVpKD5jMJ5fiQ53RAMGjkWJuzaRfRU21rGWHbEwzo",
+        "balance": 143506520.3125,
+        "pct": 0.01728655416695517
+      },
+      {
+        "rank": 264,
+        "addr": "7mSm439oWmVM5MQU1GURARBTTCU9gBgipnqVq1RpkhBv",
+        "balance": 142358468.15,
+        "pct": 0.01714826173361953
+      },
+      {
+        "rank": 265,
+        "addr": "Dwgaka8QiSkFQ3bGXhZpmncM63DwhjK5zzQRiqt9WA8K",
+        "balance": 142160325.564421,
+        "pct": 0.017124393810887286
+      },
+      {
+        "rank": 266,
+        "addr": "9A9dUreQvTNoqNrqQC2DN1onfZWBtCBsTiuA6oGXZwc6",
+        "balance": 141394982.831,
+        "pct": 0.01703220191194947
+      },
+      {
+        "rank": 267,
+        "addr": "Bfb9yVKX3GHGDbdhAdKVu81Whm8crzxQRV4wdav2GD5Y",
+        "balance": 140058076.9611,
+        "pct": 0.016871160478530132
+      },
+      {
+        "rank": 268,
+        "addr": "4P4kEFxohJSAKawXK63JvRE6obYz5vUjJ8xX7swQ4DKW",
+        "balance": 138186535.882441,
+        "pct": 0.016645717786717456
+      },
+      {
+        "rank": 269,
+        "addr": "4z56a1TK4utNZJYX9udBt45cpWUB1PMqB8NgRjTMkRJy",
+        "balance": 137664577.279766,
+        "pct": 0.016582843530980492
+      },
+      {
+        "rank": 270,
+        "addr": "DrAR2ZNC5KYZps7NJyYHfzeZTaqbMUaGM3CBUWfpbCUs",
+        "balance": 136757355.239367,
+        "pct": 0.016473561089258248
+      },
+      {
+        "rank": 271,
+        "addr": "4JAsT9JHefbfdPrfB2k9yPssThb47Ze1yNdC9LVEZthy",
+        "balance": 134230258.884607,
+        "pct": 0.016169151311036703
+      },
+      {
+        "rank": 272,
+        "addr": "FMAx5vPsZay9YJAjXXQ8qj3SqAaRvEGk3gaJAWapfUQG",
+        "balance": 133908804.234,
+        "pct": 0.016130429424269208
+      },
+      {
+        "rank": 273,
+        "addr": "A4JVCGGwyacHaBnzL5DbBmWkseMhbcrbceVyxTxF6Bqr",
+        "balance": 133789221.955423,
+        "pct": 0.016116024744039156
+      },
+      {
+        "rank": 274,
+        "addr": "4peJMgPmYehSAwpxfimz5iCSTuumiRRnNuPMngSGyUBy",
+        "balance": 132451152.773466,
+        "pct": 0.015954843180005243
+      },
+      {
+        "rank": 275,
+        "addr": "8S3BjPnAygsmbGnxpLUNympLoeEnRJhyqHkpuxY6aMdC",
+        "balance": 131756472.927685,
+        "pct": 0.015871163213710786
+      },
+      {
+        "rank": 276,
+        "addr": "CmPWYBJUULrDrq6kNa3pXbELNeQBvJ48GfnoJs9UjVcs",
+        "balance": 129993733.419232,
+        "pct": 0.015658826576122824
+      },
+      {
+        "rank": 277,
+        "addr": "Am8MAEorCMAKxphqjAz3Ff59NEwPm4W2eS3DQLi2B4hg",
+        "balance": 129775654.264635,
+        "pct": 0.015632557127804966
+      },
+      {
+        "rank": 278,
+        "addr": "B5tEyyMcSx4K9gtnPfEhPvEYTRgUU1gFqXSG5wQVjq1w",
+        "balance": 127776898.79294,
+        "pct": 0.015391790404085972
+      },
+      {
+        "rank": 279,
+        "addr": "EhDyxGpEz9hryw6MwiBB7898WEzcoGTCAjVQMHbo6Q1M",
+        "balance": 126614330.533541,
+        "pct": 0.01525174938612302
+      },
+      {
+        "rank": 280,
+        "addr": "HfJQm2Q8wCHVGfsWxLdH3bpd6RQhabPu2ue26YGQvDAE",
+        "balance": 125326122.74962,
+        "pct": 0.015096574042267207
+      },
+      {
+        "rank": 281,
+        "addr": "VCXLWcXDhEUSxcQvtnAvoPEwJrXGfwgJsaj6hFMn7zQ",
+        "balance": 125241323.034264,
+        "pct": 0.015086359211124677
+      },
+      {
+        "rank": 282,
+        "addr": "BbHG9GvPActFGogv3iNrpDAj4qpXr8t3jF16uGxXcKci",
+        "balance": 125081599.670898,
+        "pct": 0.015067119203308015
+      },
+      {
+        "rank": 283,
+        "addr": "ABAMmaG7UB5v3B9vb6DVJj5Sx7e9VTBEts8pFpj4YgCf",
+        "balance": 124975634.29758,
+        "pct": 0.015054354792592081
+      },
+      {
+        "rank": 284,
+        "addr": "8ziMP4Bc5HnPjvdAQRnCed52QpvALQ16XHZ2PTGRKFM3",
+        "balance": 122998922.984844,
+        "pct": 0.014816243471199616
+      },
+      {
+        "rank": 285,
+        "addr": "887vBqknV6hhUkFp1Fgf5GUkG3DmpcFQyWwsZSUJGEn3",
+        "balance": 121628885.619454,
+        "pct": 0.014651211073535774
+      },
+      {
+        "rank": 286,
+        "addr": "4xJeETiP1nQfk46bJUJ2n6pWmecQPfmZkuP22tWEznnx",
+        "balance": 115508601.74,
+        "pct": 0.013913971967124883
+      },
+      {
+        "rank": 287,
+        "addr": "4nr5W8XUPYCbNNYrEyWu7fSbfDsuJs9yGHVDxrZAqZ4R",
+        "balance": 114805216.25,
+        "pct": 0.01382924333356414
+      },
+      {
+        "rank": 288,
+        "addr": "5biaBRCc7XRJrznbN43RtspfW7eRVK3aPDkwRXvXGkrK",
+        "balance": 114805216.25,
+        "pct": 0.01382924333356414
+      },
+      {
+        "rank": 289,
+        "addr": "7AaSb4X4aG9gq31oF9BNPCmJ8VyZPAdqT7RjtQtzFdD5",
+        "balance": 114805216.25,
+        "pct": 0.01382924333356414
+      },
+      {
+        "rank": 290,
+        "addr": "A62abX2Paz3RpBWXyR3sTJz3fHio44Q27csFrnCmYNVQ",
+        "balance": 114805216.25,
+        "pct": 0.01382924333356414
+      },
+      {
+        "rank": 291,
+        "addr": "HYw1QsqwzpadgZsQqkB7fssJsXwyi28AqSbSfzheSw24",
+        "balance": 114805216.25,
+        "pct": 0.01382924333356414
+      },
+      {
+        "rank": 292,
+        "addr": "4XUE9iX1fAXaLQLnBmDnv1ytuLw37Dtvg1NtLqN6z68h",
+        "balance": 114100386.757532,
+        "pct": 0.013744340757893821
+      },
+      {
+        "rank": 293,
+        "addr": "68VZ4TtQ6B4SQgoJ2AypqzZfCFNkH5Sbmsoc4Q9pnpcB",
+        "balance": 113101693.808433,
+        "pct": 0.013624039884294756
+      },
+      {
+        "rank": 294,
+        "addr": "7U4x2ApDR1Kz1E5Vnxmvu4gn6m2pgLFENzRERBDX4f7w",
+        "balance": 111311939.285294,
+        "pct": 0.013408449063456626
+      },
+      {
+        "rank": 295,
+        "addr": "AuFwLmvZpDdeMFLNEVUw2MT8PnT8q6fxDk6WpzppQDZR",
+        "balance": 110000000.88259,
+        "pct": 0.01325041516915924
+      },
+      {
+        "rank": 296,
+        "addr": "2ysGaM4dQcmVTVaW1RsxcRntVE4JK4XNwFX5LBEbUJfd",
+        "balance": 109592418.155802,
+        "pct": 0.013201318439137542
+      },
+      {
+        "rank": 297,
+        "addr": "9rrsyYStsj5TVQ63REsJS5AFXCRV2fkjpqH8gy8WVUNb",
+        "balance": 109202320.958554,
+        "pct": 0.013154327986606745
+      },
+      {
+        "rank": 298,
+        "addr": "ChbMBbBvZmTAuTHFjAoCgUAJQfKkpwfrdMT9cGzv45Tb",
+        "balance": 104146313.610537,
+        "pct": 0.01254528984186116
+      },
+      {
+        "rank": 299,
+        "addr": "FPXq2NmXuSA1G2dGd8znUjT5G14zvmjoGFFfo7GKUm7k",
+        "balance": 104078015.852875,
+        "pct": 0.012537062808798587
+      },
+      {
+        "rank": 300,
+        "addr": "9RZd3P9RhJfmmLTRzmdwAzQkK28DJojvb9hExnU95pdR",
+        "balance": 103745519.899544,
+        "pct": 0.012497010905268115
+      },
+      {
+        "rank": 301,
+        "addr": "5x5KXZSKbqTigzkRbhfvUqHiy9bRLga9aeWzkVj1zraJ",
+        "balance": 103324694.625,
+        "pct": 0.012446319000207724
+      },
+      {
+        "rank": 302,
+        "addr": "HEWUst4SQ6qR5ou6EeNM3AeHLApbFeYT4uY3h3j7C689",
+        "balance": 103324694.625,
+        "pct": 0.012446319000207724
+      },
+      {
+        "rank": 303,
+        "addr": "62Qi5at2WQwFQqvieuYp2eBK7D2iQS1oNmE4NcLnXn2Y",
+        "balance": 101003817.585645,
+        "pct": 0.012166750054014287
+      },
+      {
+        "rank": 304,
+        "addr": "GV6UUmNxz2RpKxmNAPadYKb7uQpszwqQAu3qLJxVdC52",
+        "balance": 100730164.249546,
+        "pct": 0.012133786233226617
+      },
+      {
+        "rank": 305,
+        "addr": "3wV9nLx8R9EV8h5Rq2BAaJMSPWazfrAnPMU5NCUYKrsm",
+        "balance": 100001156.657246,
+        "pct": 0.012045971204299892
+      },
+      {
+        "rank": 306,
+        "addr": "9yQSixSjv26vmXmnoLdkuos5fuaGdFF48mxzjX1guMHh",
+        "balance": 100001073.87964,
+        "pct": 0.012045961233048644
+      },
+      {
+        "rank": 307,
+        "addr": "B86WT4kLrYrgwczM5yAayFsg3v3s9i5vMnNgPjB9nsg4",
+        "balance": 100000033.562164,
+        "pct": 0.012045835918154515
+      },
+      {
+        "rank": 308,
+        "addr": "C8DgY2dvb3m9roM6cuJYwYGe7GHyVKnUD9jwgPeaAW8w",
+        "balance": 100000004.042185,
+        "pct": 0.012045832362227475
+      },
+      {
+        "rank": 309,
+        "addr": "8CwBwNZdGzq4jsCxogAd7XjRVicp2XeiUgxzeffCrFMk",
+        "balance": 99119357.169077,
+        "pct": 0.011939751120477687
+      },
+      {
+        "rank": 310,
+        "addr": "A7J8TB7CHYEtLPirbm1c39VBa3AGp8R4ULry7q9sXcg1",
+        "balance": 98765424.148896,
+        "pct": 0.011897116943915468
+      },
+      {
+        "rank": 311,
+        "addr": "3onDYvqYKe9vMC4zajZK1uGaBH3qhS34BRQr4KTQK3uF",
+        "balance": 97937533.515569,
+        "pct": 0.011797390630113437
+      },
+      {
+        "rank": 312,
+        "addr": "CgjmoXmBrFAg4GPFCHmNYDf28CSPs84cDCwT6MNgTbsx",
+        "balance": 97765465.934435,
+        "pct": 0.011776663658578117
+      },
+      {
+        "rank": 313,
+        "addr": "BN8rRoEifmfexngPpL4Rh8jpgi4VHizDXm15Qz81METK",
+        "balance": 96404370.223325,
+        "pct": 0.011612708357555715
+      },
+      {
+        "rank": 314,
+        "addr": "FnmDnbhttR7uepv8mhwq4biUu8hrV9owoVAVqo9sjJ8m",
+        "balance": 95678667.22275,
+        "pct": 0.01152529139419235
+      },
+      {
+        "rank": 315,
+        "addr": "CpKuhcFHogvrq7Fx3enu57xTRkh1WyzER1TVVBimC5mo",
+        "balance": 95235438.660309,
+        "pct": 0.011471900826737344
+      },
+      {
+        "rank": 316,
+        "addr": "G4ZuKNUK81AfMTNXizokDVx7Q7Wa4MvnwphSvnG25VeU",
+        "balance": 95132653.993466,
+        "pct": 0.011459519558575836
+      },
+      {
+        "rank": 317,
+        "addr": "Hmiz98YWHu4R8hnatAzodmBQC6owNPW4cERSDcigQ9aQ",
+        "balance": 94972549.50625,
+        "pct": 0.011440233641220965
+      },
+      {
+        "rank": 318,
+        "addr": "6VSUzV9LtWgDJPLgjazn6MgBcJ3fKQV12i5dfKq4xMH3",
+        "balance": 93751093.803777,
+        "pct": 0.011293099140869647
+      },
+      {
+        "rank": 319,
+        "addr": "8fXqSbDQvg1fbVXVkA5YfBbFkBWAFYGTYHiRFtfSUiLw",
+        "balance": 93303374.27515,
+        "pct": 0.011239167599178299
+      },
+      {
+        "rank": 320,
+        "addr": "6i2aHtxfqkC2biTo98FSkP59FVHPKFRLZWDbdghN6WKK",
+        "balance": 91685993.149254,
+        "pct": 0.011044340587969825
+      },
+      {
+        "rank": 321,
+        "addr": "5yp2vYHbzTy8tgy9u6PmNJHZ3Dx8ktDVyRDtbtP9HHYF",
+        "balance": 91195744.941317,
+        "pct": 0.010985286113070002
+      },
+      {
+        "rank": 322,
+        "addr": "6D5BvU7VgaCG1SHXMDXVVdLhyhNZpRPeY6AQqk7x6U2G",
+        "balance": 90923938.778731,
+        "pct": 0.010952544799698153
+      },
+      {
+        "rank": 323,
+        "addr": "6orybtMkjGRyDRoqB5WWUpWWwD7C3R1qTMW6cqqcAJqY",
+        "balance": 90901061.604035,
+        "pct": 0.010949789053696452
+      },
+      {
+        "rank": 324,
+        "addr": "EENz7sF8owK3yRhMikarxfj7da5f79Kum2Pde5yiVkjo",
+        "balance": 90775662.542634,
+        "pct": 0.010934683693586866
+      },
+      {
+        "rank": 325,
+        "addr": "ADqZYsW9SVZ6bCSGDqfBiPkfaZuQKGg79MA357otX8Ud",
+        "balance": 89103714.823075,
+        "pct": 0.010733283682245666
+      },
+      {
+        "rank": 326,
+        "addr": "5WJi1s1Lmyz3uwrDThBGZgxtGms1fvBTy1LH1y8NzZ9s",
+        "balance": 88882548.515065,
+        "pct": 0.010706642360617946
+      },
+      {
+        "rank": 327,
+        "addr": "GYiTjQMimDiEPhksaajVteHR5wWfw5kNBx5Z4tBkx7UG",
+        "balance": 88502059.725537,
+        "pct": 0.01066080932072699
+      },
+      {
+        "rank": 328,
+        "addr": "653oTK7oPTnj98AEct5LmvXDacCJXNwJyyoPoSyJguro",
+        "balance": 87498428.835565,
+        "pct": 0.010539913631072258
+      },
+      {
+        "rank": 329,
+        "addr": "FXhPLQp5LafQB97AwNsmp1ewmkNE3DckHQoCkhKJwPzW",
+        "balance": 87497735.533844,
+        "pct": 0.010539830117112558
+      },
+      {
+        "rank": 330,
+        "addr": "GuRfuByNZoFb2TJKj3x6SZEwaZzt8rn2MG1PAgEzWizm",
+        "balance": 86884642.324953,
+        "pct": 0.01046597793993059
+      },
+      {
+        "rank": 331,
+        "addr": "HhAzbNeBpWstxYM1R12fD6hEeXuZ8zVa4dqmN2vc6yiX",
+        "balance": 84893456.413808,
+        "pct": 0.010226123032749149
+      },
+      {
+        "rank": 332,
+        "addr": "CSiN8176BNxwZP8y7KrVB5a3xVUkuyNosRr4Vzf1ezMc",
+        "balance": 84823127.477127,
+        "pct": 0.010217651327276861
+      },
+      {
+        "rank": 333,
+        "addr": "4X7YTyajyAorfBz4o4piSHuXxduWB4E9WNtdcUsqZaR4",
+        "balance": 84300121.406088,
+        "pct": 0.010154650895261824
+      },
+      {
+        "rank": 334,
+        "addr": "HeoSbuZQXqvAPK6tckuBHoRPmzJL9ud2odPPujnt2Ykk",
+        "balance": 83981705.125681,
+        "pct": 0.010116295005460373
+      },
+      {
+        "rank": 335,
+        "addr": "7u4SmR695hYNDwBE4yMNN6zxnSnEzBh9mkorM2jNNY8P",
+        "balance": 83762106.487639,
+        "pct": 0.010089842522721357
+      },
+      {
+        "rank": 336,
+        "addr": "ASTyfSima4LLAdDgoFGkgqoKowG1LZFDr9fAQrg7iaJZ",
+        "balance": 83458103.601385,
+        "pct": 0.010053222846147103
+      },
+      {
+        "rank": 337,
+        "addr": "BMT5uPdv4oT6Kst7DFgjQRMbgWJgq7g8EMynijK6MDJ3",
+        "balance": 83316666.666666,
+        "pct": 0.010036185590781257
+      },
+      {
+        "rank": 338,
+        "addr": "EWJH1tZ7i7FsZBZVYVXyTu1rAyYtxWSS9gv1MJaknxdU",
+        "balance": 83281996.164127,
+        "pct": 0.010032009240335083
+      },
+      {
+        "rank": 339,
+        "addr": "D5Z8GXQxTQ2vUdEYdaqLRbPZKGr1WMhdvQRSWna6EhJm",
+        "balance": 83048365.525168,
+        "pct": 0.010003866486356863
+      },
+      {
+        "rank": 340,
+        "addr": "MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa",
+        "balance": 82224922.792384,
+        "pct": 0.009904675959176223
+      },
+      {
+        "rank": 341,
+        "addr": "GL8T72PKygWaYrLKtSteN9UUvYYnuC8azNDunk4eaqqQ",
+        "balance": 82073278,
+        "pct": 0.009886409082437979
+      },
+      {
+        "rank": 342,
+        "addr": "47Fh7EcPE9fi4EmTZeukLB1svFSJ6aLPpexTg7n8X1QN",
+        "balance": 80475590.470053,
+        "pct": 0.009693954328687727
+      },
+      {
+        "rank": 343,
+        "addr": "9M5Cn7U1g2aiQGpCakrsGMq7HNxJg15XnyJFQYwMrno5",
+        "balance": 80363651.375,
+        "pct": 0.009680470333494897
+      },
+      {
+        "rank": 344,
+        "addr": "HbUvjR9HnspjHU8PXyLemqjDXKkiQrEjptxFnQeHS2wv",
+        "balance": 80363651.375,
+        "pct": 0.009680470333494897
+      },
+      {
+        "rank": 345,
+        "addr": "6UV3ygYGhu9JMKC9wuDGWNwaP9u4c4tJaxNPu77bMF6h",
+        "balance": 80287391.635939,
+        "pct": 0.009671284213539057
+      },
+      {
+        "rank": 346,
+        "addr": "8tNfE4GJwMJsdwoq9X3Mu9MwYztRnsLsqTeeSitKDyKu",
+        "balance": 80000000,
+        "pct": 0.009636665500250134
+      },
+      {
+        "rank": 347,
+        "addr": "AwW89PW2GYGRYmhBV1bnfoS9kRXgWcW5PCvr5nH4uCWC",
+        "balance": 78933181.294464,
+        "pct": 0.009508158312566881
+      },
+      {
+        "rank": 348,
+        "addr": "6o5YfCPhRNA2p5RSnMVC3aJhHiBZXGRFzzpfh5314kzg",
+        "balance": 77852341.290944,
+        "pct": 0.009377962142901736
+      },
+      {
+        "rank": 349,
+        "addr": "FPRFLszBJFHCThF2yWvkGkfvtwyFPRGX9MFHnDGP6UYp",
+        "balance": 77291666,
+        "pct": 0.009310424139988203
+      },
+      {
+        "rank": 350,
+        "addr": "GUy8mk6mGbVKQvHFepRWbjduYiQQVrzwfNdUvogAWAy3",
+        "balance": 76536810.756797,
+        "pct": 0.009219495546489986
+      },
+      {
+        "rank": 351,
+        "addr": "JDNNzPs3VDPCwKFjZsiq15r7nP13sUutkRyjTUTxkXEL",
+        "balance": 75849803.336785,
+        "pct": 0.009136739787704419
+      },
+      {
+        "rank": 352,
+        "addr": "Gmej9sdGjEy7hUs4xUoVSWLYvUCwJsrZUtu3xYmjFRMM",
+        "balance": 75776883.85166,
+        "pct": 0.009127956029121918
+      },
+      {
+        "rank": 353,
+        "addr": "HxxW8jrRUXxqm5BWyDxvQL7LmiyVvhDmmNnpkaZoMqdC",
+        "balance": 75663959.986958,
+        "pct": 0.009114353410232808
+      },
+      {
+        "rank": 354,
+        "addr": "5fYmcKbdswHsp4b1UBmECDDg116REzfmSwDE4VhK9URd",
+        "balance": 75277235.591028,
+        "pct": 0.009067769239678263
+      },
+      {
+        "rank": 355,
+        "addr": "BzrAkcqkcYLwcsx1FrTgRFCX2u3553nhG7o5p3KsB9Ee",
+        "balance": 75192562.426256,
+        "pct": 0.009057569652606321
+      },
+      {
+        "rank": 356,
+        "addr": "F9MNu1g6Ab6rm4ZKS9pPfYo3e9GrNitc8JoC6h9qVKk6",
+        "balance": 75142500,
+        "pct": 0.009051539216906821
+      },
+      {
+        "rank": 357,
+        "addr": "5EyW5rC5X4EQBZVm32WUqrapUBAEp9n8YZ7fUf2SvtpU",
+        "balance": 75000000,
+        "pct": 0.009034373906484499
+      },
+      {
+        "rank": 358,
+        "addr": "FkaLnX17cXZGyeu3kZGdHCNdFMJJzBrPPYVvd18B3MZp",
+        "balance": 74853916.085675,
+        "pct": 0.009016776883768035
+      },
+      {
+        "rank": 359,
+        "addr": "8ekCy2jHHUbW2yeNGFWYJT9Hm9FW7SvZcZK66dSZCDiF",
+        "balance": 74298936.387164,
+        "pct": 0.008949924962343283
+      },
+      {
+        "rank": 360,
+        "addr": "dfSzRvYp6vDxkX7WjSuHtwwNKY7fL7SPY4x7LJ5SP78",
+        "balance": 73959135.960853,
+        "pct": 0.008908993174278262
+      },
+      {
+        "rank": 361,
+        "addr": "BofA2ViUSudPBTUms2KRuG6AHNeMawjNfwqTJDgx5BKW",
+        "balance": 73745890.762446,
+        "pct": 0.008883306016195979
+      },
+      {
+        "rank": 362,
+        "addr": "6xfPFKnwv48XvxpFf4athewqGFvSTKQcMmfzYapgZ2sG",
+        "balance": 73616767.70943,
+        "pct": 0.0088677520703174
+      },
+      {
+        "rank": 363,
+        "addr": "FxmR1j3mDiPnyTT1mW4vX6drikupeTf4Tb7hEp4XCAb2",
+        "balance": 72026057.748347,
+        "pct": 0.008676137822781491
+      },
+      {
+        "rank": 364,
+        "addr": "51j9pR4HSEhaq9dun8LGFhNF3grVeaFRfME8MvFJYRQm",
+        "balance": 71200368.599693,
+        "pct": 0.00857667669612193
+      },
+      {
+        "rank": 365,
+        "addr": "4uyDXbsK5AyNs2VLxxihmdMVcoCdP4Gf7bf1tBHitQHX",
+        "balance": 70732290.534284,
+        "pct": 0.008520292799317545
+      },
+      {
+        "rank": 366,
+        "addr": "F6MmiLD7azY87uijwqNWN8DeG53eDuAXHZLupudExbCP",
+        "balance": 69490978.922622,
+        "pct": 0.008370766489528007
+      },
+      {
+        "rank": 367,
+        "addr": "3JDAcodat9iNPxHaRSaWQrHLCbUNBKKqBQPhMj4rPS2R",
+        "balance": 69430555.573606,
+        "pct": 0.008363487994492106
+      },
+      {
+        "rank": 368,
+        "addr": "J47kX7PQeRFygZYygyST8n8ZEibyp4PDBcKht29mKaNM",
+        "balance": 69000318.56656,
+        "pct": 0.008311662367957969
+      },
+      {
+        "rank": 369,
+        "addr": "f4CMmXJCRu4fzyqZPkDiFhGKAeCo1s7sxUtPKQp9SDy",
+        "balance": 68969401.832029,
+        "pct": 0.008307938190095027
+      },
+      {
+        "rank": 370,
+        "addr": "2H5G97ZaYeDhuzFjDrxLtrjCir15SDY7iTeBqNDLUTc5",
+        "balance": 68883129.75,
+        "pct": 0.008297546000138482
+      },
+      {
+        "rank": 371,
+        "addr": "CJe5gbN2kNXHifK5msUVMT1B2oWsXsdw2TdP1J9qgPV4",
+        "balance": 68883129.75,
+        "pct": 0.008297546000138482
+      },
+      {
+        "rank": 372,
+        "addr": "DPW7bCQpXq9UP8gnjJbbPAPY6ASb9gks3PAJYqh11ynF",
+        "balance": 68883129.75,
+        "pct": 0.008297546000138482
+      },
+      {
+        "rank": 373,
+        "addr": "ENuf6K4riJANXxW7poP2W2eSZHX7C56BZwxhnJzfA4eW",
+        "balance": 68883129.75,
+        "pct": 0.008297546000138482
+      },
+      {
+        "rank": 374,
+        "addr": "J2GDe155VmXWaKkxtNh63EZEGVY3ZUm34iMMxB9VQeZG",
+        "balance": 68883129.75,
+        "pct": 0.008297546000138482
+      },
+      {
+        "rank": 375,
+        "addr": "JBBPDTBfttHjYo6rv6yCQHYWpkEAgfgLVyLMZFN9DTwr",
+        "balance": 68883129.75,
+        "pct": 0.008297546000138482
+      },
+      {
+        "rank": 376,
+        "addr": "53unSgGWqEWANcPYRF35B2Bgf8BkszUtcccKiXwGGLyr",
+        "balance": 68560866.292274,
+        "pct": 0.00825872668582524
+      },
+      {
+        "rank": 377,
+        "addr": "9u4puJNsa2v7Tiq2gxGvnSnJJmEvj3SN2ikqt74kZvWy",
+        "balance": 67775524.753232,
+        "pct": 0.008164125764385247
+      },
+      {
+        "rank": 378,
+        "addr": "5vh3TZMDWhP2WNJNtUjYYps21JPnY3HYpR13c22LBwAT",
+        "balance": 67574874.47582,
+        "pct": 0.008139955769310848
+      },
+      {
+        "rank": 379,
+        "addr": "GmkySYxUg2xBvt3rtDxGs8EBFkEZ3398rGBWp6kqxxYi",
+        "balance": 66752765.094669,
+        "pct": 0.008040925855426227
+      },
+      {
+        "rank": 380,
+        "addr": "HCEFQ2vUPWUWpczbGswrnFjarzR92c6ezd1VLNNr3h9t",
+        "balance": 65866921.100023,
+        "pct": 0.007934218577153615
+      },
+      {
+        "rank": 381,
+        "addr": "DF55HEiYK6QDdTMmWuH9vRqaVCvNr4LpjqfNRYv3oSjR",
+        "balance": 65763809.805491,
+        "pct": 0.007921797963969832
+      },
+      {
+        "rank": 382,
+        "addr": "FRZA5KgoWABae4Q47zjv2xhwA6JaFbPCjtpZquzpoqG2",
+        "balance": 65223341.756141,
+        "pct": 0.00785669409140535
+      },
+      {
+        "rank": 383,
+        "addr": "CbxqjVH92zoosFA7sRAr6jRUrx6qzzPVTHSB8VCur4m2",
+        "balance": 65216046.000014,
+        "pct": 0.007855815256888258
+      },
+      {
+        "rank": 384,
+        "addr": "B9hkoG8rjSsJ3FcjYMu2NDschscJvVSfjWZKrZYj22iv",
+        "balance": 65000386.204926,
+        "pct": 0.007829837240549314
+      },
+      {
+        "rank": 385,
+        "addr": "HbjYfcWZBjCBYTJpZkLGxqArVmZVu3mQcRudb6Wg1sVh",
+        "balance": 64929414.675222,
+        "pct": 0.007821288129401832
+      },
+      {
+        "rank": 386,
+        "addr": "5z7gxL5u4jCW9D6acu28LEw4RKTiBSG1EmXbtCX7efg2",
+        "balance": 63181371.724879,
+        "pct": 0.007610721814495259
+      },
+      {
+        "rank": 387,
+        "addr": "A6ymyBiv6EYhFbN6MacQCTH4x71GGpW5gZfwmGFmirMi",
+        "balance": 62502884.274836,
+        "pct": 0.007528992356967983
+      },
+      {
+        "rank": 388,
+        "addr": "FdhpxuCPYWM98q5q1rHLAYRfXFsHUCzaos5ogz4prR7r",
+        "balance": 61924637.013754,
+        "pct": 0.0074593376640744455
+      },
+      {
+        "rank": 389,
+        "addr": "DYsm1s9r6WoTr2f1NPFhkbfcmTzXoMN9temcNpyKQ394",
+        "balance": 60272738.53125,
+        "pct": 0.007260352750121172
+      },
+      {
+        "rank": 390,
+        "addr": "7w9UBJnbospqSMvekAaxpXznTf2dDpTHVvb5mtT4BKYi",
+        "balance": 60000553.279339,
+        "pct": 0.007227565772286577
+      },
+      {
+        "rank": 391,
+        "addr": "FBHSso8wiLYU3ec2WXvQWkXAUhjdyHdMAHAZ1Fp6khxJ",
+        "balance": 59733360.814827,
+        "pct": 0.007195380217227957
+      },
+      {
+        "rank": 392,
+        "addr": "56ZneAvV64s3iWYzZiK7qfchmqPGcZUTGG2WbkTKrc2x",
+        "balance": 59434031.34,
+        "pct": 0.00715932349193704
+      },
+      {
+        "rank": 393,
+        "addr": "6HzyUvinGxjnsnB4C9u8HL33YuPej6Nfxo225S9UTGV4",
+        "balance": 59345649.717866,
+        "pct": 0.007148677190326105
+      },
+      {
+        "rank": 394,
+        "addr": "8jS2B8Lu3bVkTuzCGnxyMdMzZLNCRqFXQKQFsr8EjSmG",
+        "balance": 59326703.258618,
+        "pct": 0.007146394931698765
+      },
+      {
+        "rank": 395,
+        "addr": "63pVQRcPUjphDSu9MadfNAuKpjBWQUBpC6Tz2A8nSzrK",
+        "balance": 59279236.888777,
+        "pct": 0.007140677212590405
+      },
+      {
+        "rank": 396,
+        "addr": "GyL9JZ4PFFGd1LiX7tCWvjTAothh4XMPenbyu2ouZqbv",
+        "balance": 58779900.422734,
+        "pct": 0.007080527981398736
+      },
+      {
+        "rank": 397,
+        "addr": "HP17G6p11uMpWXrKyfnPePYaXnAd817Ghthf5Z2277cj",
+        "balance": 58718098.760345,
+        "pct": 0.00707308345705121
+      },
+      {
+        "rank": 398,
+        "addr": "42ByMmQW9vNJpiDXtgRA8S8hWCUHFteTbHj3AWHnUBiA",
+        "balance": 58500634.252003,
+        "pct": 0.007046888047987857
+      },
+      {
+        "rank": 399,
+        "addr": "9feRiedSbXhV54GmninTFg2XbDpHRLNTViLQAMz7kSjZ",
+        "balance": 58355062.414327,
+        "pct": 0.007029352709163603
+      },
+      {
+        "rank": 400,
+        "addr": "Gtq6jhUkvuwoLaEh6VYPzYDJjSg5ZV18GbNQyjHBqMxr",
+        "balance": 57690141.846773,
+        "pct": 0.006949257495491673
+      },
+      {
+        "rank": 401,
+        "addr": "6Ee66WAxkxVTajridbG8MfXPTD2AWcvNAwA5VgQVeuu1",
+        "balance": 57402608.125,
+        "pct": 0.00691462166678207
+      },
+      {
+        "rank": 402,
+        "addr": "6Z1UvPUbE17j1FXycA9Ymnjyub3MxU9edCMJzCy6zpjD",
+        "balance": 57402608.125,
+        "pct": 0.00691462166678207
+      },
+      {
+        "rank": 403,
+        "addr": "HYzHZWKX7AUisVSdr4x6AczFGb68u7W8KXYJPvagq3fv",
+        "balance": 57402608.125,
+        "pct": 0.00691462166678207
+      },
+      {
+        "rank": 404,
+        "addr": "7Vq3ATcXqvZZJzYTwqM5KqnwgzyPFYvFuqJpuM786gwn",
+        "balance": 57317882.046955,
+        "pct": 0.006904415705866222
+      },
+      {
+        "rank": 405,
+        "addr": "FLbGvea7pk7NuJYevvKqi4FQVD22xPQAVqb7z881kbyR",
+        "balance": 57078934.037,
+        "pct": 0.006875632430317637
+      },
+      {
+        "rank": 406,
+        "addr": "7CscJrKVE64TvXXNS3uRQ3aQXmdSfWcrBYBSRcxwCUtw",
+        "balance": 56972434.866063,
+        "pct": 0.006862803719237963
+      },
+      {
+        "rank": 407,
+        "addr": "Av2nB9wRozgetnmxZ4hpLHPrqzVQc2eyiCE34LyaXNgZ",
+        "balance": 56863768.721585,
+        "pct": 0.00684971397816876
+      },
+      {
+        "rank": 408,
+        "addr": "65hepC1qGo797qR8Bvm3x5C4pUaVUGZCPZdTJ9tZDhk9",
+        "balance": 56461600.645818,
+        "pct": 0.006801269487905687
+      },
+      {
+        "rank": 409,
+        "addr": "AWTwFQRLt61kjSeNrc7L8Df5BUB56FJ9E53twVwWA2zd",
+        "balance": 56281911.01036,
+        "pct": 0.0067796243765210545
+      },
+      {
+        "rank": 410,
+        "addr": "FYPAkrEm6HoFgt7y8rLoU3ikVYQVTx9ahmp5wQJBhECM",
+        "balance": 54845353.412608,
+        "pct": 0.006606579063503818
+      },
+      {
+        "rank": 411,
+        "addr": "JBJNZvZZSrAMDg1QoiSNWmi7ygPZGFLDyNMxK3ohEL7k",
+        "balance": 54785328.07622,
+        "pct": 0.006599348512399929
+      },
+      {
+        "rank": 412,
+        "addr": "8wLTN387C6P5rYqZH7L4fpU6NLHeVFYcxSykdAUWk8Wy",
+        "balance": 54577403.825781,
+        "pct": 0.006574302306764044
+      },
+      {
+        "rank": 413,
+        "addr": "Ga55aQZCrHfaJUWnBaVxWxSLEYpfdXPrzpmujpqr3VZA",
+        "balance": 54485879.195091,
+        "pct": 0.0065632774036266245
+      },
+      {
+        "rank": 414,
+        "addr": "961c1qZtbED8Z6H1gV4jUuqz9MS7XM2G64qeoCQg19to",
+        "balance": 53955609.574579,
+        "pct": 0.00649940201665389
+      },
+      {
+        "rank": 415,
+        "addr": "3oSZX3QC4Tgb7FETT4TeptDfU7E5bNDANbY4Zj7rhU4G",
+        "balance": 53931322.208787,
+        "pct": 0.006496476401403644
+      },
+      {
+        "rank": 416,
+        "addr": "EFHZcE7WBwMziP47d53d3F3HW2cRQvVhRyQhuDBhyk3q",
+        "balance": 52774015.75008,
+        "pct": 0.006357069211105663
+      },
+      {
+        "rank": 417,
+        "addr": "ARNPqMMKNgEJUybB6BPb3V1Dukjw8T5jXVdqBp117TJF",
+        "balance": 52247934.180918,
+        "pct": 0.006293698309757403
+      },
+      {
+        "rank": 418,
+        "addr": "6Cwj3rGV6JPB7UGaox1cPs4UQ5aqcufuimm1v83bG4ug",
+        "balance": 52240669.683483,
+        "pct": 0.0062928232406097954
+      },
+      {
+        "rank": 419,
+        "addr": "6kjTikEfM13uAsqbj9z4QjQDbditqHjhtL5bqQJvFSQy",
+        "balance": 51893029.905931,
+        "pct": 0.006250947137474171
+      },
+      {
+        "rank": 420,
+        "addr": "F5Des1B3zSUagFf7o5a7JmfbTPnQEkyvskvfUmynxacN",
+        "balance": 51733870.472192,
+        "pct": 0.006231775059672271
+      },
+      {
+        "rank": 421,
+        "addr": "5P4fmYMB6wMwzmSim7d12Y2WfMUahQYrwWJi9KTGTuc2",
+        "balance": 51662347.3125,
+        "pct": 0.006223159500103862
+      },
+      {
+        "rank": 422,
+        "addr": "3aDPJiuydGDUcHZVVhGhyhnZ55QbBdxsmymVmhZBaa1f",
+        "balance": 51525883.590028,
+        "pct": 0.006206721309524091
+      },
+      {
+        "rank": 423,
+        "addr": "3RDymGPG9TvcKnVUgg7ikQnSTteXSGj93WwYF2z3x8cA",
+        "balance": 51321935.490092,
+        "pct": 0.0061821540642929065
+      },
+      {
+        "rank": 424,
+        "addr": "5a6sar9RALAk5NwtUttPfP3SBs9EN8m8xDhzshZu2y5n",
+        "balance": 51221476.72491,
+        "pct": 0.006170052970335068
+      },
+      {
+        "rank": 425,
+        "addr": "DPVyMyeKjGaFugddvr1EVifRYZmFL1qzACnEcV8WbAuo",
+        "balance": 50695734.061033,
+        "pct": 0.0061067228929476535
+      },
+      {
+        "rank": 426,
+        "addr": "6VL2QW6sy8cjxL24xHL7eFbnUSi35DMJd8AzRwssSs9y",
+        "balance": 50633548.088276,
+        "pct": 0.006099232075219318
+      },
+      {
+        "rank": 427,
+        "addr": "AxVn8rB4BLFUxvPhBywQnca11iMapKP38Cd78jDgx5zR",
+        "balance": 50356745.306201,
+        "pct": 0.006065888877464376
+      },
+      {
+        "rank": 428,
+        "addr": "HgidJD2zcYuqVgfabkyveAEAu7QFS49X4bCAqPti8Gvq",
+        "balance": 50299168.248893,
+        "pct": 0.006058953241942301
+      },
+      {
+        "rank": 429,
+        "addr": "9S8Kh6qo4HSJfYKmNJkMkzDGQgXGGmqgYFy6Up11PM1d",
+        "balance": 50099081.831337,
+        "pct": 0.006034851168478169
+      },
+      {
+        "rank": 430,
+        "addr": "3586f6PW43Suy9JcvB1wWFUismuocmbh29bGgCCVPt8Y",
+        "balance": 50095000,
+        "pct": 0.006034359477937881
+      },
+      {
+        "rank": 431,
+        "addr": "4i9t7sem7FyWJ1YX44xYoV6EpvxVhPn3byKVcNgeonbg",
+        "balance": 50073186.334172,
+        "pct": 0.006031731840426397
+      },
+      {
+        "rank": 432,
+        "addr": "E5A5Sw7q7PoPyvhnf9HdVESDf1pTbVjWG3HRrtdHoE5H",
+        "balance": 50057149.08885,
+        "pct": 0.006029800020817477
+      },
+      {
+        "rank": 433,
+        "addr": "7iBFUna6yLia5EtnR2VapvnSEPBApYh1SxRfbAvN5LpH",
+        "balance": 50000461.066116,
+        "pct": 0.0060229714769055006
+      },
+      {
+        "rank": 434,
+        "addr": "FBQGkmj95q49ccbA8RLJFBJKRNYNwz7h4PofkxoxYugr",
+        "balance": 50000000.031712,
+        "pct": 0.006022915941476308
+      },
+      {
+        "rank": 435,
+        "addr": "AM2e7wQabSCqm2L6yDgmGVhi8FfEVtr1WK4MBcoZTH9J",
+        "balance": 50000000,
+        "pct": 0.006022915937656333
+      },
+      {
+        "rank": 436,
+        "addr": "5FTNesHbXdY1dLTJif1vP1kj8iaTkMCDfdD7xYW7vzsC",
+        "balance": 50000000,
+        "pct": 0.006022915937656333
+      },
+      {
+        "rank": 437,
+        "addr": "FLRoCp5HU99TzgmzUJbqryUKHtUwGs2tiMfUc9FFRtK8",
+        "balance": 50000000,
+        "pct": 0.006022915937656333
+      },
+      {
+        "rank": 438,
+        "addr": "8EzBD2Tk1L3iFarkcR5YMYZsvKoEbsE2tkZF2i8ng3gJ",
+        "balance": 49850084.67946,
+        "pct": 0.006004857390188748
+      },
+      {
+        "rank": 439,
+        "addr": "3Ln6KEgLoMR2xFHfqtYazP7CxFQPDtUVVtwCVsLKVfmV",
+        "balance": 49711506.824208,
+        "pct": 0.005988164534728679
+      },
+      {
+        "rank": 440,
+        "addr": "4qsBQXrWQCtRkBGJutoVgrFKGcnRjcU1NwBXP2PJm4JH",
+        "balance": 49015110.819077,
+        "pct": 0.005904277842764205
+      },
+      {
+        "rank": 441,
+        "addr": "7sjjY6mbTVp6aYFR8mEK1LdxWYSVktz3SJDHr7q3Eif",
+        "balance": 48610008.129636,
+        "pct": 0.005855479853871771
+      },
+      {
+        "rank": 442,
+        "addr": "FLWxH6bJtGzxj5xfWXR2U666SXvcKy2UZ2bNMx5cuEFk",
+        "balance": 47328013.652063,
+        "pct": 0.005701052954452535
+      },
+      {
+        "rank": 443,
+        "addr": "CRcheT7YEMRS6TzFEyxDEC8urw57YL4voiESdV2xkMv2",
+        "balance": 47314613.067646,
+        "pct": 0.0056994387425833536
+      },
+      {
+        "rank": 444,
+        "addr": "Fwdj43GwQFJ8NjR4VfdgguctfaxXn3epyPXFetSCxyQF",
+        "balance": 47184943.87875,
+        "pct": 0.00568381901009486
+      },
+      {
+        "rank": 445,
+        "addr": "3ECE7zQWFNmb63643xCLPVaDM9nw1Utz5Xis9ELaCf4U",
+        "balance": 47133229.802531,
+        "pct": 0.0056775896194176485
+      },
+      {
+        "rank": 446,
+        "addr": "AobVSwdW9BbpMdJvTqeCN4hPAmh4rHm7vwLnQ5ATSyrS",
+        "balance": 46988164.847807,
+        "pct": 0.005660115338861596
+      },
+      {
+        "rank": 447,
+        "addr": "3me1SEVcAGhDRTf51TgkpGHjbHVtFzZYd76CzdcbTgqu",
+        "balance": 46492090.6488,
+        "pct": 0.00560035907487241
+      },
+      {
+        "rank": 448,
+        "addr": "3pnspvZddJGeCQLoVoh5EthDme5WrsK9z2Wf2piAuLfq",
+        "balance": 46457200.51929,
+        "pct": 0.005596156268530557
+      },
+      {
+        "rank": 449,
+        "addr": "28JyZXxL2AHWF8DreDwhHqTx6SmbASAYQwLwLDHq5BR1",
+        "balance": 46293095.733791,
+        "pct": 0.0055763884819700045
+      },
+      {
+        "rank": 450,
+        "addr": "9E4fv9BsJ2BwkNBXDeUgpJYtrYPheMQWYFcxGYxDFshX",
+        "balance": 46046816.88117,
+        "pct": 0.00554672214543883
+      },
+      {
+        "rank": 451,
+        "addr": "87qf5DQJDQkLNN8rqGLK2qsRW9D6GKP9kBgsm19TNeDF",
+        "balance": 45922086.5,
+        "pct": 0.005531697333425655
+      },
+      {
+        "rank": 452,
+        "addr": "7QSPT9qLYWQXqRTHf6wiWxekBdzrRiaZ8AGLinwswxnP",
+        "balance": 45482766.790493,
+        "pct": 0.00547877761982333
+      },
+      {
+        "rank": 453,
+        "addr": "46yHvUZACgg2ZqfmebXFaBeJKiE23MgpDqJ7HPoPPtHW",
+        "balance": 45129472.608947,
+        "pct": 0.005436220396689037
+      },
+      {
+        "rank": 454,
+        "addr": "Dg6MaiSjEwDS4Ph1Bm6bhXn8Nq56XbWNuJiA82hana2Q",
+        "balance": 44933940.909123,
+        "pct": 0.005412666976865297
+      },
+      {
+        "rank": 455,
+        "addr": "AbVZA9CA3PF5Dn8j1wYMyFjiP98LLPAeJfjkrmCYEZ7x",
+        "balance": 44568235.614069,
+        "pct": 0.0053686147318639755
+      },
+      {
+        "rank": 456,
+        "addr": "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "balance": 44426245.41252,
+        "pct": 0.005351510830905966
+      },
+      {
+        "rank": 457,
+        "addr": "8VgwfAxaNJTFrWSihtXj7LHyfhrogjjcYzk6Z3ev786K",
+        "balance": 44310860.851792,
+        "pct": 0.005337611800710603
+      },
+      {
+        "rank": 458,
+        "addr": "HfVkWUQaAvd9uWdkBL57S8ZRRP3acpb2h4qkLAriy8zU",
+        "balance": 43547811.21649,
+        "pct": 0.005245696124516937
+      },
+      {
+        "rank": 459,
+        "addr": "22jKZvsizPP6qMnEfmDvMExjQfvnQAyvid1CH4VsArbz",
+        "balance": 43509972.33054,
+        "pct": 0.005241138115931909
+      },
+      {
+        "rank": 460,
+        "addr": "EvhHBQbPXAiSGeDMQVH8yNQkeH7pEqhwwdx7v3z6qZT4",
+        "balance": 43405057.941217,
+        "pct": 0.005228500304981049
+      },
+      {
+        "rank": 461,
+        "addr": "5uZceP8TnTR121DP6BbtEiPJYqinJRhiVjZNzvUzobKx",
+        "balance": 43384216.593601,
+        "pct": 0.005225989791286677
+      },
+      {
+        "rank": 462,
+        "addr": "B8munL9QKeMaNo5JvwkGGC3siDqT2qkYmxtVNyzzTrDR",
+        "balance": 43054347.419564,
+        "pct": 0.0051862543051736975
+      },
+      {
+        "rank": 463,
+        "addr": "GwtXsmP772pv2ctcyzvxMuR7pacTDCQywx9VwoirQNJa",
+        "balance": 42795025.28551,
+        "pct": 0.00515501679689008
+      },
+      {
+        "rank": 464,
+        "addr": "Hv2fiTd82BBL69wQAawTymqVJ2TCGWXnEuxzqWZB6RRF",
+        "balance": 42727814.054893,
+        "pct": 0.005146920645048627
+      },
+      {
+        "rank": 465,
+        "addr": "DC4mEgm8k4hZrH2jTuVYnBcZhQZEPLXeq5MbMPx5AiL3",
+        "balance": 42399862.46545,
+        "pct": 0.005107416147951907
+      },
+      {
+        "rank": 466,
+        "addr": "6vx4FgK2gSngdakzASu6JcLXow7ZEFoD1Q8UpkzfMHJD",
+        "balance": 42000000,
+        "pct": 0.0050592493876313194
+      },
+      {
+        "rank": 467,
+        "addr": "DU7fWaPM79G8xQaXYZ7jAcvRxK28Kz5gPYAfRExi3csv",
+        "balance": 41658333.333333,
+        "pct": 0.005018092795390628
+      },
+      {
+        "rank": 468,
+        "addr": "7aAgyvVdA1f6Xv5TWL7V1EYM6BQBLKUazsj6Rfoz6th6",
+        "balance": 41456771.003428,
+        "pct": 0.004993812936006309
+      },
+      {
+        "rank": 469,
+        "addr": "4XRFKN4WLn8XAoooGSWGzpm9SYHFawqdfeL4cryzerHc",
+        "balance": 40825396.8254,
+        "pct": 0.004917758664016919
+      },
+      {
+        "rank": 470,
+        "addr": "3UbJrjnxtz1KfL8itbsKBnfZ1tFc3fEEPHNWA15r4fTb",
+        "balance": 40309660.254229,
+        "pct": 0.004855633903734158
+      },
+      {
+        "rank": 471,
+        "addr": "853S2Nk88ZnuxQseYzzMpHysV7YdC5ifUr4rh1rVFbPf",
+        "balance": 40099010.183095,
+        "pct": 0.00483025935032013
+      },
+      {
+        "rank": 472,
+        "addr": "FLjJhRKPUtZ6DiyFkrsovpF6DMmPLpCFkS67daW8XaR3",
+        "balance": 40000000.13651,
+        "pct": 0.004818332766568832
+      },
+      {
+        "rank": 473,
+        "addr": "3ejbo5hi6U9DKrSFUYM6Vt2oYnhBU72rbR7WAJXPvyXg",
+        "balance": 40000000,
+        "pct": 0.004818332750125067
+      },
+      {
+        "rank": 474,
+        "addr": "BbUCacTTm27U9PPiabWdEagN6C4ZTTvMG8uCNk5ZGsqw",
+        "balance": 39965999,
+        "pct": 0.004814237046829141
+      },
+      {
+        "rank": 475,
+        "addr": "62qc2CNXwrYqQScmEdiZFFAnJR262PxWEuNQtxfafNgV",
+        "balance": 39787974.287199,
+        "pct": 0.004792792489228625
+      },
+      {
+        "rank": 476,
+        "addr": "6yYAw7cNKRHj21gDPvRj7QR4vDqFY4HcuXZ9sdDzWzoy",
+        "balance": 39775182.038844,
+        "pct": 0.004791251556498709
+      },
+      {
+        "rank": 477,
+        "addr": "318hxyDPFr3nmBpEwU73jbK5W5vqRiHMtWkTqVieHqfU",
+        "balance": 39745301.225453,
+        "pct": 0.0047876521639546536
+      },
+      {
+        "rank": 478,
+        "addr": "99FYzcVLi3roohxbhj3yraCrpPpWYzcP1RKziJo2Ntfk",
+        "balance": 38982866.4027,
+        "pct": 0.004695810547046989
+      },
+      {
+        "rank": 479,
+        "addr": "6ofXwU1s3Ma4ZcvLG29UD6mm1auDV5jumMzRnY1FdFVE",
+        "balance": 38878094.799232,
+        "pct": 0.004683189935840164
+      },
+      {
+        "rank": 480,
+        "addr": "9dVT3bRQFqEDavi6D1wkxEHM983Ypqdp8wZTyYnB7vna",
+        "balance": 38268405.493204,
+        "pct": 0.004609747787074271
+      },
+      {
+        "rank": 481,
+        "addr": "DjfWnXCJGjEP1uZ1ncHobdkYcoC2Wn43YG7RapxuGhCs",
+        "balance": 38268405.493204,
+        "pct": 0.004609747787074271
+      },
+      {
+        "rank": 482,
+        "addr": "4sZdivk4EeCbvjMqRPH2cuyFLKR3yXzMubq4SMqq6F3m",
+        "balance": 38133809.0455,
+        "pct": 0.0045935345252737046
+      },
+      {
+        "rank": 483,
+        "addr": "28RWPC6XPxSxUVjd27KiNRtcHVxKtd6cjms7eBcxiqdV",
+        "balance": 37952174.354459,
+        "pct": 0.004571655115763662
+      },
+      {
+        "rank": 484,
+        "addr": "3hyKAcCW6GXyhwDeRAUtSUpzGnupdMQMRNKZexcYpeuo",
+        "balance": 37921471.146802,
+        "pct": 0.004567956658988971
+      },
+      {
+        "rank": 485,
+        "addr": "5ocByp3tG3s613mWCUsxBaK5njKBfsnhEa3yaA37r2Vm",
+        "balance": 37770916.14625,
+        "pct": 0.004549821056742602
+      },
+      {
+        "rank": 486,
+        "addr": "9Eh3X5Y7d66EZU1CNKnuggdLLx73PeLpajTEyFkoRJCb",
+        "balance": 37525042.871926,
+        "pct": 0.004520203575491206
+      },
+      {
+        "rank": 487,
+        "addr": "Kpn43bBgxYBPKyp4RZqvPzNpM9YvtMSNNxrVvYFm9dN",
+        "balance": 37491960,
+        "pct": 0.004516218468359475
+      },
+      {
+        "rank": 488,
+        "addr": "EJxRGKxzAdjb7edFfMRtpqUM1zgXL96m1BCmaWuNXHL9",
+        "balance": 37383710.306713,
+        "pct": 0.004503178892300581
+      },
+      {
+        "rank": 489,
+        "addr": "3V11R3pEGSt5XeRaoLDcCdkAB8zVSaKRCm8y3uKBgnsr",
+        "balance": 37369989.133046,
+        "pct": 0.004501526062789335
+      },
+      {
+        "rank": 490,
+        "addr": "JCUTmTWoSCHwNxwUHVdB5tsMLnT8mqW51mPYoXJmyoNw",
+        "balance": 37000000,
+        "pct": 0.004456957793865687
+      },
+      {
+        "rank": 491,
+        "addr": "6voGN2kpUdXcBYaZY5vTXVeCDNSRfXfWLPbL7RgsdEYH",
+        "balance": 36367003.605685,
+        "pct": 0.004380708112429711
+      },
+      {
+        "rank": 492,
+        "addr": "CvbqhARJgZfcMvNtJVn9p9aT5HUxqGnB9Zs96FvxkHyT",
+        "balance": 36176000.374803,
+        "pct": 0.004357700184361249
+      },
+      {
+        "rank": 493,
+        "addr": "HFWv1riXSRJ3nVnnLZ9xi1K4r3zppRvcfVuiAGqAA8Y6",
+        "balance": 36025449.591753,
+        "pct": 0.00433956509014808
+      },
+      {
+        "rank": 494,
+        "addr": "2njm8XMKLr5AdDp97PfDwUmQ2oTd7bBBbibF4taS6SLY",
+        "balance": 35972301.168204,
+        "pct": 0.004333162920402988
+      },
+      {
+        "rank": 495,
+        "addr": "HsEJqJhzJPrMGopNtRW5PgTfZqrnZDTwtEUMfPx3Pz5P",
+        "balance": 35900155.211135,
+        "pct": 0.004324472339709622
+      },
+      {
+        "rank": 496,
+        "addr": "XLNEqFBK5FwNmxqCNfy1iaJ5GDfNGzKz1NALTpgPnco",
+        "balance": 35575325.004655,
+        "pct": 0.0042853438391568105
+      },
+      {
+        "rank": 497,
+        "addr": "BcfgBSK7Ty7TutiEzKayZY6UDvYK1Twou4FXSoR5qVNV",
+        "balance": 35135083.218244,
+        "pct": 0.004232313053720868
+      },
+      {
+        "rank": 498,
+        "addr": "4PhTrqyqzXBmLH7L9nWBxjXDiryenn9s73LPD8p8ZHgY",
+        "balance": 35037673.157328,
+        "pct": 0.0042205792015532866
+      },
+      {
+        "rank": 499,
+        "addr": "BGejwGNE7Pviz8hGokZrTZH9mnkS5wccksuSoHQDGRr9",
+        "balance": 34649039.222858,
+        "pct": 0.004173765011196617
+      },
+      {
+        "rank": 500,
+        "addr": "FeDrA7MYkV9Fcuw9cpoBPAinoJAkxr1GxkHJK7zQpeLE",
+        "balance": 34630868.40855,
+        "pct": 0.004171576185454701
+      }
+    ]
   }
 ]
