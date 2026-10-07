@@ -1,11 +1,11 @@
 {
-  "lastTier": "NEUTRAL",
-  "lastScore": 45,
+  "lastTier": "AVOID",
+  "lastScore": 0,
   "lastAlertTime": "2026-10-07T06:46:04.127Z",
   "lastAlertTier": "AVOID",
-  "lastCheck": "2026-10-07T14:32:29.810Z",
+  "lastCheck": "2026-10-07T15:40:06.484Z",
   "lastVelocityAlertTime": "2026-10-04T22:27:58.672Z",
-  "lastDipAlertTime": "2026-10-06T22:31:32.417Z",
-  "lastDipAlertType": null,
-  "lastDipApproachAlert": false
+  "lastDipAlertTime": "2026-10-07T15:40:06.484Z",
+  "lastDipAlertType": "approaching",
+  "lastDipApproachAlert": true
 }
