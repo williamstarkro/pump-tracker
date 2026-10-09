@@ -1,11 +1,11 @@
 {
-  "lastTier": "GOOD ENTRY",
-  "lastScore": 55,
-  "lastAlertTime": "2026-10-09T16:33:38.116Z",
+  "lastTier": "STRONG ENTRY",
+  "lastScore": 75,
+  "lastAlertTime": "2026-10-09T20:30:05.136Z",
   "lastAlertTier": "STRONG ENTRY",
-  "lastCheck": "2026-10-09T19:28:53.432Z",
+  "lastCheck": "2026-10-09T20:30:05.136Z",
   "lastVelocityAlertTime": "2026-10-07T20:30:22.455Z",
-  "lastDipAlertTime": "2026-10-08T16:37:03.102Z",
-  "lastDipAlertType": "diponly",
+  "lastDipAlertTime": "2026-10-09T20:30:05.136Z",
+  "lastDipAlertType": "confluence",
   "lastDipApproachAlert": false
 }
