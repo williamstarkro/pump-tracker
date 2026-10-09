@@ -1,9 +1,9 @@
 {
-  "lastTier": "AVOID",
-  "lastScore": 5,
+  "lastTier": "NEUTRAL",
+  "lastScore": 35,
   "lastAlertTime": "2026-10-08T22:29:03.440Z",
   "lastAlertTier": "NEUTRAL",
-  "lastCheck": "2026-10-09T01:51:50.341Z",
+  "lastCheck": "2026-10-09T04:35:45.066Z",
   "lastVelocityAlertTime": "2026-10-07T20:30:22.455Z",
   "lastDipAlertTime": "2026-10-08T16:37:03.102Z",
   "lastDipAlertType": "diponly",
