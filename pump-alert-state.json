@@ -1,11 +1,11 @@
 {
-  "lastTier": "NEUTRAL",
-  "lastScore": 35,
-  "lastAlertTime": "2026-10-10T04:33:34.545Z",
-  "lastAlertTier": "NEUTRAL",
-  "lastCheck": "2026-10-10T05:30:39.672Z",
+  "lastTier": "DANGER",
+  "lastScore": 0,
+  "lastAlertTime": "2026-10-10T06:43:08.268Z",
+  "lastAlertTier": "DANGER",
+  "lastCheck": "2026-10-10T06:43:08.268Z",
   "lastVelocityAlertTime": "2026-10-07T20:30:22.455Z",
-  "lastDipAlertTime": "2026-10-09T20:30:05.136Z",
-  "lastDipAlertType": "confluence",
+  "lastDipAlertTime": "2026-10-10T06:43:08.268Z",
+  "lastDipAlertType": "blocked",
   "lastDipApproachAlert": false
 }
