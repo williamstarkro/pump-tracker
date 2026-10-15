@@ -1,6 +1,11 @@
 {
   "knownWhales": {},
   "lastAlertTime": null,
-  "alerts": [],
-  "lastRun": "2026-10-15T03:31:00.439Z"
+  "alerts": [
+    {
+      "type": "new_whale",
+      "time": 1792038650287
+    }
+  ],
+  "lastRun": "2026-10-15T04:30:50.441Z"
 }
