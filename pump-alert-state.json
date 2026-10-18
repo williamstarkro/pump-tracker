@@ -1,11 +1,11 @@
 {
   "lastTier": "AVOID",
-  "lastScore": 20,
+  "lastScore": 5,
   "lastAlertTime": "2026-10-17T10:25:39.054Z",
   "lastAlertTier": "AVOID",
-  "lastCheck": "2026-10-18T01:36:40.896Z",
+  "lastCheck": "2026-10-18T02:35:50.713Z",
   "lastVelocityAlertTime": "2026-10-16T23:25:00.693Z",
   "lastDipAlertTime": "2026-10-12T23:28:54.416Z",
-  "lastDipAlertType": "diponly",
+  "lastDipAlertType": null,
   "lastDipApproachAlert": false
 }
