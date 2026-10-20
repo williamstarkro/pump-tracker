@@ -281,7 +281,8 @@ function computeEntrySignals(snapshots) {
   // Mean reversion: 3d dips < -5% have 100% WR, +12.3% avg fwd 24h when combined with outflow
   const isDip = signals.priceReturn3d !== undefined && signals.priceReturn3d < -5;
   const isDeepDip = signals.priceReturn3d !== undefined && signals.priceReturn3d < -8;
-  const isApproachingDip = signals.priceReturn3d !== undefined && signals.priceReturn3d >= -5 && signals.priceReturn3d < -3;
+  const priceDropping = prev.price >= latest.price;
+  const isApproachingDip = signals.priceReturn3d !== undefined && signals.priceReturn3d >= -5 && signals.priceReturn3d < -3 && priceDropping;
   const hasOutflow = signals.organicExchFlow7d !== undefined && signals.organicExchFlow7d < -500_000_000;
   const isDanger = !!signals.momentumDivergence;
 
