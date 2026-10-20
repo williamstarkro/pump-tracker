@@ -77,6 +77,68 @@ const LP_ADDR = "2uF4Xh61rDwxnG9woyxsVQP7zuA6kLFpb3NvnRQeoiSd";
 const ORIGINAL_SUPPLY = 1_000_000_000_000;
 const LOCKED_IN_EXCHANGES = 9_300_000_000;
 
+// ─── SOL market regime ───
+
+async function fetchSOLRegime() {
+  try {
+    const resp = await fetch(
+      "https://api.coingecko.com/api/v3/coins/solana/market_chart?vs_currency=usd&days=7&interval=daily"
+    );
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    const prices = data.prices;
+    if (!prices || prices.length < 2) return null;
+    const priceNow = prices[prices.length - 1][1];
+    const price7dAgo = prices[0][1];
+    const change7d = ((priceNow - price7dAgo) / price7dAgo) * 100;
+    let regime;
+    if (change7d > 5) regime = "BULL";
+    else if (change7d < -5) regime = "BEAR";
+    else regime = "NEUTRAL";
+    return { price: priceNow, price7dAgo, change7d, regime };
+  } catch (e) {
+    console.error("  SOL regime fetch failed:", e.message);
+    return null;
+  }
+}
+
+// ─── Fear & Greed Index (contrarian: r=-0.301, #2 predictor) ───
+
+async function fetchFNG() {
+  try {
+    const resp = await fetch("https://api.alternative.me/fng/?limit=1&format=json");
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    const entry = data.data?.[0];
+    if (!entry) return null;
+    return { value: parseInt(entry.value), classification: entry.value_classification };
+  } catch (e) {
+    console.error("  FNG fetch failed:", e.message);
+    return null;
+  }
+}
+
+// ─── BTC price (for BTC-SOL spread — 0% WR when BTC > SOL by >3pp) ───
+
+async function fetchBTCChange() {
+  try {
+    const resp = await fetch(
+      "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=daily"
+    );
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    const prices = data.prices;
+    if (!prices || prices.length < 2) return null;
+    const priceNow = prices[prices.length - 1][1];
+    const price7dAgo = prices[0][1];
+    const change7d = ((priceNow - price7dAgo) / price7dAgo) * 100;
+    return { price: priceNow, change7d };
+  } catch (e) {
+    console.error("  BTC fetch failed:", e.message);
+    return null;
+  }
+}
+
 // ─── Signal computation ───
 
 function getHolderBalance(snap, addrSet) {
@@ -117,9 +179,9 @@ function computeEntrySignals(snapshots) {
   const prev = snapshots[snapshots.length - 2];
   const latestIdx = snapshots.length - 1;
 
-  // Find 7-day-ago snapshot
+  // Find snapshots at various offsets
+  const idx24h = findSnapshotAtOffset(snapshots, latestIdx, 24);
   const idx7d = findSnapshotAtOffset(snapshots, latestIdx, 168);
-  // Find 3-day-ago snapshot
   const idx3d = findSnapshotAtOffset(snapshots, latestIdx, 72);
 
   const snap7d = idx7d !== null ? snapshots[idx7d] : null;
@@ -135,15 +197,17 @@ function computeEntrySignals(snapshots) {
   const circSupply = latest.totalSupply - teamEcoBalance - LOCKED_IN_EXCHANGES;
   const circMC = circSupply * price;
 
-  // Burn rate (from previous snapshot)
-  const timeDelta = (new Date(latest.timestamp) - new Date(prev.timestamp)) / 86400000;
-  const burnDelta = prev.totalSupply - latest.totalSupply;
-  const burnRatePerDay = timeDelta > 0.04 ? burnDelta / timeDelta : null;
+  // Burn rate (24h rolling window — single hourly intervals are too noisy)
+  const snap24h = idx24h !== null ? snapshots[idx24h] : null;
+  const timeDelta24h = snap24h ? (new Date(latest.timestamp) - new Date(snap24h.timestamp)) / 86400000 : 0;
+  const burnDelta24h = snap24h ? snap24h.totalSupply - latest.totalSupply : 0;
+  const burnRatePerDay = timeDelta24h > 0.5 && burnDelta24h > 0 ? burnDelta24h / timeDelta24h : null;
   const buybackDollarRate = burnRatePerDay ? burnRatePerDay * price : null;
   const buybackYield = buybackDollarRate ? (buybackDollarRate * 365 / circMC) * 100 : null;
 
   // Holder growth
-  const holderGrowthPerDay = timeDelta > 0.04 ? (latest.uniqueOwners - prev.uniqueOwners) / timeDelta : null;
+  const holderTimeDelta = (new Date(latest.timestamp) - new Date(prev.timestamp)) / 86400000;
+  const holderGrowthPerDay = holderTimeDelta > 0.04 ? (latest.uniqueOwners - prev.uniqueOwners) / holderTimeDelta : null;
 
   const signals = { price, timestamp: latest.timestamp, holders: latest.uniqueOwners };
 
@@ -170,15 +234,15 @@ function computeEntrySignals(snapshots) {
     // Revenue trend
     const timeDelta7d = (new Date(latest.timestamp) - new Date(snap7d.timestamp)) / 86400000;
     const burnDelta7d = snap7d.totalSupply - latest.totalSupply;
-    const buybackRate7d = timeDelta7d > 0.5 ? (burnDelta7d / timeDelta7d) * snap7d.price : null;
-    const revenueAccelerating = buybackDollarRate && buybackRate7d ? buybackDollarRate > buybackRate7d : null;
+    const buybackRate7d = timeDelta7d > 0.5 && burnDelta7d > 0 ? (burnDelta7d / timeDelta7d) * snap7d.price : null;
+    const revenueAccelerating = buybackDollarRate && buybackRate7d && buybackRate7d > 0 ? buybackDollarRate > buybackRate7d * 1.1 : null;
 
     // Yield trend
     const teamEco7d = getHolderBalance(snap7d, TEAM_ECO_ADDRS);
     const circSupply7d = snap7d.totalSupply - teamEco7d - LOCKED_IN_EXCHANGES;
     const circMC7d = circSupply7d * snap7d.price;
     const yield7d = buybackRate7d ? (buybackRate7d * 365 / circMC7d) * 100 : null;
-    const yieldExpanding = buybackYield && yield7d ? buybackYield > yield7d : null;
+    const yieldExpanding = buybackYield && yield7d && yield7d > 0 ? buybackYield > yield7d * 1.1 : null;
 
     // Holder growth 7d ago
     const prevOf7d = idx7d > 0 ? snapshots[idx7d - 1] : null;
@@ -248,7 +312,7 @@ function computeEntrySignals(snapshots) {
   return signals;
 }
 
-function computeEntryScore(signals) {
+function computeEntryScore(signals, solRegime, fng, btcData) {
   if (!signals || signals.organicExchFlow7d === undefined) {
     return { score: 0, tier: "INSUFFICIENT DATA", components: [], dangers: [] };
   }
@@ -303,10 +367,35 @@ function computeEntryScore(signals) {
     score += 10;
   }
 
-  // Holder growth CONTRARIAN — low/cooling growth is better entry (backtest Q1: 80% win, Q5: 53%)
-  if (signals.holderGrowthPerDay > 0 && signals.holderGrowthPerDay < 500) {
-    components.push({ name: "Holder growth cooling (< 500/day) [contrarian]", pts: 5, value: `${Math.round(signals.holderGrowthPerDay)}/day` });
-    score += 5;
+  // SOL macro regime (dominant factor — backtest: regime overrides on-chain signals)
+  if (solRegime) {
+    if (solRegime.regime === "BULL") {
+      components.push({ name: "SOL BULL regime (7d > +5%) [macro]", pts: 15, value: `SOL ${solRegime.change7d > 0 ? "+" : ""}${solRegime.change7d.toFixed(1)}%` });
+      score += 15;
+    } else if (solRegime.change7d > 3) {
+      components.push({ name: "SOL uptrend (7d > +3%) [macro]", pts: 10, value: `SOL +${solRegime.change7d.toFixed(1)}%` });
+      score += 10;
+    }
+  }
+
+  // Fear & Greed contrarian (r=-0.301 — #2 predictor; FNG 20-35: 95% WR, +13.2% avg)
+  if (fng) {
+    if (fng.value < 30) {
+      components.push({ name: "Extreme Fear (<30) — contrarian buy [macro]", pts: 20, value: `FNG ${fng.value}` });
+      score += 20;
+    } else if (fng.value < 45) {
+      components.push({ name: "Fear zone (30-45) — contrarian buy [macro]", pts: 10, value: `FNG ${fng.value}` });
+      score += 10;
+    }
+  }
+
+  // BTC-SOL spread: SOL outperforming BTC by >3pp = risk-on environment
+  if (btcData && solRegime) {
+    const spread = btcData.change7d - solRegime.change7d;
+    if (spread < -3) {
+      components.push({ name: "SOL outperforming BTC >3pp — risk-on [macro]", pts: 10, value: `spread ${spread.toFixed(1)}pp` });
+      score += 10;
+    }
   }
 
   // ── Danger signals (deductions — all structural) ──
@@ -353,10 +442,25 @@ function computeEntryScore(signals) {
     score += 15;
   }
 
-  // Holder growth overheating (contrarian: fast growth = worse entries)
-  if (signals.holderGrowthPerDay > 1500) {
-    dangers.push({ name: "Holder growth overheating > 1500/day (contrarian)", pts: -5, value: `${Math.round(signals.holderGrowthPerDay)}/day` });
-    score -= 5;
+  // SOL BEAR — on-chain signals fail in bear markets (backtest: -5.1% avg, 33% WR)
+  if (solRegime?.regime === "BEAR") {
+    dangers.push({ name: "SOL BEAR regime (7d < -5%) — signals unreliable", pts: -35, value: `SOL ${solRegime.change7d.toFixed(1)}%` });
+    score -= 35;
+  }
+
+  // FNG Greed zone — historically worst entry zone (15% WR, -7.8% avg)
+  if (fng && fng.value >= 56 && fng.value <= 75) {
+    dangers.push({ name: "FNG Greed zone (56-75) — worst PUMP entry zone", pts: -20, value: `FNG ${fng.value} (${fng.classification})` });
+    score -= 20;
+  }
+
+  // BTC outperforming SOL by >3pp — risk-off rotation (0% WR, -17.6% avg, n=7)
+  if (btcData && solRegime) {
+    const spread = btcData.change7d - solRegime.change7d;
+    if (spread > 3) {
+      dangers.push({ name: "BTC > SOL by >3pp — risk-off rotation (0% WR)", pts: -30, value: `spread +${spread.toFixed(1)}pp` });
+      score -= 30;
+    }
   }
 
   score = Math.max(0, Math.min(100, score));
@@ -368,7 +472,13 @@ function computeEntryScore(signals) {
   else if (score >= 30) tier = "NEUTRAL";
   else tier = "AVOID";
 
-  return { score, tier, components, dangers };
+  let regimeWarning = null;
+  if (solRegime?.regime === "BEAR" && tier !== "DANGER" && tier !== "AVOID") {
+    regimeWarning = `SOL BEAR (${solRegime.change7d.toFixed(1)}%) — entry blocked until regime flips`;
+    if (tier === "STRONG ENTRY" || tier === "GOOD ENTRY") tier = "NEUTRAL";
+  }
+
+  return { score, tier, components, dangers, regimeWarning };
 }
 
 // ─── Notification dispatch ───
@@ -487,8 +597,15 @@ async function main() {
     process.exit(0);
   }
 
-  // Compute score
-  const { score, tier, components, dangers } = computeEntryScore(signals);
+  // Fetch macro signals in parallel
+  const [solRegime, fng, btcData] = await Promise.all([
+    fetchSOLRegime(),
+    fetchFNG(),
+    fetchBTCChange(),
+  ]);
+
+  // Compute score (regime + macro aware)
+  const { score, tier, components, dangers, regimeWarning } = computeEntryScore(signals, solRegime, fng, btcData);
 
   // Display
   const tierColor = tier === "STRONG ENTRY" ? GREEN :
@@ -501,8 +618,27 @@ async function main() {
   console.log(`  ${BOLD}Holders:${RESET} ${signals.holders.toLocaleString()}`);
   if (signals.buybackYield) console.log(`  ${BOLD}Yield:${RESET}   ${signals.buybackYield.toFixed(1)}%`);
   if (signals.buybackDollarRate) console.log(`  ${BOLD}Revenue:${RESET} $${(signals.buybackDollarRate / 1e6).toFixed(2)}M/day`);
+  if (solRegime) {
+    const regColor = solRegime.regime === "BULL" ? GREEN : solRegime.regime === "BEAR" ? RED : YELLOW;
+    console.log(`  ${BOLD}SOL:${RESET}     $${solRegime.price.toFixed(2)} ${regColor}(7d: ${solRegime.change7d > 0 ? "+" : ""}${solRegime.change7d.toFixed(1)}% — ${solRegime.regime})${RESET}`);
+  } else {
+    console.log(`  ${BOLD}SOL:${RESET}     ${DIM}(fetch failed — regime not scored)${RESET}`);
+  }
+  if (fng) {
+    const fngColor = fng.value < 30 ? GREEN : fng.value < 46 ? YELLOW : fng.value <= 75 ? RED : DIM;
+    console.log(`  ${BOLD}FNG:${RESET}     ${fngColor}${fng.value} (${fng.classification})${RESET}`);
+  }
+  if (btcData) {
+    console.log(`  ${BOLD}BTC:${RESET}     $${Math.round(btcData.price).toLocaleString()} (7d: ${btcData.change7d > 0 ? "+" : ""}${btcData.change7d.toFixed(1)}%)`);
+    if (solRegime) {
+      const spread = btcData.change7d - solRegime.change7d;
+      const spreadColor = spread > 3 ? RED : spread < -3 ? GREEN : DIM;
+      console.log(`  ${BOLD}Spread:${RESET}  ${spreadColor}BTC-SOL: ${spread > 0 ? "+" : ""}${spread.toFixed(1)}pp${spread > 3 ? " [RISK-OFF]" : spread < -3 ? " [RISK-ON]" : ""}${RESET}`);
+    }
+  }
 
   console.log(`\n  ${BOLD}Entry Score: ${tierColor}${score}/100 — ${tier}${RESET}`);
+  if (regimeWarning) console.log(`  ${RED}>>> ${regimeWarning} <<<${RESET}`);
 
   if (components.length > 0) {
     console.log(`\n  ${BOLD}Active signals:${RESET}`);
@@ -542,10 +678,21 @@ async function main() {
 
   // Backtested expectations for current regime
   console.log(`\n  ${BOLD}Backtested expectations for current conditions:${RESET}`);
-  if (signals.dipConfluence) {
+  if (solRegime?.regime === "BEAR") {
+    console.log(`    ${RED}SOL BEAR REGIME — on-chain signals unreliable${RESET}`);
+    console.log(`    ${RED}Historical BEAR 7d return: -5.1% avg, 33% win rate${RESET}`);
+    console.log(`    ${RED}INFLOW + BEAR: -20% avg, 0% WR (n=4)${RESET}`);
+    console.log(`    ${YELLOW}Wait for SOL 7d > +3% before entering${RESET}`);
+    if (signals.organicExchFlow7d < -500_000_000) {
+      console.log(`    ${DIM}On-chain outflow IS active — setup will fire once SOL turns${RESET}`);
+    }
+    if (signals.isDip) {
+      console.log(`    ${DIM}Dip at ${signals.priceReturn3d.toFixed(1)}% — but dip signals untested in BEAR (n=0)${RESET}`);
+    }
+  } else if (signals.dipConfluence) {
     console.log(`    ${GREEN}DIP + OUTFLOW CONFLUENCE (strongest setup)${RESET}`);
     console.log(`    ${GREEN}Historical fwd 24h: +12.3% avg, 100% win rate (n=6)${RESET}`);
-    console.log(`    ${GREEN}Historical fwd 72h: +17.6% avg${RESET}`);
+    if (solRegime?.change7d > 3) console.log(`    ${GREEN}SOL uptrend active — best macro for PUMP entries${RESET}`);
     console.log(`    ${GREEN}Sizing: full position $150K at 3x${RESET}`);
   } else if (signals.dipOnly) {
     console.log(`    ${GREEN}DIP ENTRY (mean reversion, no outflow yet)${RESET}`);
@@ -560,16 +707,26 @@ async function main() {
     console.log(`    ${RED}Historical 3d return: -6.0% avg, 11% win rate${RESET}`);
     console.log(`    ${RED}DO NOT open leveraged positions${RESET}`);
   } else if (signals.organicExchFlow7d < -1_000_000_000 && signals.priceReturn7d > 0) {
-    console.log(`    ${GREEN}MOMENTUM + FLOW REGIME (best regime)${RESET}`);
-    console.log(`    ${GREEN}Historical 3d return: +14.6% avg, 76% win rate${RESET}`);
-    console.log(`    ${GREEN}Historical 7d return: +17.5% avg, 76% win rate${RESET}`);
+    console.log(`    ${GREEN}OUTFLOW + ${solRegime?.regime || "?"} SOL (best combo)${RESET}`);
+    console.log(`    ${GREEN}Historical 7d return: +26-29% avg, 80% win rate${RESET}`);
     console.log(`    ${DIM}Worst historical 3d drawdown: -9.4%${RESET}`);
   } else if (signals.organicExchFlow7d < -500_000_000) {
-    console.log(`    ${GREEN}Exchange outflow active${RESET}`);
-    console.log(`    ${GREEN}Historical 3d return: +13.6% avg, 77% win rate${RESET}`);
+    console.log(`    ${GREEN}Exchange outflow active + ${solRegime?.regime || "?"} SOL${RESET}`);
+    console.log(`    ${GREEN}OUTFLOW + BULL/NEUTRAL: 7d avg +26-29%, 80% WR${RESET}`);
     console.log(`    ${DIM}Worst historical 3d drawdown: -9.4%${RESET}`);
   } else {
     console.log(`    ${YELLOW}Mixed conditions — no strong regime match${RESET}`);
+  }
+  // Macro overlay
+  if (fng) {
+    if (fng.value < 30) console.log(`    ${GREEN}EXTREME FEAR (FNG ${fng.value}) — contrarian buy signal active${RESET}`);
+    else if (fng.value < 45) console.log(`    ${YELLOW}Fear zone (FNG ${fng.value}) — contrarian favorable${RESET}`);
+    else if (fng.value >= 56 && fng.value <= 75) console.log(`    ${RED}GREED ZONE (FNG ${fng.value}) — worst entry window: 15% WR, -7.8% avg${RESET}`);
+  }
+  if (btcData && solRegime) {
+    const spread = btcData.change7d - solRegime.change7d;
+    if (spread > 3) console.log(`    ${RED}BTC > SOL by ${spread.toFixed(1)}pp — risk-off rotation: 0% WR, -17.6% avg${RESET}`);
+    else if (spread < -3) console.log(`    ${GREEN}SOL > BTC by ${(-spread).toFixed(1)}pp — risk-on environment${RESET}`);
   }
 
   // ── Confluence tracker — shows how conditions are gearing up ──
@@ -589,7 +746,12 @@ async function main() {
   }
 
   // Position sizing guidance
-  if (signals.dipConfluence || signals.dipOnly || (tier === "GOOD ENTRY" || tier === "STRONG ENTRY")) {
+  if (solRegime?.regime === "BEAR" && (signals.dipConfluence || signals.dipOnly || score >= 30)) {
+    console.log(`\n  ${BOLD}Position Guidance:${RESET}`);
+    console.log(`    ${RED}SOL BEAR — do not enter despite on-chain signals${RESET}`);
+    console.log(`    ${YELLOW}Setup: ${signals.dipConfluence ? "DIP + OUTFLOW (strong)" : signals.dipOnly ? "DIP (moderate)" : "building"}${RESET}`);
+    console.log(`    ${YELLOW}Enter when SOL 7d flips above +3%${RESET}`);
+  } else if (signals.dipConfluence || signals.dipOnly || tier === "GOOD ENTRY" || tier === "STRONG ENTRY") {
     console.log(`\n  ${BOLD}Position Guidance:${RESET}`);
     if (signals.dipConfluence) {
       console.log(`    ${GREEN}DIP + OUTFLOW: $150K at 3x leverage${RESET}`);
@@ -623,15 +785,24 @@ async function main() {
 
   // ── Dip alerts (independent track, highest priority) ──
   if (timeSinceLastDip > dipCooldown) {
-    if (signals.dipConfluence && state.lastDipAlertType !== "confluence") {
+    if (solRegime?.regime === "BEAR" && (signals.dipConfluence || signals.dipOnly) && state.lastDipAlertType !== "bear_waiting") {
+      alerts.push({
+        title: "DIP SETUP BLOCKED — SOL BEAR",
+        message: `Dip ${signals.priceReturn3d.toFixed(1)}% + ${signals.dipConfluence ? "outflow confluence" : "no outflow"} detected, but SOL is BEAR (${solRegime.change7d.toFixed(1)}% 7d). On-chain setup loading — wait for SOL 7d > +3%. Price: $${signals.price.toFixed(6)}.`,
+        priority: 3,
+        type: "dip",
+        dipType: "bear_waiting",
+      });
+    } else if (signals.dipConfluence && state.lastDipAlertType !== "confluence" && solRegime?.regime !== "BEAR") {
+      const solNote = solRegime ? ` SOL: ${solRegime.regime} (${solRegime.change7d > 0 ? "+" : ""}${solRegime.change7d.toFixed(1)}%).` : "";
       alerts.push({
         title: "DIP + OUTFLOW CONFLUENCE",
-        message: `3d return: ${signals.priceReturn3d.toFixed(1)}%. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B. Price: $${signals.price.toFixed(6)}. Historical: +12.3% avg fwd 24h, 100% WR (n=6). Full position: $150K at 3x. Stop: 3d < -20%. Take profit: 3d > +5%.`,
+        message: `3d return: ${signals.priceReturn3d.toFixed(1)}%. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B. Price: $${signals.price.toFixed(6)}.${solNote} Historical: +12.3% avg fwd 24h, 100% WR (n=6). Full position: $150K at 3x. Stop: 3d < -20%. Take profit: 3d > +5%.`,
         priority: 5,
         type: "dip",
         dipType: "confluence",
       });
-    } else if (signals.dipOnly && state.lastDipAlertType !== "diponly" && state.lastDipAlertType !== "confluence") {
+    } else if (signals.dipOnly && state.lastDipAlertType !== "diponly" && state.lastDipAlertType !== "confluence" && solRegime?.regime !== "BEAR") {
       alerts.push({
         title: "DIP ENTRY -- 3d return " + signals.priceReturn3d.toFixed(1) + "%",
         message: `Buyback-floor mean reversion active. Price: $${signals.price.toFixed(6)}. No exchange outflow yet -- half size: $100K at 2x. Upgrade if outflow develops. Stop: 3d < -20%. Historical dip-only: +11.8% avg, 100% WR (n=3).`,
@@ -676,16 +847,26 @@ async function main() {
         type: "tier",
       });
     } else if (tier === "STRONG ENTRY" && state.lastTier !== "STRONG ENTRY") {
+      const macroNote = [
+        solRegime ? `SOL: ${solRegime.regime} (${solRegime.change7d > 0 ? "+" : ""}${solRegime.change7d.toFixed(1)}%)` : null,
+        fng ? `FNG: ${fng.value}` : null,
+        btcData && solRegime ? `BTC-SOL: ${(btcData.change7d - solRegime.change7d).toFixed(1)}pp` : null,
+      ].filter(Boolean).join(". ");
       alerts.push({
         title: "STRONG ENTRY Signal",
-        message: `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. ${signals.isDip ? "DIP CONFLUENCE ACTIVE." : ""} Best historical 3d return: +14.6%, 76% win rate.`,
+        message: `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. ${macroNote}. Exchange outflow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. ${signals.isDip ? "DIP CONFLUENCE ACTIVE." : ""} OUTFLOW + BULL/NEUTRAL SOL: +26-29% avg 7d, 80% WR.`,
         priority: 4,
         type: "tier",
       });
     } else if (tier === "GOOD ENTRY" && (state.lastTier === "NEUTRAL" || state.lastTier === "AVOID" || !state.lastTier)) {
+      const macroNote = [
+        solRegime ? `SOL: ${solRegime.regime} (${solRegime.change7d > 0 ? "+" : ""}${solRegime.change7d.toFixed(1)}%)` : null,
+        fng ? `FNG: ${fng.value}` : null,
+        btcData && solRegime ? `BTC-SOL: ${(btcData.change7d - solRegime.change7d).toFixed(1)}pp` : null,
+      ].filter(Boolean).join(". ");
       alerts.push({
         title: "GOOD ENTRY Signal",
-        message: `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. Exchange flow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. ${signals.isDip ? "DIP active -- mean reversion in play." : ""}`,
+        message: `Score: ${score}/100. Price: $${signals.price.toFixed(4)}. ${macroNote}. Exchange flow: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B (7d). Yield: ${signals.buybackYield?.toFixed(1)}%. ${signals.isDip ? "DIP active -- mean reversion in play." : ""}`,
         priority: 3,
         type: "tier",
       });

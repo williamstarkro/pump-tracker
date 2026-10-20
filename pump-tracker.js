@@ -1,7 +1,18 @@
 #!/usr/bin/env node
 
-const HELIUS_API_KEY = process.env.HELIUS_API_KEY || "c09814db-cb2b-46d7-b90b-f8d1432b6e24";
-const HELIUS_RPC = `https://mainnet.helius-rpc.com/?api-key=${HELIUS_API_KEY}`;
+const HELIUS_KEYS = [
+  process.env.HELIUS_API_KEY || "6793a84b-b3c9-47d4-bbac-b0d502038f33",
+  "c09814db-cb2b-46d7-b90b-f8d1432b6e24",
+];
+let heliusKeyIndex = 0;
+function getHeliusRpc() {
+  return `https://mainnet.helius-rpc.com/?api-key=${HELIUS_KEYS[heliusKeyIndex]}`;
+}
+function rotateHeliusKey() {
+  const prev = heliusKeyIndex;
+  heliusKeyIndex = (heliusKeyIndex + 1) % HELIUS_KEYS.length;
+  process.stdout.write(` [key ${prev + 1} exhausted, rotating to key ${heliusKeyIndex + 1}]`);
+}
 
 const TOKEN_MINT = "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn";
 const DECIMALS = 6;
@@ -115,20 +126,35 @@ async function fetchAllHolders() {
     if (cursor) params.cursor = cursor;
 
     let data;
+    let rotated = false;
     for (let attempt = 0; attempt < 8; attempt++) {
-      const res = await fetch(HELIUS_RPC, {
+      const res = await fetch(getHeliusRpc(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getTokenAccounts", params }),
       });
       if (res.status === 429 || res.status >= 500) {
+        if (!rotated) { rotateHeliusKey(); rotated = true; attempt = -1; continue; }
         const wait = Math.pow(2, attempt) * 1000;
         process.stdout.write(` [${res.status}, waiting ${wait / 1000}s]`);
         await sleep(wait);
         continue;
       }
-      data = await res.json();
+      const text = await res.text();
+      try {
+        data = JSON.parse(text);
+      } catch {
+        if (text.includes("max usage")) {
+          if (!rotated) { rotateHeliusKey(); rotated = true; attempt = -1; continue; }
+          throw new Error("Helius API: all keys exhausted");
+        }
+        const wait = Math.pow(2, attempt) * 1000;
+        process.stdout.write(` [non-JSON response, waiting ${wait / 1000}s]`);
+        await sleep(wait);
+        continue;
+      }
       if (data.error?.code === -32429) {
+        if (!rotated) { rotateHeliusKey(); rotated = true; attempt = -1; continue; }
         const wait = Math.pow(2, attempt) * 1000;
         process.stdout.write(` [rate limited, waiting ${wait / 1000}s]`);
         await sleep(wait);
@@ -172,19 +198,43 @@ async function fetchAllHolders() {
   return { holders: sorted, totalSupply, totalAccounts, uniqueOwners: ownerBalances.size };
 }
 
-// ─── Fetch token price from Helius DAS ───
+// ─── Fetch token price from Helius DAS (with retry + rotation) ───
 async function fetchPrice() {
-  const res = await fetch(HELIUS_RPC, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      jsonrpc: "2.0", id: 1,
-      method: "getAsset",
-      params: { id: TOKEN_MINT },
-    }),
-  });
-  const data = await res.json();
-  return data.result?.token_info?.price_info?.price_per_token || null;
+  let rotated = false;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      const res = await fetch(getHeliusRpc(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0", id: 1,
+          method: "getAsset",
+          params: { id: TOKEN_MINT },
+        }),
+      });
+      if (res.status === 429 || res.status >= 500) {
+        if (!rotated) { rotateHeliusKey(); rotated = true; attempt = -1; continue; }
+        await sleep(Math.pow(2, attempt) * 1000);
+        continue;
+      }
+      const text = await res.text();
+      try {
+        const data = JSON.parse(text);
+        return data.result?.token_info?.price_info?.price_per_token || null;
+      } catch {
+        if (text.includes("max usage")) {
+          if (!rotated) { rotateHeliusKey(); rotated = true; attempt = -1; continue; }
+          return null;
+        }
+        await sleep(Math.pow(2, attempt) * 1000);
+        continue;
+      }
+    } catch (err) {
+      console.error(`  fetchPrice attempt ${attempt}: ${err.message}`);
+      await sleep(Math.pow(2, attempt) * 1000);
+    }
+  }
+  return null;
 }
 
 // ─── Load history ───
