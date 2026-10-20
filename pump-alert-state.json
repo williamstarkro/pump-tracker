@@ -3,9 +3,9 @@
   "lastScore": 20,
   "lastAlertTime": "2026-10-20T00:59:00.862Z",
   "lastAlertTier": "AVOID",
-  "lastCheck": "2026-10-20T11:28:03.663Z",
+  "lastCheck": "2026-10-20T12:39:11.739Z",
   "lastVelocityAlertTime": "2026-10-19T22:25:53.896Z",
   "lastDipAlertTime": "2026-10-20T11:28:03.663Z",
-  "lastDipAlertType": "approaching",
-  "lastDipApproachAlert": true
+  "lastDipAlertType": null,
+  "lastDipApproachAlert": false
 }
