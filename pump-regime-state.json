@@ -1,0 +1,10 @@
+{
+  "day": "2026-10-20",
+  "state": 2,
+  "dials": {
+    "SOL": false,
+    "FEES": true,
+    "PRICE": true
+  },
+  "updated": "2026-10-21T03:16:06.282Z"
+}
