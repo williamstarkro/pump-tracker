@@ -116,3 +116,30 @@ jobs:
           git add pump-regime-state.json pump-regime-log.json pump-portfolio-state.json pump-portfolio-log.json perps-history.json
           git diff --staged --quiet || git commit -m "regime: $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
+
+  momentum:
+    # independent of the tracker so a Helius failure never silences leverage setups
+    if: github.event.schedule == '17 * * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run momentum setups
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node pump-momentum.js
+
+      - name: Commit momentum data
+        run: |
+          git config user.name "pump-bot"
+          git config user.email "pump-bot@users.noreply.github.com"
+          git add pump-momentum-state.json pump-momentum-log.json
+          git diff --staged --quiet || git commit -m "momentum: $(date -u +%Y-%m-%dT%H:%M)"
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done

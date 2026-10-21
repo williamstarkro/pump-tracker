@@ -11,6 +11,7 @@ Hourly on-chain tracker, entry scorer and alerting for the PUMP token, run on Gi
 | `pump-whales.js` | hourly | Unknown-whale tracker. |
 | `pump-price-monitor.js` | every 15 min | DexScreener price; spike / dip / 24h-high alerts. These still notify. |
 | `pump-perps-history.js` | daily, before regime | Appends Hyperliquid hourly funding/premium (since listing 2025-07-10) and 1h candles, plus OKX open-interest history, to `perps-history.json`. |
+| `pump-momentum.js` | hourly, own job | Leveraged 3–14d long setups from Hyperliquid volume/funding/premium plus daily fee and regime context. **Notifies on setup entry and exit** with stop, time stop and in-sample stats. Also sends DE-RISK when the fee base contracts. |
 | `pump-regime.js` | daily 06:37 UTC | Medium-term (3–30d) regime model from daily DefiLlama fees + prices: three dials (SOL 30d trend, fee base not shrinking, price not in deepening drawdown), sizing from holder-flow yield vs its own 90d. **Notifies on dial flips only.** Logs to `pump-regime-log.json`. Holder flow = 100% of fees before 2026-04-01, 50% after. |
 
 ## Evaluating signals (do this before trusting any weight)
@@ -26,6 +27,20 @@ node pump-backtest.js               # legacy pooled backtest (in-sample; superse
 `pump-walkforward.js` judges each condition against the **base rate of its own time window** and against **SOL-residual returns** (PUMP is ~2x SOL beta in Oct 2026). A condition earns trust only when its excess is positive in most windows. `n` counts hours, and forward windows overlap, so `n=50` is maybe 5-10 independent episodes.
 
 Why this exists: the scorer's weights were fit on Jul-Sep 2026 data when PUMP rose 214% and *any* hour returned +8% over 72h. From Sep 28 to Oct 21 most of those signals flipped sign (exchange outflow > 1B went from an 89% to a 0% win rate; 3-day-dip buying from 80% to 19%). `pump-scorecard.js` is the ongoing test: every forecast row is written before the outcome is known.
+
+## Leveraged momentum setups (3–14 days)
+
+`node pump-leverage-study.js` is the evidence. Random 7-day hold: +1.3%, 48% win, median worst intra-hold move -8.7%, liquidated 18% of the time at 5x and 1% at 3x. Setups that cleared the bar (0% liquidated at 3x in-sample):
+
+| Setup | Rule | 7d fwd | Win | Median worst move | n |
+|---|---|---|---|---|---|
+| M1 volume expansion + calm | 24h HL volume > 2x 7d avg, 24h up, funding < 20%/yr, premium < 0.05% | +13.0% | 70% | -0.3% | 10 |
+| M2 dip inside regime | daily 3/3, 7d < -8%, calm | +9.5% | 78% | -6.6% | 9 |
+| M3 fee accel + momentum (2x max) | fees 7d > 30d by 15%, 3d > +5%, calm | +13.4% at 14d | 67% | -14.7% | 12 |
+
+What did **not** work: 20-day breakouts alone (29–33% win at 3–7d), SOL catch-up trades, and the short side at leverage (shorts were right at 3–7d in bear regimes but the intra-hold squeezes liquidated 3x positions; the Aug 21 blowoff short was liquidated before paying). Volume with *hot* funding is the blowoff, not the entry.
+
+Drawdown signatures: every fall > 25% began with either a contracting fee base (Oct 2025, May 2026) or a 30d return > +50% at a sub-15% yield (Jan 2026, Oct 2026). `pump-momentum.js` sends DE-RISK on the first; the regime model's price dial and the yield readout cover the second.
 
 ## Position framework
 
