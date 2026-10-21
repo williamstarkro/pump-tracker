@@ -10,6 +10,7 @@ Hourly on-chain tracker, entry scorer and alerting for the PUMP token, run on Gi
 | `pump-alerts.js` | hourly, after tracker | Computes the entry score from `pump-signals.js`, applies 2-run hysteresis, writes a row to `pump-forecast-log.json`. Scorer-derived notifications (tier / dip / velocity) are **muted** (`SCORER_ALERTS=0` in the workflow) until re-validated. |
 | `pump-whales.js` | hourly | Unknown-whale tracker. |
 | `pump-price-monitor.js` | every 15 min | DexScreener price; spike / dip / 24h-high alerts. These still notify. |
+| `pump-perps-history.js` | daily, before regime | Appends Hyperliquid hourly funding/premium (since listing 2025-07-10) and 1h candles, plus OKX open-interest history, to `perps-history.json`. |
 | `pump-regime.js` | daily 06:37 UTC | Medium-term (3–30d) regime model from daily DefiLlama fees + prices: three dials (SOL 30d trend, fee base not shrinking, price not in deepening drawdown), sizing from holder-flow yield vs its own 90d. **Notifies on dial flips only.** Logs to `pump-regime-log.json`. Holder flow = 100% of fees before 2026-04-01, 50% after. |
 
 ## Evaluating signals (do this before trusting any weight)
@@ -25,6 +26,14 @@ node pump-backtest.js               # legacy pooled backtest (in-sample; superse
 `pump-walkforward.js` judges each condition against the **base rate of its own time window** and against **SOL-residual returns** (PUMP is ~2x SOL beta in Oct 2026). A condition earns trust only when its excess is positive in most windows. `n` counts hours, and forward windows overlap, so `n=50` is maybe 5-10 independent episodes.
 
 Why this exists: the scorer's weights were fit on Jul-Sep 2026 data when PUMP rose 214% and *any* hour returned +8% over 72h. From Sep 28 to Oct 21 most of those signals flipped sign (exchange outflow > 1B went from an 89% to a 0% win rate; 3-day-dip buying from 80% to 19%). `pump-scorecard.js` is the ongoing test: every forecast row is written before the outcome is known.
+
+## Position framework
+
+`node pump-portfolio.js --no-notify` backtests and recommends three layers: **core spot** scaled by regime state (never flat, so the buyback drift is always collected), a **tactical leveraged leg** gated by fee acceleration and calm positioning (7d funding and premium), and an optional **SOL hedge** (short beta x SOL against core when the SOL dial is off). The leveraged leg pays realized Hyperliquid funding in the backtest. Notifies on tactical open/close, crowded positioning, and core-size changes. Parameters live in `P` at the top of the file.
+
+Positioning finding behind the gate: when 7-day funding exceeded ~40%/yr, the next 7 days averaged -22% and the next 30 days -14% (n=15 days); both the late-August and early-October tops carried a funding/premium/volume spike.
+
+`node pump-flows.js --from 2026-07-14 --to 2026-10-20` reconstructs any window by wallet category (exchange / team / ecosystem / LP / unlabeled top-500) alongside fees, SOL, funding and Hyperliquid volume, and lists the largest movers.
 
 ## Medium-term regime model
 

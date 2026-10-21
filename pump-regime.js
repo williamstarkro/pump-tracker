@@ -29,7 +29,7 @@ const args = new Set(process.argv.slice(2));
 const B = "\x1b[1m", R = "\x1b[0m", DIM = "\x1b[2m", GRN = "\x1b[32m", RED = "\x1b[31m", YEL = "\x1b[33m";
 
 // ─── Rules (tune here; keep them few and legible) ───
-const RULES = {
+export const RULES = {
   solTrendDays: 30,            // SOL dial: return over this many days > 0
   feesShrinkPct: -10,          // FEES dial: fees30/fees90 - 1 must exceed this
   priceRet30Floor: -10,        // PRICE dial: 30d return must exceed this ...
@@ -43,7 +43,7 @@ const PUMP_MINT = "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn";
 async function getJSON(url) { const r = await fetch(url); if (!r.ok) throw new Error(`${url} -> HTTP ${r.status}`); return r.json(); }
 // coins.llama.fi stamps days anywhere from 23:59:59 to 00:00:01 — round to the nearest UTC day
 const dayKey = (ms) => new Date(Math.round(ms / 864e5) * 864e5).toISOString().slice(0, 10);
-async function loadDaily() {
+export async function loadDaily() {
   const start = Math.floor(new Date("2025-07-01T00:00:00Z").getTime() / 1000);
   const [fees, pumpPx, solPx] = await Promise.all([
     getJSON("https://api.llama.fi/summary/fees/pump.fun?dataType=dailyFees"),
@@ -71,7 +71,7 @@ async function loadDaily() {
 }
 
 // ─── Features ───
-function build(data) {
+export function build(data) {
   const { days, F, P, S, mcap, circFallback } = data;
   const share = d => d >= RULES.shareChange ? RULES.shareAfter : RULES.shareBefore;
   const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
@@ -106,14 +106,14 @@ function build(data) {
   }
   return rows;
 }
-function dials(r) {
+export function dials(r) {
   return {
     SOL: r.s30 > 0,
     FEES: r.fees30v90 > RULES.feesShrinkPct,
     PRICE: r.p30 > RULES.priceRet30Floor && r.dd90 > RULES.priceDD90Floor,
   };
 }
-const stateOf = r => Object.values(dials(r)).filter(Boolean).length;
+export const stateOf = r => Object.values(dials(r)).filter(Boolean).length;
 const sizing = r => r.relYld === null ? "standard" : r.relYld > RULES.cheapRelYieldPct ? "full (cheap vs own 90d)" : r.relYld < -RULES.cheapRelYieldPct ? "half (rich vs own 90d)" : "standard";
 const guidance = (st, r) => st === 3 ? `3/3 ON — regime on. Size: ${sizing(r)}.` : st === 2 ? `2/3 ON — constructive. Half of ${sizing(r)} size; add on the third dial.` : st === 1 ? "1/3 ON — no edge. Flat or core only." : "0/3 ON — regime off. Flat.";
 
@@ -209,4 +209,4 @@ async function main() {
 function fmtp(x, d = 1) { return x === null || x === undefined || isNaN(x) ? "n/a" : (x > 0 ? "+" : "") + x.toFixed(d) + "%"; }
 function avg(a) { return a.reduce((x, y) => x + y, 0) / a.length; }
 function median(a) { const s = [...a].sort((x, y) => x - y); return s[Math.floor(s.length / 2)]; }
-main().catch(e => { console.error(e); process.exit(1); });
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main().catch(e => { console.error(e); process.exit(1); });

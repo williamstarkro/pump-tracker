@@ -96,15 +96,23 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Append perps history (Hyperliquid funding/premium/candles, OKX OI)
+        run: node pump-perps-history.js
+
       - name: Run regime model
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: node pump-regime.js
 
+      - name: Run position framework
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node pump-portfolio.js --quiet
+
       - name: Commit regime data
         run: |
           git config user.name "pump-bot"
           git config user.email "pump-bot@users.noreply.github.com"
-          git add pump-regime-state.json pump-regime-log.json
+          git add pump-regime-state.json pump-regime-log.json pump-portfolio-state.json pump-portfolio-log.json perps-history.json
           git diff --staged --quiet || git commit -m "regime: $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done

@@ -407,3 +407,47 @@ export function computeEntryScore(signals, solRegime, fng, btcData) {
   return { score, tier, components, dangers, regimeWarning };
 }
 
+
+// ─── Labeled wallets (shared with pump-tracker.js, pump-flows.js) ───
+export const LABELED_WALLETS = [
+  { addr: "Cfq1ts1iFr1eUWWBm8eFxUzm5R3YA3UvMZznwiShbgZt", label: "Token Custodian",      category: "ecosystem" },
+  { addr: "8UhbNoBXmGoxJr2TeWW8wmSMoWmjS2rTT2tVJxzuTogC", label: "Team (locked Jul 25%)", category: "team" },
+  { addr: "G8CcfRffqZWHSAQJXLDfwbAkGE95SddUqVXnTrL4kqjm", label: "Buyback & Burn 1",    category: "buyback_burn" },
+  { addr: "8PSmqJy63d4cAKRLKUitJCBLSjuL1cvZxC53vdCyjUey", label: "Buyback & Burn 2",    category: "buyback_burn" },
+  { addr: "9pkFKCR1mdS31JxjKdtmWg2awZUg6vJUYVY722DAcXzv", label: "Team",                 category: "team" },
+  { addr: "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM", label: "Binance Hot",          category: "exchange" },
+  { addr: "85WTujfJ9meJq5hfjAeb5gftj7n8Q7QTsZJbRqMD5ERS", label: "Team",                 category: "team" },
+  { addr: "BBvQteuawKB2UtExfevL8HYLjWWsgmWXsp922vFbvCfT", label: "Ecosystem",            category: "ecosystem" },
+  { addr: "GTeSSwovPiVirpvWJpThUWiLDSLsuApmJw621Yom3MhB", label: "Ecosystem",            category: "ecosystem" },
+  { addr: "AvqFxKNrYZNvxsj2oWhLW8det68HzCXBqswshoD2TdT6", label: "Team",                 category: "team" },
+  { addr: "96HiV4cGWTJNCjGVff3RTHgPXmpYz7MSrGTAmxNKVWM9", label: "Team",                 category: "team" },
+  { addr: "9UcygiamY92yGntGkUkBKi4SdApxkBMZd9QSo6wMC2dN", label: "Team (distributed)",    category: "team" },
+  { addr: "8UHpWBnhYNeAQURWjAABp8vSrzfYa69o7sfi65vYLC42", label: "Unknown",              category: "unknown" },
+  { addr: "ERRGqu3dh6zYBg7MNAHKL33TyVb7efMmaKxnmdukdNYa", label: "Unknown (maybe team)", category: "unknown" },
+  { addr: "GhFaBi8sy3M5mgG97YguQ6J3f7XH4JwV5CoW8MbzRgAU", label: "Unknown",              category: "unknown" },
+  { addr: "5v7ZZg1D1si417WhUQF9Br2dRQEnd1sTbCfesscUCVKE", label: "Unknown",              category: "unknown" },
+  { addr: "AC5RDfQFmDS1deWZos921JfqscXdByf8BKHs5ACWjtW2", label: "Bybit Hot",            category: "exchange" },
+  { addr: "9SLPTL41SPsYkgdsMzdfJsxymEANKr5bYoBsQzJyKpKS", label: "HyperUnit Hot",        category: "exchange" },
+  { addr: "2WHL4XiNGKW9NgSwsJeG7WG2kD35Bi44rZoLrXHEz3dw", label: "Unknown",              category: "unknown" },
+  { addr: "C68a6RCGLiPskbPYtAcsCjhG8tfTWYcoB4JjCrXFdqyo", label: "OKX Hot",              category: "exchange" },
+  { addr: "4GZwzZgqSwwTTRVgBoxTDeH3EwDye84dCPb9fALAZFjF", label: "Unknown",              category: "unknown" },
+  { addr: "8wM44Ryv9DFCSfkgUnPEPgnsc53arT4cnmXL6LnnC4UW", label: "OKX Hot 2",            category: "exchange" },
+  { addr: "7TWnq4WeYcwQWBCwKeEX2Q9xqVtthPGkB7adNvueuVuh", label: "Bitget Cold",          category: "exchange" },
+  { addr: "GpCfmwsCgbPtymZTXa3Dixb4MeyxkUHfNHBq3vBAA6SA", label: "Unknown",              category: "unknown" },
+  { addr: "H61va8NXmR72rJ5Z4cy2FNrGrptedTsArDxqiH7yZUB8", label: "Unknown",              category: "unknown" },
+  { addr: "3Z2AqcKCmdcCZ3iCUiFKtwUbrmuPcefwN3xRLTdY7XyN", label: "Unknown",              category: "unknown" },
+  { addr: "77DsB9kw8u8eKesicT44hGirsj5A2SicGdFPQZZEzPXe", label: "Unknown",              category: "unknown" },
+  { addr: "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9", label: "Binance 3",            category: "exchange" },
+  { addr: "6LY1JzAFVZsP2a2xKrtU6znQMQ5h4i7tocWdgrkZzkzF", label: "Kraken Hot",           category: "exchange" },
+  { addr: "2uF4Xh61rDwxnG9woyxsVQP7zuA6kLFpb3NvnRQeoiSd", label: "PumpSwap LP Pool",     category: "lp" },
+  { addr: "FkrTb5Q3v1Tw2RKU9YHuiNwZrPsef55whFKijdG73Kz1", label: "Unknown",              category: "unknown" },
+  // Additional exchange wallets
+  { addr: "3B7XAQrLoEMDEGvX8569F9GRb9PcXXocJmj5wvhhei9z", label: "BtcTurk Cold",          category: "exchange" },
+  { addr: "EFE3j1pcSP1paUzA86zW7989ZjsFP2J7ginyUqo4ewqR", label: "Kraken Cold",           category: "exchange" },
+  { addr: "u6PJ8DtQuPFnfmwHbGFULQ4u4EgjDiyYKjVEsynXq2w",  label: "Gate.io",               category: "exchange" },
+  { addr: "E2RvJg2myWpKcbkhBuF81gfhYr6KvmNcDbSmr5qnatYy", label: "Kraken Cold 2",         category: "exchange" },
+  { addr: "5PAhQiYdLBd6SVdjzBQDxUAEFyDdF5ExNPQfcscnPRj5", label: "MEXC",                  category: "exchange" },
+  { addr: "A77HErqtfN1hLLpvZ9pCtu66FEtM8BveoaKbbMoZ4RiR", label: "Bitget Hot",            category: "exchange" },
+  // Investor/locked wallets (distributed from team, subject to vesting)
+  { addr: "EuH2wD3rkVp5uosoL8v5kRTMLT5L6jvbwXAXRSEwzdwG", label: "Investor (locked)",    category: "investor_locked" },
+];
