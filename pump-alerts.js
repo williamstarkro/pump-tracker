@@ -12,7 +12,8 @@ import { execSync } from "child_process";
 import { createTransport } from "nodemailer";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { deduplicateSnapshots, smoothSupply, computeEntrySignals, computeEntryScore } from "./pump-signals.js";
+import { deduplicateSnapshots, smoothSupply, computeEntrySignals, computeEntryScore, findSnapshotAtOffset, LABELED_WALLETS } from "./pump-signals.js";
+const REGIME_STATE_FILE = join(dirname(fileURLToPath(import.meta.url)), "pump-regime-state.json");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HISTORY_FILE = join(__dirname, "pump-tracker-history.json");
@@ -582,6 +583,43 @@ async function main() {
       console.log(`    ${YELLOW}Elevated — watching${RESET}`);
     }
   }
+
+  // ── EARLY POSITIONING (spot only) — on-chain accumulation BEFORE confirmation ──
+  // The regime/fee/volume triggers confirm a leg after it starts. This alert fires on the
+  // pattern that preceded the Jul–Aug 2026 leg by 2–4 weeks: supply leaving exchanges across
+  // venues while new large self-custody wallets form, with positioning calm and the fee base
+  // not contracting. It is a SPOT instruction (complete the core), never leverage: the same
+  // pattern was 0-for-18 in October while price was falling, so it must be held through drawdown.
+  // Not muted by SCORER_ALERTS. 24h cooldown.
+  try {
+    const latestIdx = snapshots.length - 1;
+    const labeled = new Set(LABELED_WALLETS.map(w => w.addr));
+    const unlabeledBal = snap => snap.holders.filter(h => !labeled.has(h.addr)).reduce((a, h) => a + h.balance, 0);
+    const i72 = findSnapshotAtOffset(snapshots, latestIdx, 72);
+    const whaleNet3d = i72 !== null ? unlabeledBal(snapshots[latestIdx]) - unlabeledBal(snapshots[i72]) : null;
+    const regime = existsSync(REGIME_STATE_FILE) ? JSON.parse(readFileSync(REGIME_STATE_FILE, "utf-8")) : null;
+    const perps = raw[raw.length - 1]?.perps || null;
+    const fundingAnn = perps ? perps.fundingHourly * 24 * 365 * 100 : null;
+    const conds = {
+      "exchange outflow 7d > 2B": signals.organicExchFlow7d < -2e9,
+      "unlabeled top-500 (new whales) net +1B over 3d": whaleNet3d !== null && whaleNet3d > 1e9,
+      "price not in free fall (7d > -10%)": signals.priceReturn7d > -10,
+      "regime >= 2/3 (fee base not contracting)": !regime || regime.state >= 2,
+      "funding calm (< 25%/yr)": fundingAnn === null || fundingAnn < 25,
+    };
+    const met = Object.values(conds).filter(Boolean).length, total = Object.keys(conds).length;
+    console.log(`\n  ${BOLD}Early positioning (spot):${RESET} ${met}/${total}` + Object.entries(conds).map(([k, v]) => `\n    ${v ? GREEN + "[MET]" : DIM + "[--] "}${RESET} ${k}`).join(""));
+    const sinceLast = state.lastEarlyPositioningTime ? Date.now() - new Date(state.lastEarlyPositioningTime).getTime() : Infinity;
+    if (met === total && sinceLast > 24 * 3600000) {
+      const title = "PUMP EARLY POSITIONING (spot) -- exchanges draining, new whales forming";
+      const msg = `Exchange organic flow 7d: ${(signals.organicExchFlow7d / 1e9).toFixed(1)}B. Unlabeled top-500 wallets: +${(whaleNet3d / 1e9).toFixed(1)}B over 3d. 7d price ${signals.priceReturn7d >= 0 ? "+" : ""}${signals.priceReturn7d.toFixed(1)}%. Regime ${regime?.state ?? "?"}/3. Funding ${fundingAnn?.toFixed(0)}%/yr. Price $${signals.price.toFixed(6)}. This is the pattern that preceded the Jul-Aug leg. SPOT ONLY: complete the core to its regime target; size to hold a 15-20% drawdown. Leverage waits for fee acceleration or a volume day (M1/M3).`;
+      console.log(`\n  ALERT: ${title}\n  ${msg}\n`);
+      await Promise.all([notifyMacOS(title, msg), notifyNtfy(title, msg, 4)]);
+      state.lastEarlyPositioningTime = now;
+    } else if (met === total) {
+      console.log(`    ${DIM}all conditions met — alerted ${Math.round(sinceLast / 3600000)}h ago, cooldown 24h${RESET}`);
+    }
+  } catch (e) { console.error("  early positioning check failed:", e.message); }
 
   state.lastTier = tier;
   state.lastScore = score;
