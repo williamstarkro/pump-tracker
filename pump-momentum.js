@@ -73,11 +73,22 @@ async function main() {
   // daily context (fees, regime)
   let daily = null; try { const rows = build(await loadDaily()); daily = rows[rows.length - 1]; daily.state = stateOf(daily); } catch (e) { console.error("  daily context unavailable:", e.message); }
   const feeAccel = daily?.fees7v30 ?? null, fees30v90 = daily?.fees30v90 ?? null, regime = daily?.state ?? null;
+  // On-chain implied fees: burn over the last 24h x price x 2 (50% of fees are bought and burned).
+  // Leads DefiLlama's daily print by up to a day. Needs chainSupply snapshots (from 2026-10-21).
+  let implied24 = null, impliedVs7 = null;
+  try {
+    const hist = JSON.parse(readFileSync(join(__dirname, "pump-tracker-history.json"), "utf-8")).filter(x => x.chainSupply);
+    const latest = hist[hist.length - 1], t0 = Date.parse(latest.timestamp) - 24 * 3.6e6;
+    const base = hist.reduce((b, x) => (Date.parse(x.timestamp) <= t0 ? x : b), null) || hist[0];
+    const hrs = (Date.parse(latest.timestamp) - Date.parse(base.timestamp)) / 3.6e6;
+    if (hrs >= 6) { implied24 = (base.chainSupply - latest.chainSupply) * price * 2 * (24 / hrs); if (daily?.fees7) impliedVs7 = (implied24 / daily.fees7 - 1) * 100; }
+  } catch {}
   const derisk = feeAccel !== null && feeAccel < S.deriskFeeAccel && fees30v90 !== null && fees30v90 < 0;
 
   console.log(`${B}PUMP MOMENTUM — ${new Date(now).toISOString().slice(0, 16)} UTC${R}  $${price.toFixed(6)}  24h ${pct(r24)}  3d ${pct(r3d)}  7d ${pct(r7d)}`);
   console.log(`  HL vol 24h $${(vol24 / 1e6).toFixed(0)}M = ${volX?.toFixed(2)}x 7d avg | 7d funding ${f7.toFixed(0)}%/yr | premium ${premium.toFixed(3)}% | OI $${(oiUsd / 1e6).toFixed(0)}M | positioning ${crowded ? RED + "CROWDED" : calm ? GRN + "calm" : YEL + "warm"}${R}`);
   console.log(`  daily: regime ${regime ?? "?"}/3 | fees 7d vs 30d ${feeAccel === null ? "?" : pct(feeAccel, 0)} | fees 30d vs 90d ${fees30v90 === null ? "?" : pct(fees30v90, 0)}${derisk ? RED + "  >>> DE-RISK: fee base contracting <<<" + R : ""}`);
+  console.log(`  on-chain implied fees (24h burn x2): ${implied24 === null ? "n/a (needs chainSupply history)" : "$" + (implied24 / 1e6).toFixed(2) + "M/day = " + pct(impliedVs7, 0) + " vs 7d avg"}  ${impliedVs7 !== null && impliedVs7 > 15 ? GRN + "FEES TURNING UP" + R : impliedVs7 !== null && impliedVs7 < -15 ? RED + "fees turning down" + R : ""}`);
 
   const setups = {
     M1: { on: volX !== null && volX > S.volX && r24 > 0 && calm && !derisk, why: `24h vol ${volX?.toFixed(1)}x avg, 24h ${pct(r24)}, funding ${f7.toFixed(0)}%/yr, premium ${premium.toFixed(3)}%`, label: "VOLUME EXPANSION + CALM POSITIONING" },
@@ -108,8 +119,14 @@ async function main() {
       log.push({ t: new Date(now).toISOString(), setup: k, event: "entry", entry: price, why: s.why, volX, f7, premium, r24, r3d, r7d, regime, feeAccel });
     }
   }
+  // Fee-turn alert (one per 24h): the variable that separated the winning analogs from the losing ones
+  if (impliedVs7 !== null && impliedVs7 > 15 && !(st.lastFeeTurn && now - st.lastFeeTurn < 24 * 3.6e6)) {
+    st.lastFeeTurn = now;
+    await notify("PUMP FEES TURNING UP (on-chain)", `24h burn implies $${(implied24 / 1e6).toFixed(2)}M/day in fees, ${pct(impliedVs7, 0)} vs the 7d average. In every analog of today's setup, fee acceleration over the next days separated the +50% outcomes from the -20% ones. Tactical rule fires at fees 7d > 30d by 10%. PUMP $${price.toFixed(6)}.`, 4);
+    log.push({ t: new Date(now).toISOString(), event: "fee_turn", implied24, impliedVs7, price });
+  }
   if (derisk && !st.lastDerisk) await notify("PUMP DE-RISK: fee base contracting", `Fees 7d vs 30d ${pct(feeAccel, 0)}, 30d vs 90d ${pct(fees30v90, 0)}. No new longs; core to minimum. Every >25% drawdown in the sample started with shrinking fees or a 30d return > +50% at a sub-15% yield. PUMP $${price.toFixed(6)}.`, 5);
-  st.lastDerisk = derisk; st.lastCheck = new Date(now).toISOString(); st.snapshot = { price, volX, f7, premium, r24, r3d, r7d, regime, feeAccel, fees30v90 };
+  st.lastDerisk = derisk; st.lastCheck = new Date(now).toISOString(); st.snapshot = { price, volX, f7, premium, r24, r3d, r7d, regime, feeAccel, fees30v90, implied24, impliedVs7 };
   writeFileSync(STATE_FILE, JSON.stringify(st, null, 2)); writeFileSync(LOG_FILE, JSON.stringify(log));
   console.log(`\n  open: ${Object.keys(st.open).length ? Object.entries(st.open).map(([k, p]) => `${k} @ $${p.entry.toFixed(6)} (${pct((price / p.entry - 1) * 100)})`).join(", ") : "none"} | log ${log.length} events\n`);
 }
