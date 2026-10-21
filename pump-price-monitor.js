@@ -130,6 +130,9 @@ async function main() {
   while (history.length > MAX_ENTRIES) history.shift();
   saveHistory(history);
 
+  // Always persist alert state so the commit step has a file even on quiet runs
+  saveState(loadState());
+
   // ─── Compute metrics ───
   const prices = history.map(h => h.price);
   const timestamps = history.map(h => new Date(h.timestamp).getTime());
