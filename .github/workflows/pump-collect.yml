@@ -36,6 +36,9 @@ jobs:
         env:
           HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          # Scorer-derived notifications stay muted until re-validated (pump-walkforward.js).
+          # Flip to "1" to receive tier / dip / velocity alerts again.
+          SCORER_ALERTS: "0"
         run: node pump-alerts.js
 
       - name: Run whale tracker
@@ -47,9 +50,10 @@ jobs:
         run: |
           git config user.name "pump-bot"
           git config user.email "pump-bot@users.noreply.github.com"
-          git add pump-tracker-history.json pump-alert-state.json pump-whale-state.json
+          git add pump-tracker-history.json pump-alert-state.json pump-whale-state.json pump-forecast-log.json
           git diff --staged --quiet || git commit -m "data: hourly snapshot $(date -u +%Y-%m-%dT%H:%M)"
-          git push
+          # the 15-min price job pushes to the same branch; rebase instead of failing
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
 
   price-monitor:
     if: github.event.schedule == '*/15 * * * *'
@@ -73,6 +77,6 @@ jobs:
         run: |
           git config user.name "pump-bot"
           git config user.email "pump-bot@users.noreply.github.com"
-          git add pump-price-history.json
+          git add pump-price-history.json pump-price-alert-state.json
           git diff --staged --quiet || git commit -m "price: $(date -u +%Y-%m-%dT%H:%M)"
-          git push
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done

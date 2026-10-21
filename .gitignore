@@ -2,4 +2,3 @@ node_modules/
 *.log
 .claude/
 pump-tracker-history.json.bak
-pump-price-alert-state.json

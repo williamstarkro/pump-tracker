@@ -237,6 +237,66 @@ async function fetchPrice() {
   return null;
 }
 
+// ─── Chain supply (authoritative — the scan sum drifts by tens of millions) ───
+async function fetchChainSupply() {
+  for (let attempt = 0; attempt < 4; attempt++) {
+    try {
+      const res = await fetch(getHeliusRpc(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getTokenSupply", params: [TOKEN_MINT] }),
+      });
+      if (res.status === 429 || res.status >= 500) { rotateHeliusKey(); await sleep(Math.pow(2, attempt) * 1000); continue; }
+      const data = await res.json();
+      const v = data.result?.value?.uiAmount;
+      if (typeof v === "number" && v > 0) return v;
+    } catch (err) {
+      console.error(`  fetchChainSupply attempt ${attempt}: ${err.message}`);
+    }
+    await sleep(Math.pow(2, attempt) * 1000);
+  }
+  return null;
+}
+
+// ─── Perps context from Hyperliquid (open interest, funding) — free, no key ───
+async function fetchPerps() {
+  try {
+    const res = await fetch("https://api.hyperliquid.xyz/info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "metaAndAssetCtxs" }),
+    });
+    if (!res.ok) return null;
+    const [meta, ctxs] = await res.json();
+    const idx = meta.universe.findIndex(a => a.name === "PUMP");
+    if (idx < 0 || !ctxs[idx]) return null;
+    const c = ctxs[idx];
+    return {
+      source: "hyperliquid",
+      openInterest: parseFloat(c.openInterest),        // in PUMP tokens
+      openInterestUsd: parseFloat(c.openInterest) * parseFloat(c.markPx),
+      fundingHourly: parseFloat(c.funding),
+      markPx: parseFloat(c.markPx),
+      volume24hUsd: parseFloat(c.dayNtlVlm),
+      premium: c.premium !== null && c.premium !== undefined ? parseFloat(c.premium) : null,
+    };
+  } catch (err) {
+    console.error(`  fetchPerps: ${err.message}`);
+    return null;
+  }
+}
+
+// ─── SOL spot price (DexScreener, no key) — stored per snapshot for the SOL-beta model ───
+async function fetchSolPrice() {
+  try {
+    const res = await fetch("https://api.dexscreener.com/latest/dex/tokens/So11111111111111111111111111111111111111112");
+    if (!res.ok) return null;
+    const data = await res.json();
+    const p = parseFloat(data.pairs?.[0]?.priceUsd);
+    return isNaN(p) ? null : p;
+  } catch { return null; }
+}
+
 // ─── Load history ───
 function loadHistory() {
   try {
@@ -275,8 +335,19 @@ async function main() {
   console.log("");
 
   // Fetch data (price starts immediately, holders scan runs in parallel)
-  const [holdersResult, price] = await Promise.all([fetchAllHolders(), fetchPrice()]);
-  const { holders, totalSupply, totalAccounts, uniqueOwners } = holdersResult;
+  const [holdersResult, price, chainSupply, perps, solPrice] = await Promise.all([
+    fetchAllHolders(), fetchPrice(), fetchChainSupply(), fetchPerps(), fetchSolPrice(),
+  ]);
+  const { holders, totalSupply: scanSupply, totalAccounts, uniqueOwners } = holdersResult;
+  // Authoritative supply is the chain counter; the scan sum is kept for reference only.
+  const totalSupply = chainSupply || scanSupply;
+  if (chainSupply) {
+    console.log(`  Supply: chain ${fmtNum(chainSupply)} | scan sum ${fmtNum(scanSupply)} (scan drift ${fmtDelta(scanSupply - chainSupply)})`);
+  } else {
+    console.log(`  ${RED}WARNING: getTokenSupply failed — falling back to scan sum (noisy)${RESET}`);
+  }
+  if (perps) console.log(`  Perps (HL): OI ${fmtNum(perps.openInterest)} PUMP ($${(perps.openInterestUsd / 1e6).toFixed(1)}M) | funding ${(perps.fundingHourly * 100).toFixed(4)}%/h | mark $${perps.markPx}`);
+  if (solPrice) console.log(`  SOL: $${solPrice.toFixed(2)}`);
 
   const now = new Date().toISOString();
   const history = loadHistory();
@@ -289,6 +360,10 @@ async function main() {
     timestamp: now,
     price,
     totalSupply,
+    chainSupply: chainSupply || null,
+    scanSupply,
+    solPrice,
+    perps,
     uniqueOwners,
     holders: holders.map((h, i) => ({
       rank: i + 1,
@@ -1309,4 +1384,8 @@ async function main() {
   console.log(`${"═".repeat(120)}\n`);
 }
 
-main().catch(console.error);
+main().catch(e => {
+  console.error(e);
+  console.error("\n  TRACKER FAILED — no snapshot written. Exiting non-zero so dependent steps do not run on stale data.");
+  process.exit(1);
+});
