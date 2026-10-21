@@ -54,6 +54,10 @@ Positioning finding behind the gate: when 7-day funding exceeded ~40%/yr, the ne
 
 `node pump-regime.js --no-notify` prints the dials, the levels at which each flips, the since-launch SOL-beta decomposition, and the in-sample forward-30d table by state. The rules live in `RULES` at the top of the file. The sample contains roughly two regimes, so treat the table as directional and let `pump-regime-log.json` accumulate.
 
+## Nomenclature (fees vs revenue)
+
+DefiLlama publishes two lines for pump.fun. Its **"fees"** line is gross protocol revenue (what pump.fun itself calls revenue; ~$1.9M/day in Oct 2026). Its **"revenue"** line is a constant 0.72x of that (gross minus the creator share; ~$1.36M/day). The on-chain burn is **~0.5x the gross line** (0.47 over Oct 7–20) — i.e. "50% of revenue goes to buybacks" where revenue means the gross/DefiLlama-fees line. All yield, dial and alert math in this repo uses the gross line x 0.5 as holder flow.
+
 ## Data notes
 
 - `totalSupply` before 2026-10-21 was the *sum of the paginated scan* and drifts by tens of millions per hour. `smoothSupply()` in `pump-signals.js` repairs it (rolling median, then monotone non-increasing). Snapshots from 2026-10-21 carry `chainSupply` and are used as-is.
