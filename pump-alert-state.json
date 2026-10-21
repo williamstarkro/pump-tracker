@@ -1,13 +1,13 @@
 {
   "lastTier": "GOOD ENTRY",
-  "lastScore": 60,
+  "lastScore": 45,
   "lastAlertTime": "2026-10-21T17:26:37.483Z",
   "lastAlertTier": "STRONG ENTRY",
-  "lastCheck": "2026-10-21T19:25:08.846Z",
+  "lastCheck": "2026-10-21T20:30:33.614Z",
   "lastVelocityAlertTime": "2026-10-21T00:59:27.728Z",
   "lastDipAlertTime": "2026-10-20T11:28:03.663Z",
   "lastDipAlertType": null,
   "lastDipApproachAlert": false,
-  "lastRawTier": "GOOD ENTRY",
+  "lastRawTier": "NEUTRAL",
   "lastEarlyPositioningTime": "2026-10-21T16:36:06.582Z"
 }
