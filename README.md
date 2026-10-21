@@ -12,6 +12,7 @@ Hourly on-chain tracker, entry scorer and alerting for the PUMP token, run on Gi
 | `pump-price-monitor.js` | every 15 min | DexScreener price; spike / dip / 24h-high alerts. These still notify. |
 | `pump-perps-history.js` | daily, before regime | Appends Hyperliquid hourly funding/premium (since listing 2025-07-10) and 1h candles, plus OKX open-interest history, to `perps-history.json`. |
 | `pump-momentum.js` | hourly, own job | Leveraged 3–14d long setups from Hyperliquid volume/funding/premium plus daily fee and regime context. **Notifies on setup entry and exit** with stop, time stop and in-sample stats. Also sends DE-RISK when the fee base contracts. |
+| `pump-xsec.js` | weekly, Monday 07:07 UTC | Cross-sectional screen of every token whose protocol routes revenue to holders (DefiLlama holders revenue). Ranks by 30d-vs-90d revenue growth, re-checks the factor, logs to `xsec-log.json`, notifies the top and bottom terciles and PUMP's rank. |
 | `pump-regime.js` | daily 06:37 UTC | Medium-term (3–30d) regime model from daily DefiLlama fees + prices: three dials (SOL 30d trend, fee base not shrinking, price not in deepening drawdown), sizing from holder-flow yield vs its own 90d. **Notifies on dial flips only.** Logs to `pump-regime-log.json`. Holder flow = 100% of fees before 2026-04-01, 50% after. |
 
 ## Evaluating signals (do this before trusting any weight)
@@ -27,6 +28,10 @@ node pump-backtest.js               # legacy pooled backtest (in-sample; superse
 `pump-walkforward.js` judges each condition against the **base rate of its own time window** and against **SOL-residual returns** (PUMP is ~2x SOL beta in Oct 2026). A condition earns trust only when its excess is positive in most windows. `n` counts hours, and forward windows overlap, so `n=50` is maybe 5-10 independent episodes.
 
 Why this exists: the scorer's weights were fit on Jul-Sep 2026 data when PUMP rose 214% and *any* hour returned +8% over 72h. From Sep 28 to Oct 21 most of those signals flipped sign (exchange outflow > 1B went from an 89% to a 0% win rate; 3-day-dip buying from 80% to 19%). `pump-scorecard.js` is the ongoing test: every forecast row is written before the outcome is known.
+
+## The cross-sectional factor (the most robust result in this repo)
+
+Across ~50 tokens whose protocols pay revenue to holders (Hyperliquid, pump.fun, GMX, Jupiter, Raydium, Lido, Curve, ...), **relative revenue growth** (holders revenue 30d avg vs 90d avg) predicts the next 30 days: rank IC +0.13, positive in 75% of 54 weekly cross-sections, t ≈ 4.2; top-minus-bottom tercile ≈ +7%/30d; a monthly-rebalanced long top-tercile basket compounded +53% vs +8% for the equal-weight universe (Aug 2025 – Sep 2026, in-sample, no costs). Price momentum has **no** cross-sectional edge here. Yield is a weaker second factor. Within any single token, timing on its own revenue is weak — the edge is relative. Caveats: universe selected on today's survivors; DefiLlama's last few days can lag (7d acceleration is unreliable for some protocols); IC was much stronger in Aug 2025–Feb 2026 (+0.25) than Mar–Sep 2026 (+0.03).
 
 ## Leveraged momentum setups (3–14 days)
 

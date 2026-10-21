@@ -8,6 +8,8 @@ on:
     - cron: '*/15 * * * *'
     # Daily regime model (after DefiLlama closes the previous UTC day)
     - cron: '37 6 * * *'
+    # Weekly fee-to-holder universe screen (Monday 07:07 UTC)
+    - cron: '7 7 * * 1'
   workflow_dispatch: # Manual trigger
 
 permissions:
@@ -143,4 +145,30 @@ jobs:
           git config user.email "pump-bot@users.noreply.github.com"
           git add pump-momentum-state.json pump-momentum-log.json
           git diff --staged --quiet || git commit -m "momentum: $(date -u +%Y-%m-%dT%H:%M)"
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
+
+  xsec:
+    if: github.event.schedule == '7 7 * * 1' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run fee-to-holder screen
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node pump-xsec.js --quiet
+
+      - name: Commit screen
+        run: |
+          git config user.name "pump-bot"
+          git config user.email "pump-bot@users.noreply.github.com"
+          git add xsec-log.json
+          git diff --staged --quiet || git commit -m "xsec: $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
