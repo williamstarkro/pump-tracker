@@ -6,6 +6,8 @@ on:
     - cron: '17 * * * *'
     # Price monitor every 15 min (GitHub Actions unreliable below this)
     - cron: '*/15 * * * *'
+    # Daily regime model (after DefiLlama closes the previous UTC day)
+    - cron: '37 6 * * *'
   workflow_dispatch: # Manual trigger
 
 permissions:
@@ -13,7 +15,7 @@ permissions:
 
 jobs:
   tracker:
-    if: github.event.schedule != '*/15 * * * *'
+    if: github.event.schedule == '17 * * * *' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -79,4 +81,30 @@ jobs:
           git config user.email "pump-bot@users.noreply.github.com"
           git add pump-price-history.json pump-price-alert-state.json
           git diff --staged --quiet || git commit -m "price: $(date -u +%Y-%m-%dT%H:%M)"
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
+
+  regime:
+    if: github.event.schedule == '37 6 * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run regime model
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node pump-regime.js
+
+      - name: Commit regime data
+        run: |
+          git config user.name "pump-bot"
+          git config user.email "pump-bot@users.noreply.github.com"
+          git add pump-regime-state.json pump-regime-log.json
+          git diff --staged --quiet || git commit -m "regime: $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
