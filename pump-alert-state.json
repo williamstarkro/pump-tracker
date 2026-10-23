@@ -1,9 +1,9 @@
 {
-  "lastTier": "AVOID",
+  "lastTier": "STRONG ENTRY",
   "lastScore": 80,
-  "lastAlertTime": "2026-10-21T21:27:49.618Z",
-  "lastAlertTier": "NEUTRAL",
-  "lastCheck": "2026-10-23T22:27:04.608Z",
+  "lastAlertTime": "2026-10-23T23:25:44.477Z",
+  "lastAlertTier": "STRONG ENTRY",
+  "lastCheck": "2026-10-23T23:25:44.477Z",
   "lastVelocityAlertTime": "2026-10-21T00:59:27.728Z",
   "lastDipAlertTime": "2026-10-23T20:57:41.654Z",
   "lastDipAlertType": "approaching",
