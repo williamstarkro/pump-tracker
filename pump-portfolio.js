@@ -29,7 +29,7 @@ import { loadDaily, build, dials, stateOf } from "./pump-regime.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE_FILE = join(__dirname, "pump-portfolio-state.json");
 const LOG_FILE = join(__dirname, "pump-portfolio-log.json");
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m";
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "";
 const args = new Set(process.argv.slice(2));
 const B = "\x1b[1m", R = "\x1b[0m", DIM = "\x1b[2m", GRN = "\x1b[32m", RED = "\x1b[31m", YEL = "\x1b[33m";
 
@@ -111,6 +111,7 @@ const pct = (x, d = 0) => (x >= 0 ? "+" : "") + (x * 100).toFixed(d) + "%";
 
 async function notify(title, message, priority = 3) {
   if (args.has("--no-notify")) { console.log(`\n  [no-notify] ${title}\n  ${message}\n`); return; }
+  if (!NTFY_TOPIC) { console.log(`  [no NTFY_TOPIC] ${title}`); return; }
   try { const s = x => x.replace(/[^\x20-\x7E]/g, c => ({ "—": "--", "→": "->", "≥": ">=", "×": "x" }[c] || "")); const r = await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, { method: "POST", headers: { Title: s(title), Priority: String(priority), Tags: priority >= 4 ? "rotating_light" : "briefcase" }, body: s(message) }); console.log(r.ok ? `\n  SENT: ${title}` : `  ntfy failed: ${r.status}`); } catch (e) { console.error("  ntfy failed:", e.message); }
 }
 

@@ -22,7 +22,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const LOG = join(__dirname, "xsec-log.json");
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m";
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "";
 const args = new Set(process.argv.slice(2));
 const B = "\x1b[1m", R = "\x1b[0m", DIM = "\x1b[2m", GRN = "\x1b[32m", RED = "\x1b[31m";
 const L1 = new Set(["eth", "sol", "trx", "bnb", "avax", "near", "icp", "apt", "mon", "quai", "sui", "ton", "btc"]);
@@ -56,7 +56,8 @@ function panel(tokens) {
   return rows;
 }
 const tradable = r => !r.l1 && r.mcap > MIN_MCAP && r.yld < MAX_YIELD;
-async function notify(title, message) { if (args.has("--no-notify")) { console.log(`\n  [no-notify] ${title}\n  ${message}\n`); return; } try { const s = x => x.replace(/[^\x20-\x7E]/g, ""); await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, { method: "POST", headers: { Title: s(title), Priority: "3", Tags: "bar_chart" }, body: s(message) }); console.log(`\n  SENT: ${title}`); } catch (e) { console.error("  ntfy failed:", e.message); } }
+async function notify(title, message) { if (args.has("--no-notify")) { console.log(`\n  [no-notify] ${title}\n  ${message}\n`); return; } if (!NTFY_TOPIC) { console.log(`  [no NTFY_TOPIC] ${title}`); return; }
+ try { const s = x => x.replace(/[^\x20-\x7E]/g, ""); await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, { method: "POST", headers: { Title: s(title), Priority: "3", Tags: "bar_chart" }, body: s(message) }); console.log(`\n  SENT: ${title}`); } catch (e) { console.error("  ntfy failed:", e.message); } }
 
 async function main() {
   const tokens = await universe(); const rows = panel(tokens);

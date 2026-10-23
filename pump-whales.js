@@ -16,7 +16,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const HISTORY_FILE = join(__dirname, "pump-tracker-history.json");
 const WHALE_STATE_FILE = join(__dirname, "pump-whale-state.json");
 const IS_CI = !!process.env.CI;
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m";
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "";
 
 // ─── Known wallets (exclude from whale tracking) ───
 const KNOWN_WALLETS = {
@@ -64,6 +64,7 @@ function notifyMacOS(title, message) {
 }
 
 async function notifyNtfy(title, message, priority = 3) {
+  if (!NTFY_TOPIC) { console.log(`  [no NTFY_TOPIC] ${title}`); return; }
   try {
     const sanitize = s => s.replace(/[^\x20-\x7E]/g, "");
     await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {

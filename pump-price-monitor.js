@@ -18,7 +18,7 @@ const MINT = "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn";
 const SOL_MINT = "So11111111111111111111111111111111111111112";
 const DEXSCREENER_URL = `https://api.dexscreener.com/latest/dex/tokens/${MINT}`;
 const DEXSCREENER_SOL_URL = `https://api.dexscreener.com/latest/dex/tokens/${SOL_MINT}`;
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m";
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "";
 const IS_CI = !!process.env.CI;
 const MAX_ENTRIES = 288; // 24h at 5-min intervals
 const ALERT_COOLDOWN_MS = 15 * 60 * 1000; // 15 minutes
@@ -34,6 +34,7 @@ function notifyMacOS(title, message) {
 }
 
 async function notifyNtfy(title, message, priority = 3) {
+  if (!NTFY_TOPIC) { console.log(`  [no NTFY_TOPIC] ${title}`); return; }
   try {
     const sanitize = s => s.replace(/[^\x20-\x7E]/g, "");
     await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {

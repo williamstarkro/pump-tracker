@@ -15,6 +15,19 @@ Hourly on-chain tracker, entry scorer and alerting for the PUMP token, run on Gi
 | `pump-xsec.js` | weekly, Monday 07:07 UTC | Cross-sectional screen of every token whose protocol routes revenue to holders (DefiLlama holders revenue). Ranks by 30d-vs-90d revenue growth, re-checks the factor, logs to `xsec-log.json`, notifies the top and bottom terciles and PUMP's rank. |
 | `pump-regime.js` | daily 06:37 UTC | Medium-term (3–30d) regime model from daily DefiLlama fees + prices: three dials (SOL 30d trend, fee base not shrinking, price not in deepening drawdown), sizing from holder-flow yield vs its own 90d. **Notifies on dial flips only.** Logs to `pump-regime-log.json`. Holder flow = 100% of fees before 2026-04-01, 50% after. |
 
+## Setup (secrets)
+
+Nothing sensitive lives in the code. Two repository secrets drive everything (Settings → Secrets and variables → Actions):
+
+| Secret | Used by | Notes |
+|---|---|---|
+| `HELIUS_API_KEY` | `pump-tracker.js` | Required; the tracker exits non-zero without it. Comma-separate several keys in `HELIUS_API_KEYS` to enable rotation on quota exhaustion. |
+| `NTFY_TOPIC` | every alerting script | Optional. Empty = alerts are logged, not pushed. Pick a long random topic name; anyone who knows it can read and post to it. |
+
+For local runs, export the same two variables in your shell.
+
+**Actions minutes:** the hourly tracker (4–7 min), 15-minute price monitor and hourly momentum job use roughly 250 minutes/day. On a private repo that exhausts the 2,000-minute free tier in about 8 days; on a public repo minutes are unlimited.
+
 ## Evaluating signals (do this before trusting any weight)
 
 ```

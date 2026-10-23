@@ -29,7 +29,7 @@ const SCORER_ALERTS_ENABLED = process.env.SCORER_ALERTS === "1";
 const CONFIG = {
   ntfy: {
     enabled: true,
-    topic: process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m",
+    topic: process.env.NTFY_TOPIC || "",
   },
   macos: {
     enabled: !IS_CI,
@@ -120,7 +120,7 @@ async function notifyMacOS(title, message) {
 }
 
 async function notifyNtfy(title, message, priority = 3) {
-  if (!CONFIG.ntfy.enabled) return;
+  if (!CONFIG.ntfy.enabled || !CONFIG.ntfy.topic) { if (!CONFIG.ntfy.topic) console.log(`  [no NTFY_TOPIC] ${title}`); return; }
   try {
     const tags = priority >= 4 ? "rotating_light" : priority >= 3 ? "chart_with_upwards_trend" : "eyes";
     const sanitize = s => s.replace(/[^\x20-\x7E]/g, c => ({ "—": "--", "–": "-", "‘": "'", "’": "'", "“": '"', "”": '"' }[c] || ""));

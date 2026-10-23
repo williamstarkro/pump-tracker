@@ -24,7 +24,7 @@ import { dirname, join } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE_FILE = join(__dirname, "pump-regime-state.json");
 const LOG_FILE = join(__dirname, "pump-regime-log.json");
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m";
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "";
 const args = new Set(process.argv.slice(2));
 const B = "\x1b[1m", R = "\x1b[0m", DIM = "\x1b[2m", GRN = "\x1b[32m", RED = "\x1b[31m", YEL = "\x1b[33m";
 
@@ -120,6 +120,7 @@ const guidance = (st, r) => st === 3 ? `3/3 ON — regime on. Size: ${sizing(r)}
 // ─── Notify ───
 async function notify(title, message, priority = 3) {
   if (args.has("--no-notify")) { console.log(`\n  [no-notify] ${title}\n  ${message}\n`); return; }
+  if (!NTFY_TOPIC) { console.log(`  [no NTFY_TOPIC] ${title}`); return; }
   try {
     const sanitize = s => s.replace(/[^\x20-\x7E]/g, c => ({ "—": "--", "–": "-", "≈": "~", "→": "->" }[c] || ""));
     const resp = await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, { method: "POST", headers: { Title: sanitize(title), Priority: String(priority), Tags: priority >= 4 ? "rotating_light" : "bar_chart" }, body: sanitize(message) });

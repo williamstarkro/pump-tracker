@@ -31,7 +31,7 @@ import { loadDaily, build, stateOf } from "./pump-regime.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE_FILE = join(__dirname, "pump-momentum-state.json"), LOG_FILE = join(__dirname, "pump-momentum-log.json");
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "pump-entry-signal-wx7k2m";
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "";
 const args = new Set(process.argv.slice(2));
 const B = "\x1b[1m", R = "\x1b[0m", DIM = "\x1b[2m", GRN = "\x1b[32m", RED = "\x1b[31m", YEL = "\x1b[33m";
 const HL = "https://api.hyperliquid.xyz/info";
@@ -47,6 +47,7 @@ const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
 const pct = (x, d = 1) => (x >= 0 ? "+" : "") + x.toFixed(d) + "%";
 async function notify(title, message, priority = 4) {
   if (args.has("--no-notify")) { console.log(`\n  [no-notify] ${title}\n  ${message}\n`); return; }
+  if (!NTFY_TOPIC) { console.log(`  [no NTFY_TOPIC] ${title}`); return; }
   try { const s = x => x.replace(/[^\x20-\x7E]/g, c => ({ "—": "--", "→": "->", "×": "x", "≤": "<=", "≥": ">=" }[c] || "")); const r = await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, { method: "POST", headers: { Title: s(title), Priority: String(priority), Tags: priority >= 5 ? "rotating_light" : "zap" }, body: s(message) }); console.log(r.ok ? `\n  SENT: ${title}` : `  ntfy failed: ${r.status}`); } catch (e) { console.error("  ntfy failed:", e.message); }
 }
 

@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-const HELIUS_KEYS = [
-  process.env.HELIUS_API_KEY || "6793a84b-b3c9-47d4-bbac-b0d502038f33",
-  "c09814db-cb2b-46d7-b90b-f8d1432b6e24",
-];
+const HELIUS_KEYS = (process.env.HELIUS_API_KEYS || process.env.HELIUS_API_KEY || "").split(",").map(s => s.trim()).filter(Boolean);
+if (!HELIUS_KEYS.length) { console.error("HELIUS_API_KEY is not set (comma-separate several in HELIUS_API_KEYS to enable rotation)"); process.exit(1); }
 let heliusKeyIndex = 0;
 function getHeliusRpc() {
   return `https://mainnet.helius-rpc.com/?api-key=${HELIUS_KEYS[heliusKeyIndex]}`;
