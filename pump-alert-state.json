@@ -3,10 +3,10 @@
   "lastScore": 90,
   "lastAlertTime": "2026-10-23T23:25:44.477Z",
   "lastAlertTier": "STRONG ENTRY",
-  "lastCheck": "2026-10-24T00:57:19.618Z",
+  "lastCheck": "2026-10-24T01:35:47.649Z",
   "lastVelocityAlertTime": "2026-10-21T00:59:27.728Z",
-  "lastDipAlertTime": "2026-10-23T20:57:41.654Z",
-  "lastDipAlertType": "approaching",
+  "lastDipAlertTime": "2026-10-24T01:35:47.649Z",
+  "lastDipAlertType": "confluence",
   "lastDipApproachAlert": true,
   "lastRawTier": "STRONG ENTRY",
   "lastEarlyPositioningTime": "2026-10-23T21:09:09.607Z"
